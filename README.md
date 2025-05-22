@@ -14,4 +14,3 @@ Use the file with .vsix extension to install the extension.
 Once these steps are completed, you are all set to compete!
 
 Happy coding!
-# BashForge
