@@ -98,9 +98,9 @@ const Leaderboard = () => {
         <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-zinc-900/80 rounded-lg">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-500/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-teal-500/90 border-teal-500/90"
+                ? "bg-teal-600/90 border-teal-600/90"
                 : "bg-zinc-900/80 border-white/10"
             }`}
           >
@@ -108,9 +108,9 @@ const Leaderboard = () => {
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-500/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-teal-500/90 border-teal-500/90"
+                ? "bg-teal-600/90 border-teal-600/90"
                 : "bg-zinc-900/80 border-white/10"
             }`}
           >
@@ -123,20 +123,20 @@ const Leaderboard = () => {
           remainingTime={remainingTime}
         />
         {leaderboardData && (
-          <p className="text-xl font-medium text-white/90 mt-5 self-start">
-            <span className="text-teal-500/90">{leaderboardData[0]?.name}</span>{" "}
+          <p className="text-xl font-medium text-white/80 mt-5 self-start">
+            <span className="text-teal-600/90">{leaderboardData[0]?.name}</span>{" "}
             {selectedQuote}
           </p>
         )}
         <div className="flex justify-start items-center w-full bg-zinc-800/90 px-5 py-3 border-b border-white/10 mt-2 rounded-t-lg">
-          <p className="text-xl font-medium text-white/90">
+          <p className="text-xl font-medium text-white/80">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"
               : "This Week's Leaderboard"}
           </p>
         </div>
         <LeaderBoardData
-          leaderboardData={leaderboardData}
+          LeaderboardData={leaderboardData}
           activeBtn={activeBtn}
         />
       </div>

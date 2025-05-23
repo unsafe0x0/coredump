@@ -1,20 +1,24 @@
 import { NextResponse } from "next/server";
-import databaseClient from "../../../../prisma/db";
+import databaseClient from "../../../../../prisma/db";
 import { LRUCache } from "next/dist/server/lib/lru-cache";
 
 const cache = new LRUCache({ max: 100, ttl: 1000 * 60 * 10 });
 
-export async function GET() {
-  if (cache.has("leaderboardData")) {
+export async function GET(request, { params }) {
+  if (cache.has(params.username)) {
     return NextResponse.json({
       message: "Data fetched successfully",
       status: 200,
-      data: cache.get("leaderboardData"),
+      data: cache.get(params.username),
     });
   }
 
   try {
-    const leaderboardData = await databaseClient.user.findMany({
+    const { username } = await params;
+    const user = await databaseClient.user.findUnique({
+      where: {
+        gitUsername: username,
+      },
       select: {
         name: true,
         gitUsername: true,
@@ -32,15 +36,18 @@ export async function GET() {
         },
       },
     });
-
-    cache.set("leaderboardData", leaderboardData);
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    cache.set(params.username, user);
 
     return NextResponse.json({
-      message: "Data fetched successfully",
+      message: "User details fetched successfully",
       status: 200,
-      data: leaderboardData,
+      data: user,
     });
   } catch (error) {
+    console.error("Error fetching user details:", error);
     return NextResponse.json({
       message: "Something went wrong",
       status: 500,

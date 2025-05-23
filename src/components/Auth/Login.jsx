@@ -44,11 +44,11 @@ const LoginForm = () => {
           action=""
           className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-white/10 rounded-lg bg-zinc-900/70"
         >
-          <h2 className="text-3xl self-center font-medium text-center text-white/90">
+          <h2 className="text-3xl self-center font-medium text-center text-white/80">
             Login to your account
           </h2>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/80 font-medium">
+            <label htmlFor="" className="text-lg text-white/70 font-medium">
               Email
             </label>
             <input
@@ -58,11 +58,11 @@ const LoginForm = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/80 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/80 font-medium">
+            <label htmlFor="" className="text-lg text-white/70 font-medium">
               Password
             </label>
             <div className="flex justify-between items-center w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg">
@@ -73,10 +73,10 @@ const LoginForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-md font-medium text-white/80 outline-hidden bg-zinc-900/50 w-full"
+                className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full"
               />
               <button
-                className=" text-teal-500 text-lg"
+                className=" text-teal-600 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -84,19 +84,19 @@ const LoginForm = () => {
             </div>
           </div>
           {error && (
-            <p className="text-teal-500 font-normal text-sm">{error}</p>
+            <p className="text-teal-600 font-normal text-sm">{error}</p>
           )}
           <button
             onClick={handleLogin}
-            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-teal-500 rounded-lg hover:bg-teal-500/80 border border-teal-500 transition-all duration-300 ease-in-out w-full cursor-pointer"
+            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-teal-600 rounded-lg hover:bg-teal-600/80 border border-teal-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
           >
             Login
           </button>
-          <div className="flex flex-wrap justify-center items-center w-full space-x-2 text-md text-white/80">
+          <div className="flex flex-wrap justify-center items-center w-full space-x-2 text-md text-white/70">
             <p className="">{`Don't have an account?`}</p>
             <Link
               href="/register"
-              className="text-teal-500 underline font-normal"
+              className="text-teal-600 underline font-normal"
             >
               Register here
             </Link>

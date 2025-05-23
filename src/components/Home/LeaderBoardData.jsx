@@ -6,30 +6,30 @@ import LanguageBadge from "./LanguageBadge";
 import DeveloperCard from "./DeveloperCard";
 import { MdOutlineWatchLater } from "react-icons/md";
 
-const LeaderboardTable = ({ leaderboardData, activeBtn }) => {
+const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
   return (
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
         <thead className="bg-zinc-800/80 backdrop-blur-xl min-w-full">
           <tr className="border-b border-white/10 w-full">
-            <th className="text-left text-lg font-medium text-white/90 px-10 py-3">
+            <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
               Rank
             </th>
-            <th className="text-left text-lg font-medium text-white/90 px-10 py-3">
+            <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
               Developer
             </th>
-            <th className="text-center text-lg font-medium text-white/90 px-10 py-3">
+            <th className="text-center text-lg font-medium text-white/80 px-10 py-3">
               Time
             </th>
-            <th className="text-left text-lg font-medium text-white/90 px-10 py-3 whitespace-nowrap">
+            <th className="text-left text-lg font-medium text-white/80 px-10 py-3 whitespace-nowrap">
               Top Languages
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-white/80 bg-zinc-800/60 min-w-full">
-          {leaderboardData.length > 0 ? (
-            leaderboardData.map((user, index) => {
-              const totalTime = user.activities?.reduce(
+        <tbody className="text-md md:text-lg text-white/70 bg-zinc-800/60 min-w-full">
+          {LeaderboardData.length > 0 ? (
+            LeaderboardData.map((dev, index) => {
+              const totalTime = dev.activities?.reduce(
                 (sum, act) =>
                   sum +
                   (activeBtn === "7Days"
@@ -55,22 +55,17 @@ const LeaderboardTable = ({ leaderboardData, activeBtn }) => {
                     )}
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <DeveloperCard
-                      name={user.name}
-                      profileImage={user.profileImage}
-                      gitUsername={user.gitUsername}
-                      twitterUsername={user.twitterUsername}
-                    />
+                    <DeveloperCard developerData={dev} />
                   </td>
                   <td className="px-10 py-3 align-middle text-center">
-                    <span className="px-3 py-1 bg-teal-500/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
-                      <MdOutlineWatchLater className="text-teal-500 text-lg font-medium" />
+                    <span className="px-3 py-1 bg-teal-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
+                      <MdOutlineWatchLater className="text-teal-600 text-lg font-medium" />
                       {Math.round(totalTime)} m
                     </span>
                   </td>
                   <td className="px-10 py-3 align-middle">
                     <div className="flex flex-row gap-2">
-                      {[...(user.activities || [])]
+                      {[...(dev.activities || [])]
                         .filter((act) =>
                           activeBtn === "7Days"
                             ? act.last7DaysDuration > 0
@@ -128,4 +123,4 @@ const LeaderboardTable = ({ leaderboardData, activeBtn }) => {
   );
 };
 
-export default LeaderboardTable;
+export default LeaderboardData;

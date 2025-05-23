@@ -17,31 +17,26 @@ const LeaderBoarderHeader = ({
           <SiHoneybadger />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">
-          <h2 className="text-xl font-medium text-white/90">Top Performer</h2>
+          <h2 className="text-xl font-medium text-white/80">Top Performer</h2>
           <div className="flex items-center gap-2">
             {leaderboardTopData ? (
-              <DeveloperCard
-                name={leaderboardTopData.name}
-                profileImage={leaderboardTopData.profileImage}
-                gitUsername={leaderboardTopData.gitUsername}
-                twitterUsername={leaderboardTopData.twitterUsername}
-              />
+              <DeveloperCard developerData={leaderboardTopData} />
             ) : (
-              <span className="text-white/80 text-xl font-medium">No data</span>
+              <span className="text-white/70 text-xl font-medium">No data</span>
             )}
           </div>
         </div>
       </div>
       <div className="flex justify-center items-center w-full rounded-lg bg-zinc-800/80 backdrop-blur-xl p-3 gap-5">
-        <span className="text-4xl text-teal-500/90 p-1.5 rounded-lg bg-teal-500/10">
+        <span className="text-4xl text-teal-600/90 p-1.5 rounded-lg bg-teal-600/10">
           <FiUsers />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">
-          <h2 className="text-xl font-medium text-white/90">
+          <h2 className="text-xl font-medium text-white/80">
             Total Competitors
           </h2>
           <div className="flex items-center gap-2">
-            <span className="text-white/80 text-xl font-medium">
+            <span className="text-white/70 text-xl font-medium">
               {leaderboardLength}
             </span>
           </div>
@@ -52,9 +47,9 @@ const LeaderBoarderHeader = ({
           <GiStopwatch />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">
-          <h2 className="text-xl font-medium text-white/90">Remaining Time</h2>
+          <h2 className="text-xl font-medium text-white/80">Remaining Time</h2>
           <div className="flex items-center gap-2">
-            <span className="text-white/80 text-xl font-medium">
+            <span className="text-white/70 text-xl font-medium">
               {remainingTime}
             </span>
           </div>
