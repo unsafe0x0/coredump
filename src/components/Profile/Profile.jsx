@@ -150,7 +150,7 @@ const Profile = () => {
         </div>
         <div className="flex flex-col justify-start items-start w-full gap-1">
           <p className="text-lg text-white/70 font-medium">Your private key</p>
-          <p className="text-lg text-white/70 bg-zinc-900/50 border border-teal-600 px-3 py-1.5 md:py-1.5 rounded-lg w-full">
+          <p className="text-lg text-white/70 bg-zinc-900/50 border border-teal-600 px-3 py-1.5 md:py-1.5 rounded-lg w-full break-words">
             {privateKey}
           </p>
           <button

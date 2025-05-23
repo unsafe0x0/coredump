@@ -41,10 +41,10 @@ export async function POST(req) {
     }
 
     const shortLang = getShortLanguageName(normalizedLang);
-    const roundedTime = Math.round(timeSpent * 60) / 60;
+    const roundedTime = Number(timeSpent.toFixed(2));
 
     if (roundedTime <= 0) {
-      return NextResponse.json({ message: "Insufficient time", status: 400 });
+      return NextResponse.json({ message: "Invalid time spent", status: 400 });
     }
 
     const user = await databaseClient.user.findUnique({
