@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const LanguageBadge = ({ lang, icon, duration }) => {
+const LanguageBadge = ({ lang, icon, color, duration }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="flex items-center justify-center gap-1 px-4 md:px-3 py-1 bg-white text-zinc-800 border rounded-md text-sm font-normal whitespace-nowrap relative min-w-[70px]"
+      className={`flex items-center justify-center gap-1 px-4 md:px-3 py-1 border rounded-md text-sm font-normal whitespace-nowrap relative min-w-[70px] ${color} text-zinc-100`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

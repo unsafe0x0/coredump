@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { GiDiamondTrophy } from "react-icons/gi";
-import { languageIconsImage } from "@/lib/languageData";
+import { languageIconsImage, languageColors } from "@/lib/languageData";
 import LanguageBadge from "./LanguageBadge";
 import DeveloperCard from "./DeveloperCard";
 import { MdOutlineWatchLater } from "react-icons/md";
@@ -35,7 +35,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                   (activeBtn === "7Days"
                     ? act.last7DaysDuration || 0
                     : act.last24HoursDuration || 0),
-                0,
+                0
               );
 
               return (
@@ -69,7 +69,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                         .filter((act) =>
                           activeBtn === "7Days"
                             ? act.last7DaysDuration > 0
-                            : act.last24HoursDuration > 0,
+                            : act.last24HoursDuration > 0
                         )
                         .sort(
                           (a, b) =>
@@ -82,18 +82,21 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                               activeBtn === "7Days"
                                 ? "last7DaysDuration"
                                 : "last24HoursDuration"
-                            ] || 0),
+                            ] || 0)
                         )
                         .map((act, actIndex) => {
                           const lang = act.languageName?.toLowerCase() || "";
                           const IconImage =
                             languageIconsImage[lang] || "/icons/txt.svg";
+                          const color =
+                            languageColors[lang] ||
+                            "bg-zinc-500/80 border-zinc-500";
                           const duration = Math.round(
                             act[
                               activeBtn === "7Days"
                                 ? "last7DaysDuration"
                                 : "last24HoursDuration"
-                            ] || 0,
+                            ] || 0
                           );
 
                           return (
@@ -101,6 +104,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                               key={actIndex}
                               lang={lang}
                               icon={IconImage}
+                              color={color}
                               duration={duration}
                             />
                           );

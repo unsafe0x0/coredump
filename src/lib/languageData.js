@@ -33,6 +33,40 @@ const languageIconsImage = {
 };
 
 const languageColors = {
+  plaintext: "bg-gray-500/20 border-gray-500",
+  javascript: "bg-yellow-500/20 border-yellow-500",
+  javascriptreact: "bg-amber-500/20 border-amber-500",
+  typescript: "bg-blue-500/20 border-blue-500",
+  typescriptreact: "bg-sky-500/20 border-sky-500",
+  html: "bg-orange-500/20 border-orange-500",
+  css: "bg-blue-500/20 border-blue-500",
+  scss: "bg-pink-500/20 border-pink-500",
+  shell: "bg-teal-500/20 border-teal-500",
+  json: "bg-lime-500/20 border-lime-500",
+  markdown: "bg-zinc-500/20 border-zinc-500",
+  python: "bg-green-500/20 border-green-500",
+  java: "bg-red-500/20 border-red-500",
+  ruby: "bg-rose-500/20 border-rose-500",
+  go: "bg-cyan-500/20 border-cyan-500",
+  c: "bg-indigo-500/20 border-indigo-500",
+  cpp: "bg-violet-500/20 border-violet-500",
+  csharp: "bg-purple-500/20 border-purple-500",
+  php: "bg-fuchsia-500/20 border-fuchsia-500",
+  swift: "bg-pink-500/20 border-pink-500",
+  kotlin: "bg-violet-500/20 border-violet-500",
+  rust: "bg-orange-500/20 border-orange-500",
+  dart: "bg-cyan-500/20 border-cyan-500",
+  r: "bg-blue-500/20 border-blue-500",
+  scala: "bg-red-500/20 border-red-500",
+  perl: "bg-indigo-500/20 border-indigo-500",
+  lua: "bg-blue-500/20 border-blue-500",
+  groovy: "bg-gray-500/20 border-gray-500",
+  powershell: "bg-blue-500/20 border-blue-500",
+  sql: "bg-emerald-500/20 border-emerald-500",
+  prisma: "bg-slate-500/20 border-slate-500",
+};
+
+const languageProgressBgColor = {
   plaintext: "bg-gray-500",
   javascript: "bg-yellow-500",
   javascriptreact: "bg-amber-500",
@@ -66,4 +100,4 @@ const languageColors = {
   prisma: "bg-slate-500",
 };
 
-export { languageIconsImage, languageColors };
+export { languageIconsImage, languageColors, languageProgressBgColor };

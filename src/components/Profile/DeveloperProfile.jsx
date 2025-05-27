@@ -11,7 +11,11 @@ import { GiStopwatch } from "react-icons/gi";
 import { RiCodeSSlashLine } from "react-icons/ri";
 import { GoCodeOfConduct } from "react-icons/go";
 import LanguageBadge from "../Home/LanguageBadge";
-import { languageIconsImage, languageColors } from "@/lib/languageData";
+import {
+  languageIconsImage,
+  languageColors,
+  languageProgressBgColor,
+} from "@/lib/languageData";
 
 const DeveloperProfile = () => {
   const { username } = useParams();
@@ -53,24 +57,24 @@ const DeveloperProfile = () => {
   const totalTime = Number(
     profileData?.activities.reduce(
       (sum, activity) => sum + activity.totalDuration,
-      0,
-    ) / 60,
+      0
+    ) / 60
   ).toFixed(2);
 
   const thisWeekTotalTime = Number(
     profileData?.activities.reduce(
       (sum, activity) => sum + activity.last7DaysDuration,
-      0,
-    ) / 60,
+      0
+    ) / 60
   ).toFixed(2);
 
   const totalDurationMinutes = profileData?.activities.reduce(
     (sum, activity) => sum + activity.totalDuration,
-    0,
+    0
   );
 
   const sortedActivities = [...profileData.activities].sort(
-    (a, b) => b.totalDuration - a.totalDuration,
+    (a, b) => b.totalDuration - a.totalDuration
   );
 
   const topLanguageActivity = sortedActivities[0];
@@ -186,6 +190,7 @@ const DeveloperProfile = () => {
                 key={index}
                 lang={activity.languageName}
                 icon={languageIconsImage[activity.languageName]}
+                color={languageColors[activity.languageName]}
                 duration={Math.round(activity.totalDuration)}
               />
             ))}
@@ -217,7 +222,7 @@ const DeveloperProfile = () => {
                     <span className="text-teal-600/80">
                       (
                       {Math.round(
-                        (activity.totalDuration / totalDurationMinutes) * 100,
+                        (activity.totalDuration / totalDurationMinutes) * 100
                       )}
                       %)
                     </span>
@@ -226,8 +231,9 @@ const DeveloperProfile = () => {
                 <div className="w-full h-2.5 rounded-full bg-white/10">
                   <div
                     className={`h-full rounded-full ${
-                      languageColors[activity.languageName?.toLowerCase()] ||
-                      "bg-zinc-500"
+                      languageProgressBgColor[
+                        activity.languageName?.toLowerCase()
+                      ] || "bg-zinc-500"
                     }`}
                     style={{
                       width: `${
