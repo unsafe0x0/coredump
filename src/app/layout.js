@@ -1,8 +1,8 @@
-import { Roboto } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./style.css";
 
-const font = Roboto({
+const font = Space_Grotesk({
   weight: ["400", "500"],
   subsets: ["latin"],
 });

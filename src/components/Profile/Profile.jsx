@@ -123,7 +123,7 @@ const Profile = () => {
         <div className="flex justify-between items-center w-full gap-5">
           <Link
             href={"/"}
-            className="text-lg text-teal-600 underline flex items-center gap-1"
+            className="text-lg text-green-600 underline flex items-center gap-1"
           >
             <IoHomeOutline className="text-xl" />
             Home
@@ -150,12 +150,12 @@ const Profile = () => {
         </div>
         <div className="flex flex-col justify-start items-start w-full gap-1">
           <p className="text-lg text-white/70 font-medium">Your private key</p>
-          <p className="text-lg text-white/70 bg-zinc-900/50 border border-teal-600 px-3 py-1.5 md:py-1.5 rounded-lg w-full break-words">
+          <p className="text-lg text-white/70 bg-neutral-900/50 border border-green-600 px-3 py-1.5 md:py-1.5 rounded-lg w-full break-words">
             {privateKey}
           </p>
           <button
             onClick={copyPrivateKey}
-            className="text-lg text-teal-600 cursor-pointer flex items-center gap-1 self-end"
+            className="text-lg text-green-600 cursor-pointer flex items-center gap-1 self-end"
           >
             {copyBtn} <MdContentCopy className="text-xl" />
           </button>
@@ -175,7 +175,7 @@ const Profile = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -192,7 +192,7 @@ const Profile = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -209,7 +209,7 @@ const Profile = () => {
               placeholder="GitHub Username"
               value={gitUsername}
               onChange={(e) => setgitUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -226,7 +226,7 @@ const Profile = () => {
               placeholder="Twitter Username"
               value={twitterUsername}
               onChange={(e) => setTwitterUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -248,7 +248,7 @@ const Profile = () => {
               />
               <button
                 type="button"
-                className="text-teal-600 text-lg"
+                className="text-green-600 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -256,17 +256,17 @@ const Profile = () => {
             </div>
           </div>
           {error && (
-            <p className="text-teal-600 font-medium text-sm">{error}</p>
+            <p className="text-green-600 font-medium text-sm">{error}</p>
           )}
           <div className="flex flex-wrap justify-start items-center w-full gap-2">
             <button
               disabled={loading}
               onClick={handleUpdate}
-              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-teal-600 rounded-lg ${
+              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-green-600 rounded-lg ${
                 loading
                   ? "cursor-not-allowed opacity-50"
-                  : "hover:bg-teal-600/80"
-              } border border-teal-600 transition-all duration-300 ease-in-out flex items-center gap-1`}
+                  : "hover:bg-green-600/80"
+              } border border-green-600 transition-all duration-300 ease-in-out flex items-center gap-1`}
             >
               {loading ? "Updating..." : "Update"}{" "}
               <FiEdit className="text-xl" />

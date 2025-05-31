@@ -42,7 +42,7 @@ const LoginForm = () => {
       <div className="flex flex-col justify-center items-center max-w-lg w-full px-5">
         <form
           action=""
-          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-white/10 rounded-lg bg-zinc-900/70"
+          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-white/10 rounded-lg bg-neutral-900/70"
         >
           <h2 className="text-3xl self-center font-medium text-center text-white/80">
             Login to your account
@@ -58,7 +58,7 @@ const LoginForm = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -73,10 +73,10 @@ const LoginForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-md font-medium text-white/70 outline-hidden bg-zinc-900/50 w-full"
+                className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full"
               />
               <button
-                className=" text-teal-600 text-lg"
+                className=" text-green-600 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -84,11 +84,11 @@ const LoginForm = () => {
             </div>
           </div>
           {error && (
-            <p className="text-teal-600 font-normal text-sm">{error}</p>
+            <p className="text-green-600 font-normal text-sm">{error}</p>
           )}
           <button
             onClick={handleLogin}
-            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-teal-600 rounded-lg hover:bg-teal-600/80 border border-teal-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
+            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-green-600 rounded-lg hover:bg-green-600/80 border border-green-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
           >
             Login
           </button>
@@ -96,7 +96,7 @@ const LoginForm = () => {
             <p className="">{`Don't have an account?`}</p>
             <Link
               href="/register"
-              className="text-teal-600 underline font-normal"
+              className="text-green-600 underline font-normal"
             >
               Register here
             </Link>

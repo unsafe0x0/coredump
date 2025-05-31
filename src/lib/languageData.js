@@ -43,7 +43,7 @@ const languageColors = {
   scss: "bg-pink-500/20 border-pink-500",
   shell: "bg-teal-500/20 border-teal-500",
   json: "bg-lime-500/20 border-lime-500",
-  markdown: "bg-zinc-500/20 border-zinc-500",
+  markdown: "bg-neutral-500/20 border-neutral-500",
   python: "bg-green-500/20 border-green-500",
   java: "bg-red-500/20 border-red-500",
   ruby: "bg-rose-500/20 border-rose-500",
@@ -63,7 +63,7 @@ const languageColors = {
   groovy: "bg-gray-500/20 border-gray-500",
   powershell: "bg-blue-500/20 border-blue-500",
   sql: "bg-emerald-500/20 border-emerald-500",
-  prisma: "bg-slate-500/20 border-slate-500",
+  prisma: "bg-teal-500/20 border-teal-500",
 };
 
 const languageProgressBgColor = {
@@ -77,7 +77,7 @@ const languageProgressBgColor = {
   scss: "bg-pink-500",
   shell: "bg-teal-500",
   json: "bg-lime-500",
-  markdown: "bg-zinc-500",
+  markdown: "bg-neutral-500",
   python: "bg-green-500",
   java: "bg-red-500",
   ruby: "bg-rose-500",
@@ -97,7 +97,7 @@ const languageProgressBgColor = {
   groovy: "bg-gray-500",
   powershell: "bg-blue-500",
   sql: "bg-emerald-500",
-  prisma: "bg-slate-500",
+  prisma: "bg-teal-500",
 };
 
 export { languageIconsImage, languageColors, languageProgressBgColor };

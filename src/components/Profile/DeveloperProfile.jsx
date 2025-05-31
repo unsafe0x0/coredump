@@ -84,10 +84,10 @@ const DeveloperProfile = () => {
     <section className="flex justify-center items-start w-full min-h-screen py-10">
       <div className="flex flex-col justify-start items-start lg:container w-full px-5">
         <h2 className="text-3xl font-medium text-white/70 text-left self-start mb-5">
-          <span className="text-teal-600/90">{profileData.name}</span>'s Profile
+          <span className="text-green-600/90">{profileData.name}</span>'s Profile
         </h2>
 
-        <div className="flex flex-col justify-start items-start w-full p-5 rounded-lg bg-zinc-800/80 backdrop-blur-xl mb-5">
+        <div className="flex flex-col justify-start items-start w-full p-5 rounded-lg bg-neutral-800/80 backdrop-blur-xl mb-5">
           <div className="flex flex-row justify-start items-start gap-5 mt-5">
             <Image
               src={profileData.profileImage}
@@ -104,7 +104,7 @@ const DeveloperProfile = () => {
                 <Link
                   href={`https://github.com/${profileData.gitUsername}`}
                   target="_blank"
-                  className="text-white/70 hover:underline text-lg flex gap-1 items-center"
+                  className="text-white/70 hover:underline text-md flex gap-1 items-center"
                 >
                   <FaGithub />
                   {profileData.gitUsername}
@@ -112,7 +112,7 @@ const DeveloperProfile = () => {
                 <Link
                   href={`https://twitter.com/${profileData.twitterUsername}`}
                   target="_blank"
-                  className="text-white/70 hover:underline text-lg flex gap-1 items-center"
+                  className="text-white/70 hover:underline text-md flex gap-1 items-center"
                 >
                   <FaSquareXTwitter />
                   {profileData.twitterUsername}
@@ -120,7 +120,7 @@ const DeveloperProfile = () => {
               </div>
               <p className="text-white/70 text-lg font-medium">
                 Crushed{" "}
-                <span className="text-teal-600/90">{thisWeekTotalTime}hr</span>{" "}
+                <span className="text-green-600/90">{thisWeekTotalTime}hr</span>{" "}
                 this week
               </p>
             </div>
@@ -128,7 +128,7 @@ const DeveloperProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 justify-center items-stretch mt-5 mb-5 w-full">
-          <div className="flex justify-between items-center rounded-lg bg-zinc-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-red-500/80">
+          <div className="flex justify-between items-center rounded-lg bg-neutral-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-red-500/80">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-white/70 text-left">
                 Streak
@@ -141,7 +141,7 @@ const DeveloperProfile = () => {
               <FaFireAlt />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded-lg bg-zinc-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-blue-500/80">
+          <div className="flex justify-between items-center rounded-lg bg-neutral-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-blue-500/80">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-white/70 text-left">
                 Total Time
@@ -154,7 +154,7 @@ const DeveloperProfile = () => {
               <GiStopwatch />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded-lg bg-zinc-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-yellow-500/80">
+          <div className="flex justify-between items-center rounded-lg bg-neutral-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-yellow-500/80">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-white/70 text-left">
                 Total Languages
@@ -167,7 +167,7 @@ const DeveloperProfile = () => {
               <RiCodeSSlashLine />
             </span>
           </div>
-          <div className="flex justify-between items-center w-full rounded-lg bg-zinc-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-teal-600/80">
+          <div className="flex justify-between items-center w-full rounded-lg bg-neutral-800/80 backdrop-blur-xl py-5 px-10 gap-5 border-t-3 border-green-600/80">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-white/70 text-left">
                 Top Language
@@ -176,13 +176,13 @@ const DeveloperProfile = () => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-teal-400 p-2.5 rounded-lg bg-teal-400/10">
+            <span className="text-4xl text-green-400 p-2.5 rounded-lg bg-green-400/10">
               <GoCodeOfConduct />
             </span>
           </div>
         </div>
 
-        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded-lg bg-zinc-800/80 backdrop-blur-xl">
+        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded-lg bg-neutral-800/80 backdrop-blur-xl">
           <h2 className="text-3xl font-medium text-white/80 mb-5">Languages</h2>
           <div className="flex flex-wrap justify-start items-stretch w-full gap-2 md:gap-5">
             {sortedActivities.map((activity, index) => (
@@ -219,7 +219,7 @@ const DeveloperProfile = () => {
                   </div>
                   <p className="text-white/70 text-lg font-medium">
                     {Math.round(activity.totalDuration)}m{" "}
-                    <span className="text-teal-600/80">
+                    <span className="text-green-600/80">
                       (
                       {Math.round(
                         (activity.totalDuration / totalDurationMinutes) * 100
@@ -233,7 +233,7 @@ const DeveloperProfile = () => {
                     className={`h-full rounded-full ${
                       languageProgressBgColor[
                         activity.languageName?.toLowerCase()
-                      ] || "bg-zinc-500"
+                      ] || "bg-neutral-500"
                     }`}
                     style={{
                       width: `${

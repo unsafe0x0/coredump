@@ -26,13 +26,13 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex justify-center items-center w-full border-b border-white/10 bg-zinc-900/60 backdrop-blur-3xl sticky top-0 z-50">
+    <nav className="flex justify-center items-center w-full border-b border-white/10 bg-neutral-900/60 backdrop-blur-3xl sticky top-0 z-50">
       <div className="flex flex-col justify-center items-center w-full px-5 py-2 lg:container">
         <div className="flex justify-between items-center w-full">
           {/* Logo */}
           <Link href="/">
-            <h1 className="text-xl font-medium text-white/80 flex items-center gap-2">
-              <GiShieldBash className="text-teal-600 text-2xl" />
+            <h1 className="text-2xl font-medium text-white/80 flex items-center gap-2">
+              <GiShieldBash className="text-green-600 text-2xl" />
               BashForge
             </h1>
           </Link>
@@ -67,14 +67,14 @@ const Navbar = () => {
           {isLogged ? (
             <Link
               href="/profile"
-              className="hidden lg:flex px-4 py-2 rounded-lg text-md font-medium bg-teal-600 hover:bg-teal-600/80 transition-colors duration-200"
+              className="hidden lg:flex px-4 py-2 rounded-lg text-md font-medium bg-green-600 hover:bg-green-600/80 transition-colors duration-200"
             >
               Profile
             </Link>
           ) : (
             <Link
               href="/login"
-              className="hidden lg:flex px-4 py-2 rounded-lg text-md font-medium bg-teal-600 hover:bg-teal-600/80 transition-colors duration-200"
+              className="hidden lg:flex px-4 py-2 rounded-lg text-md font-medium bg-green-600 hover:bg-green-600/80 transition-colors duration-200"
             >
               Login
             </Link>
@@ -119,14 +119,14 @@ const Navbar = () => {
             {isLogged ? (
               <Link
                 href="/profile"
-                className="w-full md:w-auto text-center px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-600/80 text-md font-medium transition"
+                className="w-full md:w-auto text-center px-4 py-2 rounded-lg bg-green-600 hover:bg-green-600/80 text-md font-medium transition"
               >
                 Profile
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="w-full md:w-auto text-center px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-600/80 text-md font-medium transition"
+                className="w-full md:w-auto text-center px-4 py-2 rounded-lg bg-green-600 hover:bg-green-600/80 text-md font-medium transition"
               >
                 Login
               </Link>

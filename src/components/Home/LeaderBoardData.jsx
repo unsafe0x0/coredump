@@ -10,7 +10,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
   return (
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
-        <thead className="bg-zinc-800/80 backdrop-blur-xl min-w-full">
+        <thead className="bg-neutral-800/80 backdrop-blur-xl min-w-full">
           <tr className="border-b border-white/10 w-full">
             <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
               Rank
@@ -26,7 +26,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-white/70 bg-zinc-800/60 min-w-full">
+        <tbody className="text-md md:text-lg text-white/70 bg-neutral-800/60 min-w-full">
           {LeaderboardData.length > 0 ? (
             LeaderboardData.map((dev, index) => {
               const totalTime = dev.activities?.reduce(
@@ -47,7 +47,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                     {index === 0 ? (
                       <GiDiamondTrophy className="text-yellow-400 text-3xl" />
                     ) : index === 1 ? (
-                      <GiDiamondTrophy className="text-zinc-400 text-3xl" />
+                      <GiDiamondTrophy className="text-neutral-400 text-3xl" />
                     ) : index === 2 ? (
                       <GiDiamondTrophy className="text-amber-700 text-3xl" />
                     ) : (
@@ -58,8 +58,8 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                     <DeveloperCard developerData={dev} />
                   </td>
                   <td className="px-10 py-3 align-middle text-center">
-                    <span className="px-3 py-1 bg-teal-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
-                      <MdOutlineWatchLater className="text-teal-600 text-lg font-medium" />
+                    <span className="px-3 py-1 bg-green-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
+                      <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
                       {Math.round(totalTime)} m
                     </span>
                   </td>
@@ -90,7 +90,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                             languageIconsImage[lang] || "/icons/txt.svg";
                           const color =
                             languageColors[lang] ||
-                            "bg-zinc-500/80 border-zinc-500";
+                            "bg-neutral-500/80 border-neutral-500";
                           const duration = Math.round(
                             act[
                               activeBtn === "7Days"
@@ -116,7 +116,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             })
           ) : (
             <tr>
-              <td colSpan={4} className="text-center py-5 text-zinc-400">
+              <td colSpan={4} className="text-center py-5 text-neutral-400">
                 No data available
               </td>
             </tr>

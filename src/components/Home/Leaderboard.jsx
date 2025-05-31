@@ -3,14 +3,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaderBoardData from "./LeaderBoardData";
 import LeaderBoarderHeader from "./LeaderBoarderHeader";
-import motivationQuotes from "@/lib/motivationQuotes";
 
 const Leaderboard = () => {
   const [allData, setAllData] = useState([]);
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [remainingTime, setRemainingTime] = useState(0);
   const [activeBtn, setActiveBtn] = useState("24Hours");
-  const [selectedQuote, setSelectedQuote] = useState("");
 
   const fetchData = async () => {
     try {
@@ -86,32 +84,26 @@ const Leaderboard = () => {
     return () => clearInterval(timer);
   }, [activeBtn]);
 
-  useEffect(() => {
-    const randomQuote =
-      motivationQuotes[Math.floor(Math.random() * motivationQuotes.length)];
-    setSelectedQuote(randomQuote);
-  }, [leaderboardData[0]]);
-
   return (
     <section className="flex flex-col justify-start items-center w-full min-h-screen">
       <div className="flex flex-col justify-start items-center lg:container px-3 w-full h-full">
-        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-zinc-900/80 rounded-lg">
+        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-900/80 rounded-lg">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-teal-600/90 border-teal-600/90"
-                : "bg-zinc-900/80 border-white/10"
+                ? "bg-green-600/90 border-green-600/90"
+                : "bg-neutral-900/80 border-white/10"
             }`}
           >
             Today
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-teal-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-teal-600/90 border-teal-600/90"
-                : "bg-zinc-900/80 border-white/10"
+                ? "bg-green-600/90 border-green-600/90"
+                : "bg-neutral-900/80 border-white/10"
             }`}
           >
             This Week
@@ -122,13 +114,7 @@ const Leaderboard = () => {
           leaderboardLength={leaderboardData.length}
           remainingTime={remainingTime}
         />
-        {leaderboardData && (
-          <p className="text-xl font-medium text-white/80 mt-5 self-start">
-            <span className="text-teal-600/90">{leaderboardData[0]?.name}</span>{" "}
-            {selectedQuote}
-          </p>
-        )}
-        <div className="flex justify-start items-center w-full bg-zinc-800/90 px-5 py-3 border-b border-white/10 mt-2 rounded-t-lg">
+        <div className="flex justify-start items-center w-full bg-neutral-800/90 px-5 py-3 border-b border-white/10 mt-2 rounded-t-lg">
           <p className="text-xl font-medium text-white/80">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"
