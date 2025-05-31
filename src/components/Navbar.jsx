@@ -6,6 +6,7 @@ import { GiShieldBash } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { RiMenuLine } from "react-icons/ri";
 import axios from "axios";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +33,14 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/">
             <h1 className="text-2xl font-medium text-white/80 flex items-center gap-2">
-              <GiShieldBash className="text-green-600 text-2xl" />
+              {/* <GiShieldBash className="text-green-600 text-2xl" /> */}
+              <Image
+                src="/logo.svg"
+                alt="BashForge Logo"
+                width={30}
+                height={30}
+                className="object-contain"
+              />
               BashForge
             </h1>
           </Link>

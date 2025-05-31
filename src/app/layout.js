@@ -19,12 +19,15 @@ export const metadata = {
     "developer",
     "productivity",
   ],
+  icons: {
+    icon: "/logo.svg",
+  },
   ogTitle: "BashForge - Track and Compete in Coding Time",
   ogDescription:
     "BashForge is a dynamic leaderboard platform that tracks coding time and languages, helping developers compete and improve their productivity.",
-  ogImage: "/logo.jpg",
+  ogImage: "/logo.svg",
   ogType: "website",
-  ogUrl: "https://BashForge.vercel.app",
+  ogUrl: "https://bashForge.vercel.app",
 };
 
 export default function RootLayout({ children }) {
