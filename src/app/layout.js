@@ -3,7 +3,7 @@ import "./globals.css";
 import "./style.css";
 
 const font = Space_Grotesk({
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
 });
 

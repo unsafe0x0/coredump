@@ -175,7 +175,7 @@ const Profile = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -192,7 +192,7 @@ const Profile = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -209,7 +209,7 @@ const Profile = () => {
               placeholder="GitHub Username"
               value={gitUsername}
               onChange={(e) => setgitUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -226,7 +226,7 @@ const Profile = () => {
               placeholder="Twitter Username"
               value={twitterUsername}
               onChange={(e) => setTwitterUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -236,7 +236,7 @@ const Profile = () => {
             >
               Password
             </label>
-            <div className="flex justify-between items-center w-full border border-white/10 px-3 py-1.5 md:py-1.5 rounded-lg">
+            <div className="flex justify-between items-center w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"

@@ -93,7 +93,7 @@ const Leaderboard = () => {
             className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
                 ? "bg-green-600/90 border-green-600/90"
-                : "bg-neutral-900/80 border-white/10"
+                : "bg-neutral-900/80 border-neutral-700/50"
             }`}
           >
             Today
@@ -103,7 +103,7 @@ const Leaderboard = () => {
             className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
                 ? "bg-green-600/90 border-green-600/90"
-                : "bg-neutral-900/80 border-white/10"
+                : "bg-neutral-900/80 border-neutral-700/50"
             }`}
           >
             This Week
@@ -114,7 +114,7 @@ const Leaderboard = () => {
           leaderboardLength={leaderboardData.length}
           remainingTime={remainingTime}
         />
-        <div className="flex justify-start items-center w-full bg-neutral-800/90 px-5 py-3 border-b border-white/10 mt-2 rounded-t-lg">
+        <div className="flex justify-start items-center w-full bg-neutral-800/90 px-5 py-3 border-b border-neutral-700/50 mt-2 rounded-t-lg">
           <p className="text-xl font-medium text-white/80">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"

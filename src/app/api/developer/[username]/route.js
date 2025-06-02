@@ -5,16 +5,16 @@ import { LRUCache } from "next/dist/server/lib/lru-cache";
 const cache = new LRUCache({ max: 100, ttl: 1000 * 60 * 10 });
 
 export async function GET(request, { params }) {
-  if (cache.has(params.username)) {
+  const { username } = await params;
+  if (cache.has(username)) {
     return NextResponse.json({
       message: "Data fetched successfully",
       status: 200,
-      data: cache.get(params.username),
+      data: cache.get(username),
     });
   }
 
   try {
-    const { username } = await params;
     const user = await databaseClient.user.findUnique({
       where: {
         gitUsername: username,
@@ -39,7 +39,7 @@ export async function GET(request, { params }) {
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-    cache.set(params.username, user);
+    cache.set(username, user);
 
     return NextResponse.json({
       message: "User details fetched successfully",

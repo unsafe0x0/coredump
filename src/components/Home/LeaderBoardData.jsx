@@ -11,7 +11,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
         <thead className="bg-neutral-800/80 backdrop-blur-xl min-w-full">
-          <tr className="border-b border-white/10 w-full">
+          <tr className="border-b border-neutral-700/50 w-full">
             <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
               Rank
             </th>
@@ -27,100 +27,116 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
           </tr>
         </thead>
         <tbody className="text-md md:text-lg text-white/70 bg-neutral-800/60 min-w-full">
-          {LeaderboardData.length > 0 ? (
-            LeaderboardData.map((dev, index) => {
-              const totalTime = dev.activities?.reduce(
-                (sum, act) =>
-                  sum +
-                  (activeBtn === "7Days"
-                    ? act.last7DaysDuration || 0
-                    : act.last24HoursDuration || 0),
-                0
-              );
+          {LeaderboardData.length > 0
+            ? LeaderboardData.map((dev, index) => {
+                const totalTime = dev.activities?.reduce(
+                  (sum, act) =>
+                    sum +
+                    (activeBtn === "7Days"
+                      ? act.last7DaysDuration || 0
+                      : act.last24HoursDuration || 0),
+                  0
+                );
 
-              return (
+                return (
+                  <tr
+                    key={index}
+                    className="border-b border-neutral-700/50 align-top w-full hover:bg-neutral-800/80 transition-all duration-300 ease-in-out"
+                  >
+                    <td className="px-10 py-3 align-middle">
+                      {index === 0 ? (
+                        <GiDiamondTrophy className="text-yellow-400 text-3xl" />
+                      ) : index === 1 ? (
+                        <GiDiamondTrophy className="text-neutral-400 text-3xl" />
+                      ) : index === 2 ? (
+                        <GiDiamondTrophy className="text-amber-700 text-3xl" />
+                      ) : (
+                        <span className="text-xl font-medium">{index + 1}</span>
+                      )}
+                    </td>
+                    <td className="px-10 py-3 align-middle">
+                      <DeveloperCard developerData={dev} />
+                    </td>
+                    <td className="px-10 py-3 align-middle text-center">
+                      <span className="px-3 py-1 bg-green-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
+                        <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
+                        {Math.round(totalTime)} m
+                      </span>
+                    </td>
+                    <td className="px-10 py-3 align-middle">
+                      <div className="flex flex-row gap-2">
+                        {[...(dev.activities || [])]
+                          .filter((act) =>
+                            activeBtn === "7Days"
+                              ? act.last7DaysDuration > 0
+                              : act.last24HoursDuration > 0
+                          )
+                          .sort(
+                            (a, b) =>
+                              (b[
+                                activeBtn === "7Days"
+                                  ? "last7DaysDuration"
+                                  : "last24HoursDuration"
+                              ] || 0) -
+                              (a[
+                                activeBtn === "7Days"
+                                  ? "last7DaysDuration"
+                                  : "last24HoursDuration"
+                              ] || 0)
+                          )
+                          .map((act, actIndex) => {
+                            const lang = act.languageName?.toLowerCase() || "";
+                            const IconImage =
+                              languageIconsImage[lang] || "/icons/txt.svg";
+                            const color =
+                              languageColors[lang] ||
+                              "bg-neutral-500/80 border-neutral-500";
+                            const duration = Math.round(
+                              act[
+                                activeBtn === "7Days"
+                                  ? "last7DaysDuration"
+                                  : "last24HoursDuration"
+                              ] || 0
+                            );
+
+                            return (
+                              <LanguageBadge
+                                key={actIndex}
+                                lang={lang}
+                                icon={IconImage}
+                                color={color}
+                                duration={duration}
+                              />
+                            );
+                          })}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
+            : [...Array(3)].map((_, idx) => (
                 <tr
-                  key={index}
-                  className="border-b border-white/10 align-top w-full"
+                  key={idx}
+                  className="border-b border-neutral-700/50 animate-pulse"
                 >
                   <td className="px-10 py-3 align-middle">
-                    {index === 0 ? (
-                      <GiDiamondTrophy className="text-yellow-400 text-3xl" />
-                    ) : index === 1 ? (
-                      <GiDiamondTrophy className="text-neutral-400 text-3xl" />
-                    ) : index === 2 ? (
-                      <GiDiamondTrophy className="text-amber-700 text-3xl" />
-                    ) : (
-                      <span className="text-xl font-medium">{index + 1}</span>
-                    )}
+                    <div className="h-10 w-10 bg-neutral-500/40 rounded-full" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <DeveloperCard developerData={dev} />
-                  </td>
-                  <td className="px-10 py-3 align-middle text-center">
-                    <span className="px-3 py-1 bg-green-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
-                      <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
-                      {Math.round(totalTime)} m
-                    </span>
+                    <div className="h-6 w-40 bg-neutral-500/40 rounded-md self-start" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="flex flex-row gap-2">
-                      {[...(dev.activities || [])]
-                        .filter((act) =>
-                          activeBtn === "7Days"
-                            ? act.last7DaysDuration > 0
-                            : act.last24HoursDuration > 0
-                        )
-                        .sort(
-                          (a, b) =>
-                            (b[
-                              activeBtn === "7Days"
-                                ? "last7DaysDuration"
-                                : "last24HoursDuration"
-                            ] || 0) -
-                            (a[
-                              activeBtn === "7Days"
-                                ? "last7DaysDuration"
-                                : "last24HoursDuration"
-                            ] || 0)
-                        )
-                        .map((act, actIndex) => {
-                          const lang = act.languageName?.toLowerCase() || "";
-                          const IconImage =
-                            languageIconsImage[lang] || "/icons/txt.svg";
-                          const color =
-                            languageColors[lang] ||
-                            "bg-neutral-500/80 border-neutral-500";
-                          const duration = Math.round(
-                            act[
-                              activeBtn === "7Days"
-                                ? "last7DaysDuration"
-                                : "last24HoursDuration"
-                            ] || 0
-                          );
-
-                          return (
-                            <LanguageBadge
-                              key={actIndex}
-                              lang={lang}
-                              icon={IconImage}
-                              color={color}
-                              duration={duration}
-                            />
-                          );
-                        })}
+                    <div className="h-6 w-20 bg-neutral-500/40 rounded-md" />
+                  </td>
+                  <td className="px-10 py-3 align-middle">
+                    <div className="flex gap-2">
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
                     </div>
                   </td>
                 </tr>
-              );
-            })
-          ) : (
-            <tr>
-              <td colSpan={4} className="text-center py-5 text-neutral-400">
-                No data available
-              </td>
-            </tr>
-          )}
+              ))}
         </tbody>
       </table>
     </div>

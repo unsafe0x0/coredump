@@ -12,7 +12,7 @@ const LanguageBadge = ({ lang, icon, color, duration }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered && (
-        <div className="absolute -top-7 px-2 py-1 bg-neutral-800/80 z-50 rounded-md border border-white/10">
+        <div className="absolute -top-7 px-2 py-1 bg-neutral-800/80 z-50 rounded-md border border-neutral-700/50">
           <p className="text-white text-center text-sm font-normal">{lang}</p>
         </div>
       )}

@@ -27,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex justify-center items-center w-full border-b border-white/10 bg-neutral-900/60 backdrop-blur-3xl sticky top-0 z-50">
+    <nav className="flex justify-center items-center w-full border-b border-neutral-700/50 bg-neutral-900/60 backdrop-blur-3xl sticky top-0 z-50">
       <div className="flex flex-col justify-center items-center w-full px-5 py-2 lg:container">
         <div className="flex justify-between items-center w-full">
           {/* Logo */}
@@ -48,18 +48,10 @@ const Navbar = () => {
           <ul className="hidden lg:flex justify-center items-center gap-5 text-md font-normal text-white/80">
             <li>
               <Link
-                href="/"
+                href="/how-to-use"
                 className="hover:text-white/80 transition-colors duration-200"
               >
                 How to Use
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/leaderboard"
-                className="hover:text-white/80 transition-colors duration-200"
-              >
-                Leaderboard
               </Link>
             </li>
             <li>
@@ -100,18 +92,10 @@ const Navbar = () => {
             <ul className="flex flex-col justify-center items-center gap-5 text-md font-normal text-white/80">
               <li>
                 <Link
-                  href="/"
+                  href="/how-to-use"
                   className="hover:text-white/80 transition-colors duration-200"
                 >
                   How to Use
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/leaderboard"
-                  className="hover:text-white/80 transition-colors duration-200"
-                >
-                  Leaderboard
                 </Link>
               </li>
               <li>
