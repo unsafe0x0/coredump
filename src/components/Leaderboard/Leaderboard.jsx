@@ -87,23 +87,23 @@ const Leaderboard = () => {
   return (
     <section className="flex flex-col justify-start items-center w-full min-h-screen">
       <div className="flex flex-col justify-start items-center lg:container px-3 w-full h-full">
-        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-900/80 rounded-lg">
+        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/30 rounded">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-cyan-500/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-green-600/90 border-green-600/90"
-                : "bg-neutral-900/80 border-neutral-700/50"
+                ? "bg-cyan-500/80 border-cyan-500/80"
+                : "bg-neutral-800/30 border-neutral-700/40"
             }`}
           >
             Today
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-lg hover:bg-green-600/80 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-cyan-500/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-green-600/90 border-green-600/90"
-                : "bg-neutral-900/80 border-neutral-700/50"
+                ? "bg-cyan-500/80 border-cyan-500/80"
+                : "bg-neutral-800/30 border-neutral-700/40"
             }`}
           >
             This Week
@@ -114,8 +114,8 @@ const Leaderboard = () => {
           leaderboardLength={leaderboardData.length}
           remainingTime={remainingTime}
         />
-        <div className="flex justify-start items-center w-full bg-neutral-800/90 px-5 py-3 border-b border-neutral-700/50 mt-2 rounded-t-lg">
-          <p className="text-xl font-medium text-white/80">
+        <div className="flex justify-start items-center w-full bg-neutral-800/20 backdrop-blur-2xl px-5 py-3 border-b border-neutral-700/40 mt-2 rounded">
+          <p className="text-xl font-medium  text-neutral-300">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"
               : "This Week's Leaderboard"}

@@ -15,13 +15,13 @@ const DeveloperCard = ({ developerData }) => {
         className="w-12 h-12 rounded-full object-cover"
       />
       <div className="flex flex-col justify-start items-start">
-        <p className="text-white/70 text-lg font-medium">
+        <p className="text-neutral-400 text-lg font-medium">
           {developerData.name}
         </p>
         <div className="flex flex-wrap items-center">
           <Link
             href={`/developer/${developerData.gitUsername}`}
-            className="text-white/70 hover:underline text-sm font-normal flex gap-1 items-center"
+            className="text-neutral-400 hover:underline text-sm font-normal flex gap-1 items-center"
           >
             <FaGithub className="" />
             {developerData.gitUsername}

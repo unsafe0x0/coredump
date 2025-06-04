@@ -1,8 +1,8 @@
-import { Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "./style.css";
 
-const font = Space_Grotesk({
+const font = Inter({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
 });
@@ -33,7 +33,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <div className="w-full h-full bg-gradient-to-br from-cyan-400 to-cyan-500 blur-[1000px] fixed top-0 left-0 z-[-1] p-0 opacity-15"></div>
+        {children}
+      </body>
     </html>
   );
 }

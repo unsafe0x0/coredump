@@ -10,23 +10,23 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
   return (
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
-        <thead className="bg-neutral-800/80 backdrop-blur-xl min-w-full">
-          <tr className="border-b border-neutral-700/50 w-full">
-            <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
+        <thead className="bg-neutral-800/30 backdrop-blur-2xl min-w-full">
+          <tr className="border-b border-neutral-700/40 w-full">
+            <th className="text-left text-lg font-medium  text-neutral-300 px-10 py-3">
               Rank
             </th>
-            <th className="text-left text-lg font-medium text-white/80 px-10 py-3">
+            <th className="text-left text-lg font-medium  text-neutral-300 px-10 py-3">
               Developer
             </th>
-            <th className="text-center text-lg font-medium text-white/80 px-10 py-3">
+            <th className="text-center text-lg font-medium  text-neutral-300 px-10 py-3">
               Time
             </th>
-            <th className="text-left text-lg font-medium text-white/80 px-10 py-3 whitespace-nowrap">
+            <th className="text-left text-lg font-medium  text-neutral-300 px-10 py-3 whitespace-nowrap">
               Top Languages
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-white/70 bg-neutral-800/60 min-w-full">
+        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/20 backdrop-blur-2xl min-w-full">
           {LeaderboardData.length > 0
             ? LeaderboardData.map((dev, index) => {
                 const totalTime = dev.activities?.reduce(
@@ -35,21 +35,21 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                     (activeBtn === "7Days"
                       ? act.last7DaysDuration || 0
                       : act.last24HoursDuration || 0),
-                  0
+                  0,
                 );
 
                 return (
                   <tr
                     key={index}
-                    className="border-b border-neutral-700/50 align-top w-full hover:bg-neutral-800/80 transition-all duration-300 ease-in-out"
+                    className="border-b border-neutral-700/40 align-top w-full hover:bg-neutral-800/30 transition-all duration-300 ease-in-out"
                   >
                     <td className="px-10 py-3 align-middle">
                       {index === 0 ? (
-                        <GiDiamondTrophy className="text-yellow-400 text-3xl" />
+                        <GiDiamondTrophy className="text-yellow-500/80 text-3xl" />
                       ) : index === 1 ? (
-                        <GiDiamondTrophy className="text-neutral-400 text-3xl" />
+                        <GiDiamondTrophy className="text-neutral-200/80 text-3xl" />
                       ) : index === 2 ? (
-                        <GiDiamondTrophy className="text-amber-700 text-3xl" />
+                        <GiDiamondTrophy className="text-amber-700/80 text-3xl" />
                       ) : (
                         <span className="text-xl font-medium">{index + 1}</span>
                       )}
@@ -58,8 +58,8 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                       <DeveloperCard developerData={dev} />
                     </td>
                     <td className="px-10 py-3 align-middle text-center">
-                      <span className="px-3 py-1 bg-green-600/10 rounded-lg inline-flex items-center gap-1 whitespace-nowrap">
-                        <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
+                      <span className="px-3 py-1 bg-cyan-500/10 rounded inline-flex items-center gap-1 whitespace-nowrap">
+                        <MdOutlineWatchLater className="text-cyan-500/80 text-lg font-medium" />
                         {Math.round(totalTime)} m
                       </span>
                     </td>
@@ -69,7 +69,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                           .filter((act) =>
                             activeBtn === "7Days"
                               ? act.last7DaysDuration > 0
-                              : act.last24HoursDuration > 0
+                              : act.last24HoursDuration > 0,
                           )
                           .sort(
                             (a, b) =>
@@ -82,7 +82,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                                 activeBtn === "7Days"
                                   ? "last7DaysDuration"
                                   : "last24HoursDuration"
-                              ] || 0)
+                              ] || 0),
                           )
                           .map((act, actIndex) => {
                             const lang = act.languageName?.toLowerCase() || "";
@@ -90,13 +90,13 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                               languageIconsImage[lang] || "/icons/txt.svg";
                             const color =
                               languageColors[lang] ||
-                              "bg-neutral-500/80 border-neutral-500";
+                              "bg-neutral-500/90 border-neutral-500";
                             const duration = Math.round(
                               act[
                                 activeBtn === "7Days"
                                   ? "last7DaysDuration"
                                   : "last24HoursDuration"
-                              ] || 0
+                              ] || 0,
                             );
 
                             return (
@@ -117,22 +117,22 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             : [...Array(3)].map((_, idx) => (
                 <tr
                   key={idx}
-                  className="border-b border-neutral-700/50 animate-pulse"
+                  className="border-b border-neutral-700/40 animate-pulse"
                 >
                   <td className="px-10 py-3 align-middle">
                     <div className="h-10 w-10 bg-neutral-500/40 rounded-full" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-6 w-40 bg-neutral-500/40 rounded-md self-start" />
+                    <div className="h-6 w-40 bg-neutral-500/40 rounded self-start" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-6 w-20 bg-neutral-500/40 rounded-md" />
+                    <div className="h-6 w-20 bg-neutral-500/40 rounded" />
                   </td>
                   <td className="px-10 py-3 align-middle">
                     <div className="flex gap-2">
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded-md" />
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
+                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
                     </div>
                   </td>
                 </tr>

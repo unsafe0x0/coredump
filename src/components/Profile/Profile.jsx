@@ -123,19 +123,19 @@ const Profile = () => {
         <div className="flex justify-between items-center w-full gap-5">
           <Link
             href={"/"}
-            className="text-lg text-green-600 underline flex items-center gap-1"
+            className="text-lg text-cyan-500/80 underline flex items-center gap-1"
           >
             <IoHomeOutline className="text-xl" />
             Home
           </Link>
           <button
             onClick={handleLogout}
-            className="px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-red-600 rounded-lg hover:bg-red-700 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-1"
+            className="px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-red-600 rounded hover:bg-red-700 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-1"
           >
             Logout <MdLogout className="text-xl" />
           </button>
         </div>
-        <h2 className="text-3xl self-center font-medium text-white/80 mt-2 mb-2">
+        <h2 className="text-3xl self-center font-medium  text-neutral-300 mt-2 mb-2">
           Your Profile
         </h2>
         <div className="flex flex-col justify-center items-center w-full gap-1">
@@ -144,18 +144,20 @@ const Profile = () => {
             alt={`${gitUsername}'s profile picture`}
             className="h-32 w-32 rounded-full object-cover"
           />
-          <p className="text-lg text-white/70 font-medium self-center">
+          <p className="text-lg text-neutral-400 font-medium self-center">
             @{gitUsername}
           </p>
         </div>
         <div className="flex flex-col justify-start items-start w-full gap-1">
-          <p className="text-lg text-white/70 font-medium">Your private key</p>
-          <p className="text-lg text-white/70 bg-neutral-900/50 border border-green-600 px-3 py-1.5 md:py-1.5 rounded-lg w-full break-words">
+          <p className="text-lg text-neutral-400 font-medium">
+            Your private key
+          </p>
+          <p className="text-lg text-neutral-400 bg-neutral-900/20 border border-cyan-500/80 px-3 py-1.5 md:py-1.5 rounded w-full break-words">
             {privateKey}
           </p>
           <button
             onClick={copyPrivateKey}
-            className="text-lg text-green-600 cursor-pointer flex items-center gap-1 self-end"
+            className="text-lg text-cyan-500/80 cursor-pointer flex items-center gap-1 self-end"
           >
             {copyBtn} <MdContentCopy className="text-xl" />
           </button>
@@ -165,7 +167,10 @@ const Profile = () => {
           className="flex flex-col justify-start items-start w-full space-y-5"
         >
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="name" className="text-lg text-white/70 font-medium">
+            <label
+              htmlFor="name"
+              className="text-lg text-neutral-400 font-medium"
+            >
               Name
             </label>
             <input
@@ -175,13 +180,13 @@ const Profile = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label
               htmlFor="email"
-              className="text-lg text-white/70 font-medium"
+              className="text-lg text-neutral-400 font-medium"
             >
               Email
             </label>
@@ -192,13 +197,13 @@ const Profile = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label
               htmlFor="gitUsername"
-              className="text-lg text-white/70 font-medium"
+              className="text-lg text-neutral-400 font-medium"
             >
               GitHub Username
             </label>
@@ -209,13 +214,13 @@ const Profile = () => {
               placeholder="GitHub Username"
               value={gitUsername}
               onChange={(e) => setgitUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label
               htmlFor="twitterUsername"
-              className="text-lg text-white/70 font-medium"
+              className="text-lg text-neutral-400 font-medium"
             >
               Twitter Username
             </label>
@@ -226,17 +231,17 @@ const Profile = () => {
               placeholder="Twitter Username"
               value={twitterUsername}
               onChange={(e) => setTwitterUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label
               htmlFor="password"
-              className="text-lg text-white/70 font-medium"
+              className="text-lg text-neutral-400 font-medium"
             >
               Password
             </label>
-            <div className="flex justify-between items-center w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg">
+            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -244,11 +249,11 @@ const Profile = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-md font-medium text-white/70 outline-hidden bg-transparent w-full"
+                className="text-md font-medium text-neutral-400 outline-hidden bg-transparent w-full"
               />
               <button
                 type="button"
-                className="text-green-600 text-lg"
+                className="text-cyan-500/80 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -256,17 +261,17 @@ const Profile = () => {
             </div>
           </div>
           {error && (
-            <p className="text-green-600 font-medium text-sm">{error}</p>
+            <p className="text-cyan-500/80 font-medium text-sm">{error}</p>
           )}
           <div className="flex flex-wrap justify-start items-center w-full gap-2">
             <button
               disabled={loading}
               onClick={handleUpdate}
-              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-green-600 rounded-lg ${
+              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-cyan-500/80 rounded ${
                 loading
                   ? "cursor-not-allowed opacity-50"
-                  : "hover:bg-green-600/80"
-              } border border-green-600 transition-all duration-300 ease-in-out flex items-center gap-1`}
+                  : "hover:bg-cyan-500/80"
+              } border border-cyan-500/80 transition-all duration-300 ease-in-out flex items-center gap-1`}
             >
               {loading ? "Updating..." : "Update"}{" "}
               <FiEdit className="text-xl" />
@@ -274,7 +279,7 @@ const Profile = () => {
             <button
               disabled={loading}
               onClick={handleDelete}
-              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-red-600 rounded-lg ${
+              className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-red-600 rounded ${
                 loading ? "cursor-not-allowed opacity-50" : "hover:bg-red-700"
               } border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-1`}
             >

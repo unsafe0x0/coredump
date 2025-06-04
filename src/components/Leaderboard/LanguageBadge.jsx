@@ -7,12 +7,12 @@ const LanguageBadge = ({ lang, icon, color, duration }) => {
 
   return (
     <div
-      className={`flex items-center justify-center gap-1 px-4 md:px-3 py-1 border rounded-md text-sm font-normal whitespace-nowrap relative min-w-[70px] ${color} text-neutral-100`}
+      className={`flex items-center justify-center gap-1 px-4 md:px-3 py-1 border rounded text-sm font-normal whitespace-nowrap relative min-w-[70px] ${color} text-neutral-100`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered && (
-        <div className="absolute -top-7 px-2 py-1 bg-neutral-800/80 z-50 rounded-md border border-neutral-700/50">
+        <div className="absolute -top-7 px-2 py-1 bg-neutral-800/90 z-50 rounded border border-neutral-700/40">
           <p className="text-white text-center text-sm font-normal">{lang}</p>
         </div>
       )}

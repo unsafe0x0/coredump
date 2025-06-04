@@ -44,17 +44,17 @@ const RegisterForm = () => {
   };
 
   return (
-    <section className="flex justify-center items-start w-full min-h-screen py-14">
+    <section className="flex justify-center items-center w-full min-h-screen py-14">
       <div className="flex flex-col justify-center items-center max-w-lg w-full px-5">
         <form
           action=""
-          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/50 rounded-lg bg-neutral-900/70"
+          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/40 rounded bg-neutral-800/30"
         >
-          <h2 className="text-3xl self-center font-medium text-center text-white/80">
+          <h2 className="text-3xl self-center font-medium text-center  text-neutral-300">
             Create Account
           </h2>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/70 font-medium">
+            <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Name
             </label>
             <input
@@ -64,11 +64,11 @@ const RegisterForm = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/70 font-medium">
+            <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Email
             </label>
             <input
@@ -78,11 +78,11 @@ const RegisterForm = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/70 font-medium">
+            <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               GitHub Username
             </label>
             <input
@@ -92,11 +92,11 @@ const RegisterForm = () => {
               placeholder="GitHub Username"
               value={gitUsername}
               onChange={(e) => setgitUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/70 font-medium">
+            <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Twitter Username
             </label>
             <input
@@ -106,14 +106,14 @@ const RegisterForm = () => {
               placeholder="Twitter Username"
               value={twitterUsername}
               onChange={(e) => setTwitterUsername(e.target.value)}
-              className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
-            <label htmlFor="" className="text-lg text-white/70 font-medium">
+            <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Password
             </label>
-            <div className="flex justify-between items-center w-full border border-neutral-700/50 px-3 py-1.5 md:py-1.5 rounded-lg">
+            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -121,10 +121,10 @@ const RegisterForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-md font-medium text-white/70 outline-hidden bg-neutral-900/50 w-full"
+                className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full"
               />
               <button
-                className="text-green-600 text-lg"
+                className="text-cyan-500/80 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -132,17 +132,20 @@ const RegisterForm = () => {
             </div>
           </div>
           {error && (
-            <p className="text-green-600 font-normal text-sm">{error}</p>
+            <p className="text-cyan-500/80 font-normal text-sm">{error}</p>
           )}
           <button
             onClick={handleRegister}
-            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-green-600 rounded-lg hover:bg-green-600/80 border border-green-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
+            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-cyan-500/80 rounded hover:bg-cyan-500/70 border border-cyan-500/80 transition-all duration-300 ease-in-out w-full cursor-pointer"
           >
             Create Account
           </button>
-          <div className="flex flex-wrap justify-center items-center w-full space-x-2 text-md text-white/70">
+          <div className="flex flex-wrap justify-center items-center w-full space-x-2 text-md text-neutral-400">
             <p className="">{`Already have an account?`}</p>
-            <Link href="/login" className="text-green-600 underline font-normal">
+            <Link
+              href="/login"
+              className="text-cyan-500/80 underline font-normal"
+            >
               Login here
             </Link>
           </div>
