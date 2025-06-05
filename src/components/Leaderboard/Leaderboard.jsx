@@ -87,12 +87,12 @@ const Leaderboard = () => {
   return (
     <section className="flex flex-col justify-start items-center w-full min-h-screen">
       <div className="flex flex-col justify-start items-center lg:container px-3 w-full h-full">
-        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/30 rounded">
+        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/30 backdrop-blur-2xl rounded">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-cyan-500/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-cyan-500/80 border-cyan-500/80"
+                ? "bg-green-600 border-green-600"
                 : "bg-neutral-800/30 border-neutral-700/40"
             }`}
           >
@@ -100,9 +100,9 @@ const Leaderboard = () => {
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-cyan-500/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-cyan-500/80 border-cyan-500/80"
+                ? "bg-green-600 border-green-600"
                 : "bg-neutral-800/30 border-neutral-700/40"
             }`}
           >

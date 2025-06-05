@@ -72,7 +72,7 @@ const HowToUse = () => {
                 <Link
                   href={step.link.href}
                   target="_blank"
-                  className="px-3 py-1.5 text-md font-medium cursor-pointer bg-cyan-500/80 rounded hover:bg-cyan-700 border border-cyan-500/80 transition-all duration-300 ease-in-out flex items-center gap-1"
+                  className="px-3 py-1.5 text-md font-medium cursor-pointer bg-green-600 rounded hover:bg-green-700 border border-green-600 transition-all duration-300 ease-in-out flex items-center gap-1"
                 >
                   {step.link.label}
                 </Link>

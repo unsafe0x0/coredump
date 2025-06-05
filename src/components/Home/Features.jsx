@@ -15,7 +15,10 @@ const data = [
     description:
       "Build consistent coding habits with daily streak tracking and motivation",
     icon: (
-      <FaFire size={44} className="p-1.5 rounded bg-red-500/10 text-red-500" />
+      <FaFire
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-red-600 to-red-700 text-white"
+      />
     ),
   },
   {
@@ -25,8 +28,8 @@ const data = [
       "Compete with developers worldwide and climb the global rankings",
     icon: (
       <MdLeaderboard
-        size={44}
-        className="p-1.5 rounded bg-yellow-500/10 text-yellow-500"
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-yellow-600 to-yellow-600 text-white"
       />
     ),
   },
@@ -37,8 +40,8 @@ const data = [
       "Detailed insights into your coding patterns and productivity trends",
     icon: (
       <FaChartLine
-        size={44}
-        className="p-1.5 rounded bg-blue-500/10 text-blue-500"
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-blue-600 to-blue-600 text-white"
       />
     ),
   },
@@ -48,8 +51,8 @@ const data = [
     description: "Monitor your usage across different programming languages",
     icon: (
       <FaCode
-        size={44}
-        className="p-1.5 rounded bg-green-500/10 text-green-500"
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-rose-600 to-rose-600 text-white"
       />
     ),
   },
@@ -60,8 +63,8 @@ const data = [
       "Set personalized coding goals and track your journey towards achieving them",
     icon: (
       <FaBullseye
-        size={44}
-        className="p-1.5 rounded bg-purple-500/10 text-purple-500"
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-green-600 to-green-600 text-white"
       />
     ),
   },
@@ -71,8 +74,8 @@ const data = [
     description: "Earn badges and rewards for your coding achievements",
     icon: (
       <FaMedal
-        size={44}
-        className="p-1.5 rounded bg-orange-500/10 text-orange-500"
+        size={48}
+        className="p-2.5 rounded bg-gradient-to-l from-orange-600 to-orange-600 text-white"
       />
     ),
   },
@@ -85,11 +88,11 @@ const Features = () => {
         <h2 className="text-4xl font-medium  text-neutral-300 text-center">
           Everything you need
         </h2>
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5 justify-start items-stretch w-full mt-10">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-7 space-y-7 justify-start items-stretch w-full mt-10">
           {data.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col justify-start items-start w-full gap-2 p-5 rounded bg-neutral-800/20 backdrop-blur-2xl break-inside-avoid"
+              className="flex flex-col justify-start items-start w-full gap-2 p-7 rounded bg-neutral-800/20 backdrop-blur-2xl break-inside-avoid hover:shadow-lg transition-all duration-300 ease-in-out"
             >
               {item.icon}
               <h3 className="text-2xl font-medium">{item.title}</h3>

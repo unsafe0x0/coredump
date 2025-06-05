@@ -46,7 +46,7 @@ const DeveloperProfile = () => {
       >
         <svg
           aria-hidden="true"
-          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-cyan-500"
+          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-green-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@ const DeveloperProfile = () => {
     <section className="flex justify-center items-start w-full min-h-screen py-10">
       <div className="flex flex-col justify-start items-start lg:container w-full px-3">
         <h2 className="text-3xl font-medium text-neutral-400 text-left self-start mb-5">
-          <span className="text-cyan-500/80">{profileData.name}</span>'s Profile
+          <span className="text-green-600">{profileData.name}</span>'s Profile
         </h2>
 
         <div className="flex flex-col justify-start items-start w-full p-5 rounded bg-neutral-800/30 backdrop-blur-2xl mb-5">
@@ -139,7 +139,7 @@ const DeveloperProfile = () => {
               </div>
               <p className="text-neutral-400 text-lg font-medium">
                 Crushed{" "}
-                <span className="text-cyan-500/80">{thisWeekTotalTime}hr</span>{" "}
+                <span className="text-green-600">{thisWeekTotalTime}hr</span>{" "}
                 this week
               </p>
             </div>
@@ -147,7 +147,7 @@ const DeveloperProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 justify-center items-stretch mt-5 mb-5 w-full">
-          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-500/80">
+          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Streak
@@ -156,11 +156,11 @@ const DeveloperProfile = () => {
                 {profileData.streak}
               </p>
             </div>
-            <span className="text-4xl text-red-500/80 p-2.5 rounded bg-red-500/10">
+            <span className="text-4xl text-red-600 p-2.5 rounded bg-red-600/10">
               <FaFireAlt />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-blue-500/80">
+          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-blue-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Total Time
@@ -169,11 +169,11 @@ const DeveloperProfile = () => {
                 {totalTime}hr
               </p>
             </div>
-            <span className="text-4xl text-blue-500/80 p-2.5 rounded bg-blue-500/10">
+            <span className="text-4xl text-blue-600 p-2.5 rounded bg-blue-600/10">
               <GiStopwatch />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-yellow-500/80">
+          <div className="flex justify-between items-center rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-yellow-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Total Languages
@@ -182,11 +182,11 @@ const DeveloperProfile = () => {
                 {profileData.activities.length}
               </p>
             </div>
-            <span className="text-4xl text-yellow-500/80 p-2.5 rounded bg-yellow-500/10">
+            <span className="text-4xl text-yellow-500 p-2.5 rounded bg-yellow-600/10">
               <RiCodeSSlashLine />
             </span>
           </div>
-          <div className="flex justify-between items-center w-full rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-cyan-500/80">
+          <div className="flex justify-between items-center w-full rounded bg-neutral-800/30 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-green-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Top Language
@@ -195,13 +195,13 @@ const DeveloperProfile = () => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-cyan-500/80 p-2.5 rounded bg-cyan-500/10">
+            <span className="text-4xl text-green-600 p-2.5 rounded bg-green-600/10">
               <GoCodeOfConduct />
             </span>
           </div>
         </div>
 
-        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded bg-neutral-800/30 backdrop-blur-2xl backdrop-blur-xl">
+        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded bg-neutral-800/30 backdrop-blur-2xl">
           <h2 className="text-3xl font-medium  text-neutral-300 mb-5">
             Languages
           </h2>
@@ -240,7 +240,7 @@ const DeveloperProfile = () => {
                   </div>
                   <p className="text-neutral-400 text-lg font-medium">
                     {Math.round(activity.totalDuration)}m{" "}
-                    <span className="text-cyan-500/80">
+                    <span className="text-green-600">
                       (
                       {Math.round(
                         (activity.totalDuration / totalDurationMinutes) * 100,
@@ -249,12 +249,12 @@ const DeveloperProfile = () => {
                     </span>
                   </p>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-white/10">
+                <div className="w-full h-2.5 rounded-full bg-neutral-800/40 backdrop-blur-2xl">
                   <div
                     className={`h-full rounded-full ${
                       languageProgressBgColor[
                         activity.languageName?.toLowerCase()
-                      ] || "bg-neutral-500"
+                      ] || "bg-neutral-600"
                     }`}
                     style={{
                       width: `${

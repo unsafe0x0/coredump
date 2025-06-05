@@ -23,14 +23,14 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center md:justify-start items-center md:items-start w-full gap-2">
             <Link
               href="/leaderboard"
-              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-cyan-500/80 rounded hover:bg-cyan-500/70 border border-cyan-500/80 transition-all duration-300 ease-in-out flex items-center gap-2"
+              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-green-600 rounded hover:bg-green-600/70 border border-green-600 transition-all duration-300 ease-in-out flex items-center gap-2"
             >
               Leaderboard <MdLeaderboard />
             </Link>
             <Link
               href="https://github.com/muxdust/BashForge-extension"
               target="_blank"
-              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded hover:bg-cyan-500/70 border border-cyan-500/80 transition-all duration-300 ease-in-out text-cyan-500/80 hover:text-neutral-300 flex items-center gap-2"
+              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded hover:bg-green-600/70 border border-green-600 transition-all duration-300 ease-in-out text-green-600 hover:text-neutral-300 flex items-center gap-2"
             >
               Extension <VscVscode />
             </Link>
@@ -94,21 +94,21 @@ const Hero = () => {
             </h3>
             <div className="flex justify-between  text-neutral-300 mb-4">
               <div className="flex items-center gap-2">
-                <MdToday className="text-4xl text-cyan-500/80 p-2.5 rounded bg-cyan-500/10" />
+                <MdToday className="text-4xl text-green-600 p-2.5 rounded bg-green-600/10" />
                 <div>
                   <p className="text-sm">Today</p>
                   <p className="text-xl font-medium">4h 32m</p>
-                  <p className="text-cyan-500/80 text-xs">
+                  <p className="text-green-600 text-xs">
                     +18% from yesterday
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <FaFire className="text-4xl text-red-500 p-2.5 rounded bg-red-500/10" />
+                <FaFire className="text-4xl text-red-600 p-2.5 rounded bg-red-600/10" />
                 <div>
                   <p className="text-sm">Streak</p>
                   <p className="text-xl font-medium">21 days</p>
-                  <p className="text-cyan-500/80 text-xs">Personal best!</p>
+                  <p className="text-green-600 text-xs">Personal best!</p>
                 </div>
               </div>
             </div>
@@ -116,18 +116,18 @@ const Hero = () => {
               <p className="text-neutral-400 text-xl font-medium">
                 Language used
               </p>
-              <div className="bg-neutral-800/40 rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/40 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
-                  className="bg-cyan-500/80 h-2.5"
+                  className="bg-yellow-600 h-2.5"
                   style={{ width: "55%" }}
                 ></div>
               </div>
               <p className="text-neutral-400 text-sm mt-1 text-right">
                 JavaScript
               </p>
-              <div className="bg-neutral-800/40 rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/40 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
-                  className="bg-blue-500 h-2.5"
+                  className="bg-blue-600 h-2.5"
                   style={{ width: "45%" }}
                 ></div>
               </div>
@@ -136,11 +136,11 @@ const Hero = () => {
               </p>
             </div>
             <div className="flex justify-between items-center mt-5 text-neutral-400 text-sm">
-              <div className="bg-neutral-800/40 px-3 py-3 rounded">
+              <div className="bg-neutral-800/30 backdrop-blur-2xl px-3 py-3 rounded">
                 <p className="text-xl font-medium text-left flex items-center gap-2">
-                  <GiDiamondTrophy className="inline-block text-yellow-500/80" />
-                  Rank <span className="text-cyan-500/80 font-medium">#7</span>{" "}
-                  <span className="text-green-500">↑ +4</span>
+                  <GiDiamondTrophy className="inline-block text-yellow-500" />
+                  Rank <span className="text-green-600 font-medium">#7</span>{" "}
+                  <span className="text-green-600">↑ +4</span>
                 </p>
               </div>
             </div>

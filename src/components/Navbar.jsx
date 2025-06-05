@@ -33,7 +33,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/">
             <h1 className="text-2xl font-medium  text-neutral-300 flex items-center gap-2">
-              {/* <GiShieldBash className="text-cyan-500/80 text-2xl" /> */}
+              {/* <GiShieldBash className="text-green-600 text-2xl" /> */}
               <Image
                 src="/logo.svg"
                 alt="BashForge Logo"
@@ -75,14 +75,14 @@ const Navbar = () => {
           {isLogged ? (
             <Link
               href="/profile"
-              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-cyan-500/80 hover:bg-cyan-500/70 transition-colors duration-200"
+              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
             >
               Profile
             </Link>
           ) : (
             <Link
               href="/login"
-              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-cyan-500/80 hover:bg-cyan-500/70 transition-colors duration-200"
+              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
             >
               Login
             </Link>
@@ -127,14 +127,14 @@ const Navbar = () => {
             {isLogged ? (
               <Link
                 href="/profile"
-                className="w-full md:w-auto text-center px-4 py-2 rounded bg-cyan-500/80 hover:bg-cyan-500/70 text-md font-medium transition"
+                className="w-full md:w-auto text-center px-4 py-2 rounded bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
               >
                 Profile
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="w-full md:w-auto text-center px-4 py-2 rounded bg-cyan-500/80 hover:bg-cyan-500/70 text-md font-medium transition"
+                className="w-full md:w-auto text-center px-4 py-2 rounded bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
               >
                 Login
               </Link>

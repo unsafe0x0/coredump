@@ -13,7 +13,7 @@ const LeaderBoarderHeader = ({
   return (
     <div className="mb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full">
       <div className="flex justify-center items-center w-full rounded bg-neutral-800/20 backdrop-blur-2xl p-3 gap-5">
-        <span className="text-4xl text-cyan-500/80 p-1.5 rounded bg-cyan-500/10">
+        <span className="text-4xl text-yellow-500/90 p-1.5 rounded bg-yellow-600/10">
           <SiHoneybadger />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">
@@ -32,7 +32,7 @@ const LeaderBoarderHeader = ({
         </div>
       </div>
       <div className="flex justify-center items-center w-full rounded bg-neutral-800/20 backdrop-blur-2xl p-3 gap-5">
-        <span className="text-4xl text-yellow-500/90 p-1.5 rounded bg-yellow-500/10">
+        <span className="text-4xl text-rose-500/90 p-1.5 rounded bg-rose-600/10">
           <FiUsers />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">
@@ -47,7 +47,7 @@ const LeaderBoarderHeader = ({
         </div>
       </div>
       <div className="flex justify-center items-center w-full rounded bg-neutral-800/20 backdrop-blur-2xl p-3 gap-5">
-        <span className="text-4xl text-pink-500/90 p-1.5 rounded bg-pink-500/10">
+        <span className="text-4xl text-green-600/90 p-1.5 rounded bg-green-600/10">
           <GiStopwatch />
         </span>
         <div className="flex flex-col justify-start items-start w-full gap-2">

@@ -41,11 +41,11 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                 return (
                   <tr
                     key={index}
-                    className="border-b border-neutral-700/40 align-top w-full hover:bg-neutral-800/30 transition-all duration-300 ease-in-out"
+                    className="border-b border-neutral-700/40 align-top w-full hover:bg-neutral-800/10 transition-all duration-300 ease-in-out"
                   >
                     <td className="px-10 py-3 align-middle">
                       {index === 0 ? (
-                        <GiDiamondTrophy className="text-yellow-500/80 text-3xl" />
+                        <GiDiamondTrophy className="text-yellow-500 text-3xl" />
                       ) : index === 1 ? (
                         <GiDiamondTrophy className="text-neutral-200/80 text-3xl" />
                       ) : index === 2 ? (
@@ -58,8 +58,8 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                       <DeveloperCard developerData={dev} />
                     </td>
                     <td className="px-10 py-3 align-middle text-center">
-                      <span className="px-3 py-1 bg-cyan-500/10 rounded inline-flex items-center gap-1 whitespace-nowrap">
-                        <MdOutlineWatchLater className="text-cyan-500/80 text-lg font-medium" />
+                      <span className="px-3 py-1 bg-green-600/10 rounded inline-flex items-center gap-1 whitespace-nowrap">
+                        <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
                         {Math.round(totalTime)} m
                       </span>
                     </td>
@@ -90,7 +90,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                               languageIconsImage[lang] || "/icons/txt.svg";
                             const color =
                               languageColors[lang] ||
-                              "bg-neutral-500/90 border-neutral-500";
+                              "bg-neutral-600/90 border-neutral-600";
                             const duration = Math.round(
                               act[
                                 activeBtn === "7Days"
@@ -120,19 +120,19 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                   className="border-b border-neutral-700/40 animate-pulse"
                 >
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-10 w-10 bg-neutral-500/40 rounded-full" />
+                    <div className="h-10 w-10 bg-neutral-600/40 rounded-full" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-6 w-40 bg-neutral-500/40 rounded self-start" />
+                    <div className="h-6 w-40 bg-neutral-600/40 rounded self-start" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-6 w-20 bg-neutral-500/40 rounded" />
+                    <div className="h-6 w-20 bg-neutral-600/40 rounded" />
                   </td>
                   <td className="px-10 py-3 align-middle">
                     <div className="flex gap-2">
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
-                      <div className="h-6 w-10 bg-neutral-500/40 rounded" />
+                      <div className="h-6 w-10 bg-neutral-600/40 rounded" />
+                      <div className="h-6 w-10 bg-neutral-600/40 rounded" />
+                      <div className="h-6 w-10 bg-neutral-600/40 rounded" />
                     </div>
                   </td>
                 </tr>

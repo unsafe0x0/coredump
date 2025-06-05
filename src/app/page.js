@@ -15,7 +15,7 @@ const LandingPage = () => {
       <main className="pb-14 gap-14 flex flex-col justify-start items-center w-full min-h-screen">
         <Hero />
         <Features />
-        <HowToUse />
+        {/* <HowToUse /> */}
         <Banner />
       </main>
       <Footer />

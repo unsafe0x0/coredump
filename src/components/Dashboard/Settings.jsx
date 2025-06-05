@@ -1,26 +1,20 @@
 "use client";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { MdDelete, MdLogout } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
-import { IoHomeOutline } from "react-icons/io5";
-import { MdContentCopy } from "react-icons/md";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const Profile = () => {
-  const [profileImage, setProfileImage] = useState("/default-profile.jpg");
+const Settings = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gitUsername, setgitUsername] = useState("");
   const [twitterUsername, setTwitterUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [privateKey, setPrivateKey] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [copyBtn, setCopyBtn] = useState("Copy");
 
   const router = useRouter();
 
@@ -33,12 +27,10 @@ const Profile = () => {
     try {
       const response = await axios.get("/api/user/profile");
       const details = response.data.data;
-      setProfileImage(details.profileImage);
       setName(details.name);
       setEmail(details.email);
       setgitUsername(details.gitUsername);
       setTwitterUsername(details.twitterUsername);
-      setPrivateKey(details.privateKey);
     } catch (error) {
       setError("Failed to fetch profile data. Please try again later.");
     }
@@ -109,62 +101,15 @@ const Profile = () => {
     }
   };
 
-  const copyPrivateKey = () => {
-    navigator.clipboard.writeText(privateKey);
-    setCopyBtn("Copied");
-    setTimeout(() => {
-      setCopyBtn("Copy");
-    }, 2000);
-  };
-
   return (
     <section className="flex justify-center items-start w-full">
-      <div className="flex flex-col justify-center items-center max-w-xl w-full px-5 gap-5 ">
-        <div className="flex justify-between items-center w-full gap-5">
-          <Link
-            href={"/"}
-            className="text-lg text-green-600 underline flex items-center gap-1"
-          >
-            <IoHomeOutline className="text-xl" />
-            Home
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-red-600 rounded hover:bg-red-700 border border-red-600 transition-all duration-300 ease-in-out flex items-center gap-1"
-          >
-            Logout <MdLogout className="text-xl" />
-          </button>
-        </div>
-        <h2 className="text-3xl self-center font-medium  text-neutral-300 mt-2 mb-2">
-          Your Profile
+      <div className="flex flex-col justify-start items-start lg:container px-3 w-full gap-5 ">
+        <h2 className="text-3xl self-start font-medium  text-neutral-300 mt-2 mb-2">
+          Settings
         </h2>
-        <div className="flex flex-col justify-center items-center w-full gap-1">
-          <img
-            src={`${profileImage}`}
-            alt={`${gitUsername}'s profile picture`}
-            className="h-32 w-32 rounded-full object-cover"
-          />
-          <p className="text-lg text-neutral-400 font-medium self-center">
-            @{gitUsername}
-          </p>
-        </div>
-        <div className="flex flex-col justify-start items-start w-full gap-1">
-          <p className="text-lg text-neutral-400 font-medium">
-            Your private key
-          </p>
-          <p className="text-lg text-neutral-400 bg-neutral-900/20 border border-green-600 px-3 py-1.5 md:py-1.5 rounded w-full break-words">
-            {privateKey}
-          </p>
-          <button
-            onClick={copyPrivateKey}
-            className="text-lg text-green-600 cursor-pointer flex items-center gap-1 self-end"
-          >
-            {copyBtn} <MdContentCopy className="text-xl" />
-          </button>
-        </div>
         <form
           action=""
-          className="flex flex-col justify-start items-start w-full space-y-5"
+          className="flex flex-col justify-start items-start w-full space-y-5 max-w-2xl"
         >
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label
@@ -268,9 +213,7 @@ const Profile = () => {
               disabled={loading}
               onClick={handleUpdate}
               className={`px-3 py-1.5 md:py-1.5 text-lg font-medium cursor-pointer bg-green-600 rounded ${
-                loading
-                  ? "cursor-not-allowed opacity-50"
-                  : "hover:bg-green-600"
+                loading ? "cursor-not-allowed opacity-50" : "hover:bg-green-600"
               } border border-green-600 transition-all duration-300 ease-in-out flex items-center gap-1`}
             >
               {loading ? "Updating..." : "Update"}{" "}
@@ -293,4 +236,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Settings;
