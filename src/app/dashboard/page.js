@@ -4,7 +4,7 @@ import Dashboard from "@/components/Dashboard/Dashboard";
 const DashboardPage = () => {
   return (
     <>
-      <main className="pb-14">
+      <main className="py-10">
         <Dashboard />
       </main>
     </>

@@ -72,10 +72,10 @@ const DashboardComponent = ({ developerData }) => {
   };
 
   return (
-    <section className="flex justify-center items-start w-full min-h-screen py-10">
-      <div className="flex flex-col justify-start items-start lg:container w-full px-3">
+    <section className="flex justify-center items-start w-full">
+      <div className="flex flex-col justify-start items-start w-full">
         <h2 className="text-3xl font-medium text-neutral-300 text-left self-start mb-5">
-          Welcome Back!{" "}
+          Welcome{" "}
           <span className="text-green-600">{developerData.name}</span>
         </h2>
 
@@ -95,25 +95,25 @@ const DashboardComponent = ({ developerData }) => {
         </div>
 
         <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-neutral-800/60 backdrop-blur-2xl mb-5">
-          <div className="flex flex-row justify-start items-start gap-5 mt-5">
+          <div className="flex flex-row justify-center items-center gap-5">
             <Image
               src={developerData.profileImage}
               alt={developerData.gitUsername}
               width={150}
               height={150}
-              className="w-36 h-36 rounded-md object-cover"
+              className="md:w-36 w-24 md:h-36 h-24 rounded-md object-cover"
             />
             <div className="flex flex-col justify-start items-start gap-2">
               <p className=" text-neutral-300 text-2xl font-medium">
                 {developerData.name}
               </p>
-              <p className=" text-neutral-400 text-md font-medium flex items-center">
+              <p className=" text-neutral-400 text-md font-normal flex items-center">
                 <MdOutlineEmail className="inline mr-2 text-lg" />{" "}
                 {developerData.email}
               </p>
               <p className="text-neutral-400 text-md font-normal flex items-center text-md">
                 <MdOutlineDateRange className="inline mr-2 text-lg" />
-                Joined on{" "}
+                Joined{" "}
                 {new Date(developerData.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
