@@ -27,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex justify-center items-center w-full border-b border-neutral-700/40 bg-neutral-800/30 backdrop-blur-3xl sticky top-0 z-50">
+    <nav className="flex justify-center items-center w-full border-b border-neutral-700/40 bg-neutral-800/50 backdrop-blur-3xl sticky top-0 z-50">
       <div className="flex flex-col justify-center items-center w-full px-5 py-2 lg:container">
         <div className="flex justify-between items-center w-full">
           {/* Logo */}

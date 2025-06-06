@@ -60,7 +60,7 @@ const HowToUse = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className="flex flex-col justify-start items-start w-full gap-2 p-5 rounded bg-neutral-800/20 backdrop-blur-2xl break-inside-avoid"
+              className="flex flex-col justify-start items-start w-full gap-2 p-5 rounded bg-neutral-800/40 backdrop-blur-2xl break-inside-avoid"
             >
               <h3 className="text-xl font-medium text-neutral-300">
                 {step.title}

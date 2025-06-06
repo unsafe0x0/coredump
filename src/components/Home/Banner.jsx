@@ -6,7 +6,7 @@ import { VscVscode } from "react-icons/vsc";
 const Banner = () => {
   return (
     <section className="flex justify-center items-center w-full">
-      <div className="flex flex-col justify-center items-center w-full gap-5 px-3 py-20 bg-neutral-800/20 backdrop-blur-2xl rounded lg:container mx-3">
+      <div className="flex flex-col justify-center items-center w-full gap-5 px-3 py-20 bg-neutral-800/40 backdrop-blur-2xl rounded lg:container mx-3">
         <h2 className="text-4xl font-medium text-neutral-300 text-center">
           Ready to start Your Journey?
         </h2>

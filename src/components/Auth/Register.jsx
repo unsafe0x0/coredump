@@ -48,7 +48,7 @@ const RegisterForm = () => {
       <div className="flex flex-col justify-center items-center max-w-lg w-full px-5">
         <form
           action=""
-          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/40 rounded bg-neutral-800/30"
+          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/40 rounded bg-neutral-800/50"
         >
           <h2 className="text-3xl self-center font-medium text-center  text-neutral-300">
             Create Account

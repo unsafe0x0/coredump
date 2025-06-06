@@ -10,7 +10,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
   return (
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
-        <thead className="bg-neutral-800/30 backdrop-blur-2xl min-w-full">
+        <thead className="bg-neutral-800/50 backdrop-blur-2xl min-w-full">
           <tr className="border-b border-neutral-700/40 w-full">
             <th className="text-left text-lg font-medium  text-neutral-300 px-10 py-3">
               Rank
@@ -26,7 +26,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/20 backdrop-blur-2xl min-w-full">
+        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/40 backdrop-blur-2xl min-w-full">
           {LeaderboardData.length > 0
             ? LeaderboardData.map((dev, index) => {
                 const totalTime = dev.activities?.reduce(

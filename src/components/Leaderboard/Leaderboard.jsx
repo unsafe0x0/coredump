@@ -87,13 +87,13 @@ const Leaderboard = () => {
   return (
     <section className="flex flex-col justify-start items-center w-full min-h-screen">
       <div className="flex flex-col justify-start items-center lg:container px-3 w-full h-full">
-        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/30 backdrop-blur-2xl rounded">
+        <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/50 backdrop-blur-2xl rounded">
           <button
             onClick={() => setActiveBtn("24Hours")}
             className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
                 ? "bg-green-600 border-green-600"
-                : "bg-neutral-800/30 border-neutral-700/40"
+                : "bg-neutral-800/50 border-neutral-700/40"
             }`}
           >
             Today
@@ -103,7 +103,7 @@ const Leaderboard = () => {
             className={`px-3 py-1 text-md font-normal cursor-pointer rounded hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
                 ? "bg-green-600 border-green-600"
-                : "bg-neutral-800/30 border-neutral-700/40"
+                : "bg-neutral-800/50 border-neutral-700/40"
             }`}
           >
             This Week
@@ -114,7 +114,7 @@ const Leaderboard = () => {
           leaderboardLength={leaderboardData.length}
           remainingTime={remainingTime}
         />
-        <div className="flex justify-start items-center w-full bg-neutral-800/20 backdrop-blur-2xl px-5 py-3 border-b border-neutral-700/40 mt-2 rounded">
+        <div className="flex justify-start items-center w-full bg-neutral-800/40 backdrop-blur-2xl px-5 py-3 border-b border-neutral-700/40 mt-2 rounded">
           <p className="text-xl font-medium  text-neutral-300">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"

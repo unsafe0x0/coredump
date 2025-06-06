@@ -81,7 +81,7 @@ const Hero = () => {
 
         {/* Mock UI Card */}
         <div className="w-full flex justify-center md:justify-end items-center">
-          <div className="bg-neutral-800/20 backdrop-blur-2xl rounded p-6 w-full max-w-md border border-neutral-700/40">
+          <div className="bg-neutral-800/40 backdrop-blur-2xl rounded p-6 w-full max-w-md border border-neutral-700/40">
             <div className="flex justify-between items-center mb-4 text-sm text-neutral-400">
               <span>May 11, 2025</span>
               <span className="bg-red-600/80 text-white px-2 py-0.5 rounded text-xs flex items-center gap-1">
@@ -116,7 +116,7 @@ const Hero = () => {
               <p className="text-neutral-400 text-xl font-medium">
                 Language used
               </p>
-              <div className="bg-neutral-800/40 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/70 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
                   className="bg-yellow-600 h-2.5"
                   style={{ width: "55%" }}
@@ -125,7 +125,7 @@ const Hero = () => {
               <p className="text-neutral-400 text-sm mt-1 text-right">
                 JavaScript
               </p>
-              <div className="bg-neutral-800/40 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/70 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
                   className="bg-blue-600 h-2.5"
                   style={{ width: "45%" }}
@@ -136,7 +136,7 @@ const Hero = () => {
               </p>
             </div>
             <div className="flex justify-between items-center mt-5 text-neutral-400 text-sm">
-              <div className="bg-neutral-800/30 backdrop-blur-2xl px-3 py-3 rounded">
+              <div className="bg-neutral-800/50 backdrop-blur-2xl px-3 py-3 rounded">
                 <p className="text-xl font-medium text-left flex items-center gap-2">
                   <GiDiamondTrophy className="inline-block text-yellow-500" />
                   Rank <span className="text-green-600 font-medium">#7</span>{" "}

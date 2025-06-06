@@ -92,7 +92,7 @@ const Features = () => {
           {data.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col justify-start items-start w-full gap-2 p-7 rounded bg-neutral-800/20 backdrop-blur-2xl break-inside-avoid hover:shadow-lg transition-all duration-300 ease-in-out"
+              className="flex flex-col justify-start items-start w-full gap-2 p-7 rounded bg-neutral-800/40 backdrop-blur-2xl break-inside-avoid hover:shadow-lg transition-all duration-300 ease-in-out"
             >
               {item.icon}
               <h3 className="text-2xl font-medium">{item.title}</h3>
