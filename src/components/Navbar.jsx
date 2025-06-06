@@ -27,7 +27,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="flex justify-center items-center w-full border-b border-neutral-700/40 bg-neutral-800/50 backdrop-blur-3xl sticky top-0 z-50">
+    <nav className="flex justify-center items-center w-full border-b border-neutral-700/40 bg-neutral-800/60 backdrop-blur-3xl sticky top-0 z-50">
       <div className="flex flex-col justify-center items-center w-full px-5 py-2 lg:container">
         <div className="flex justify-between items-center w-full">
           {/* Logo */}
@@ -74,15 +74,15 @@ const Navbar = () => {
           </ul>
           {isLogged ? (
             <Link
-              href="/profile"
-              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
+              href="/dashboard"
+              className="hidden lg:flex px-4 py-2 rounded-md text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
             >
               Profile
             </Link>
           ) : (
             <Link
               href="/login"
-              className="hidden lg:flex px-4 py-2 rounded text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
+              className="hidden lg:flex px-4 py-2 rounded-md text-md font-medium bg-green-600 hover:bg-green-600/70 transition-colors duration-200"
             >
               Login
             </Link>
@@ -126,15 +126,15 @@ const Navbar = () => {
             </ul>
             {isLogged ? (
               <Link
-                href="/profile"
-                className="w-full md:w-auto text-center px-4 py-2 rounded bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
+                href="/dashboard"
+                className="w-full md:w-auto text-center px-4 py-2 rounded-md bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
               >
                 Profile
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="w-full md:w-auto text-center px-4 py-2 rounded bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
+                className="w-full md:w-auto text-center px-4 py-2 rounded-md bg-green-600 hover:bg-green-600/70 text-md font-medium transition"
               >
                 Login
               </Link>

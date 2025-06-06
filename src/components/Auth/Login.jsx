@@ -30,7 +30,7 @@ const LoginForm = () => {
       });
 
       if (response.status === 200) {
-        router.push("/profile");
+        router.push("/dashboard");
       }
     } catch (error) {
       setError("Invalid email or password");
@@ -42,7 +42,7 @@ const LoginForm = () => {
       <div className="flex flex-col justify-center items-center max-w-lg w-full px-5">
         <form
           action=""
-          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/40 rounded bg-neutral-800/50"
+          className="flex flex-col justify-start items-start w-full space-y-5 p-7 border border-neutral-700/40 rounded-md bg-neutral-800/60"
         >
           <h2 className="text-3xl self-center font-medium text-center  text-neutral-300">
             Login to your account
@@ -58,14 +58,14 @@ const LoginForm = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/80 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Password
             </label>
-            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded">
+            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded  bg-neutral-800/80">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -73,7 +73,7 @@ const LoginForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-900/20 w-full"
+                className="text-md font-medium text-neutral-400 outline-hidden w-full"
               />
               <button
                 className=" text-green-600 text-lg"
@@ -88,7 +88,7 @@ const LoginForm = () => {
           )}
           <button
             onClick={handleLogin}
-            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-green-600 rounded hover:bg-green-600/70 border border-green-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
+            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-green-600 rounded-md hover:bg-green-600/70 border border-green-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
           >
             Login
           </button>

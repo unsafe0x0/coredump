@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./style.css";
 
-const font = Inter({
+const font = Space_Grotesk({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
 });

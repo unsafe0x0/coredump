@@ -17,7 +17,7 @@ const data = [
     icon: (
       <FaFire
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-red-600 to-red-700 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-red-600 to-red-700 text-white"
       />
     ),
   },
@@ -29,7 +29,7 @@ const data = [
     icon: (
       <MdLeaderboard
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-yellow-600 to-yellow-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-yellow-600 to-yellow-600 text-white"
       />
     ),
   },
@@ -41,7 +41,7 @@ const data = [
     icon: (
       <FaChartLine
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-blue-600 to-blue-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-blue-600 to-blue-600 text-white"
       />
     ),
   },
@@ -52,7 +52,7 @@ const data = [
     icon: (
       <FaCode
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-rose-600 to-rose-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-rose-600 to-rose-600 text-white"
       />
     ),
   },
@@ -64,7 +64,7 @@ const data = [
     icon: (
       <FaBullseye
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-green-600 to-green-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-green-600 to-green-600 text-white"
       />
     ),
   },
@@ -75,7 +75,7 @@ const data = [
     icon: (
       <FaMedal
         size={48}
-        className="p-2.5 rounded bg-gradient-to-l from-orange-600 to-orange-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-orange-600 to-orange-600 text-white"
       />
     ),
   },
@@ -92,7 +92,7 @@ const Features = () => {
           {data.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col justify-start items-start w-full gap-2 p-7 rounded bg-neutral-800/40 backdrop-blur-2xl break-inside-avoid hover:shadow-lg transition-all duration-300 ease-in-out"
+              className="flex flex-col justify-start items-start w-full gap-2 p-7 rounded-md bg-neutral-800/50 backdrop-blur-2xl break-inside-avoid hover:shadow-lg transition-all duration-300 ease-in-out"
             >
               {item.icon}
               <h3 className="text-2xl font-medium">{item.title}</h3>

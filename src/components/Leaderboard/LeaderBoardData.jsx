@@ -10,7 +10,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
   return (
     <div className="overflow-x-auto w-full rounded-b-lg">
       <table className="w-full border-collapse text-left backdrop-blur-3xl">
-        <thead className="bg-neutral-800/50 backdrop-blur-2xl min-w-full">
+        <thead className="bg-neutral-800/60 backdrop-blur-2xl min-w-full">
           <tr className="border-b border-neutral-700/40 w-full">
             <th className="text-left text-lg font-medium  text-neutral-300 px-10 py-3">
               Rank
@@ -26,7 +26,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/40 backdrop-blur-2xl min-w-full">
+        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/50 backdrop-blur-2xl min-w-full">
           {LeaderboardData.length > 0
             ? LeaderboardData.map((dev, index) => {
                 const totalTime = dev.activities?.reduce(
@@ -41,7 +41,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                 return (
                   <tr
                     key={index}
-                    className="border-b border-neutral-700/40 align-top w-full hover:bg-neutral-800/10 transition-all duration-300 ease-in-out"
+                    className="border-b border-neutral-700/40 align-top w-full hover:bg-neutral-800/40 transition-all duration-300 ease-in-out"
                   >
                     <td className="px-10 py-3 align-middle">
                       {index === 0 ? (
@@ -58,7 +58,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                       <DeveloperCard developerData={dev} />
                     </td>
                     <td className="px-10 py-3 align-middle text-center">
-                      <span className="px-3 py-1 bg-green-600/10 rounded inline-flex items-center gap-1 whitespace-nowrap">
+                      <span className="px-3 py-1 bg-green-600/10 rounded-md inline-flex items-center gap-1 whitespace-nowrap">
                         <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
                         {Math.round(totalTime)} m
                       </span>
@@ -123,7 +123,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                     <div className="h-10 w-10 bg-neutral-600/40 rounded-full" />
                   </td>
                   <td className="px-10 py-3 align-middle">
-                    <div className="h-6 w-40 bg-neutral-600/40 rounded self-start" />
+                    <div className="h-6 w-40 bg-neutral-600/40 rounded-md self-start" />
                   </td>
                   <td className="px-10 py-3 align-middle">
                     <div className="h-6 w-20 bg-neutral-600/40 rounded" />

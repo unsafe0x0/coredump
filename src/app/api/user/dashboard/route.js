@@ -25,9 +25,19 @@ export async function GET(req) {
         email: true,
         gitUsername: true,
         twitterUsername: true,
-        streak: true,
-        privateKey: true,
         profileImage: true,
+        privateKey: true,
+        streak: true,
+        createdAt: true,
+        activities: {
+          select: {
+            languageName: true,
+            shortLanguageName: true,
+            totalDuration: true,
+            last24HoursDuration: true,
+            last7DaysDuration: true,
+          },
+        },
       },
     });
 

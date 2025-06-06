@@ -106,14 +106,14 @@ const DeveloperProfile = () => {
           <span className="text-green-600">{profileData.name}</span>'s Profile
         </h2>
 
-        <div className="flex flex-col justify-start items-start w-full p-5 rounded bg-neutral-800/50 backdrop-blur-2xl mb-5">
+        <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-neutral-800/60 backdrop-blur-2xl mb-5">
           <div className="flex flex-row justify-start items-start gap-5 mt-5">
             <Image
               src={profileData.profileImage}
               alt={profileData.gitUsername}
               width={100}
               height={100}
-              className="w-24 h-24 rounded object-cover"
+              className="w-24 h-24 rounded-md object-cover"
             />
             <div className="flex flex-col justify-start items-start gap-2">
               <p className=" text-neutral-300 text-2xl font-medium">
@@ -147,7 +147,7 @@ const DeveloperProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 justify-center items-stretch mt-5 mb-5 w-full">
-          <div className="flex justify-between items-center rounded bg-neutral-800/50 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-600">
+          <div className="flex justify-between items-center rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Streak
@@ -156,11 +156,11 @@ const DeveloperProfile = () => {
                 {profileData.streak}
               </p>
             </div>
-            <span className="text-4xl text-red-600 p-2.5 rounded bg-red-600/10">
+            <span className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10">
               <FaFireAlt />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded bg-neutral-800/50 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-blue-600">
+          <div className="flex justify-between items-center rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-blue-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Total Time
@@ -169,11 +169,11 @@ const DeveloperProfile = () => {
                 {totalTime}hr
               </p>
             </div>
-            <span className="text-4xl text-blue-600 p-2.5 rounded bg-blue-600/10">
+            <span className="text-4xl text-blue-600 p-2.5 rounded-md bg-blue-600/10">
               <GiStopwatch />
             </span>
           </div>
-          <div className="flex justify-between items-center rounded bg-neutral-800/50 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-yellow-600">
+          <div className="flex justify-between items-center rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-yellow-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Total Languages
@@ -182,11 +182,11 @@ const DeveloperProfile = () => {
                 {profileData.activities.length}
               </p>
             </div>
-            <span className="text-4xl text-yellow-500 p-2.5 rounded bg-yellow-600/10">
+            <span className="text-4xl text-yellow-500 p-2.5 rounded-md bg-yellow-600/10">
               <RiCodeSSlashLine />
             </span>
           </div>
-          <div className="flex justify-between items-center w-full rounded bg-neutral-800/50 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-green-600">
+          <div className="flex justify-between items-center w-full rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-green-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Top Language
@@ -195,13 +195,13 @@ const DeveloperProfile = () => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-green-600 p-2.5 rounded bg-green-600/10">
+            <span className="text-4xl text-green-600 p-2.5 rounded-md bg-green-600/10">
               <GoCodeOfConduct />
             </span>
           </div>
         </div>
 
-        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded bg-neutral-800/50 backdrop-blur-2xl">
+        <div className="flex flex-col justify-start items-start w-full mt-5 p-5 rounded-md bg-neutral-800/60 backdrop-blur-2xl">
           <h2 className="text-3xl font-medium  text-neutral-300 mb-5">
             Languages
           </h2>
@@ -249,7 +249,7 @@ const DeveloperProfile = () => {
                     </span>
                   </p>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-neutral-800/70 backdrop-blur-2xl">
+                <div className="w-full h-2.5 rounded-full bg-neutral-800/80 backdrop-blur-2xl">
                   <div
                     className={`h-full rounded-full ${
                       languageProgressBgColor[
