@@ -76,19 +76,19 @@ const DashboardComponent = ({ developerData }) => {
       <div className="flex flex-col justify-start items-start w-full">
         <h2 className="text-3xl font-medium text-neutral-300 text-left self-start mb-5">
           Welcome{" "}
-          <span className="text-green-600">{developerData.name}</span>
+          <span className="text-red-600">{developerData.name}</span>
         </h2>
 
         <div className="flex justify-end items-center w-full mb-5">
           <Link
             href="/leaderboard"
-            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-green-600 rounded-md hover:bg-green-600/70 border border-green-600 transition-all duration-300 ease-in-out"
+            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out"
           >
             Leaderboard
           </Link>
           <button
             onClick={handleLogout}
-            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out ml-5"
+            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-orange-600 rounded-md hover:bg-orange-600/70 border border-orange-600 transition-all duration-300 ease-in-out ml-5"
           >
             Logout
           </button>
@@ -165,14 +165,14 @@ const DashboardComponent = ({ developerData }) => {
               />
             )}
             <MdFileCopy
-              className="text-2xl text-green-600 hover:scale-110 transition-all duration-200 cursor-pointer"
+              className="text-2xl text-red-600 hover:scale-110 transition-all duration-200 cursor-pointer"
               onClick={copyToClipboard.bind(null, developerData.privateKey)}
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 justify-center items-stretch mt-5 mb-5 w-full">
-          <div className="flex justify-between items-center rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-600">
+          <div className="flex justify-between items-center rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-orange-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Streak
@@ -181,7 +181,7 @@ const DashboardComponent = ({ developerData }) => {
                 {developerData.streak}
               </p>
             </div>
-            <span className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10">
+            <span className="text-4xl text-orange-600 p-2.5 rounded-md bg-orange-600/10">
               <FaFireAlt />
             </span>
           </div>
@@ -211,7 +211,7 @@ const DashboardComponent = ({ developerData }) => {
               <RiCodeSSlashLine />
             </span>
           </div>
-          <div className="flex justify-between items-center w-full rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-green-600">
+          <div className="flex justify-between items-center w-full rounded-md bg-neutral-800/60 backdrop-blur-2xl py-5 px-10 gap-5 border-t-3 border-red-600">
             <div className="flex flex-col justify-center items-center gap-2">
               <h2 className="text-xl font-medium text-neutral-400 text-left">
                 Top Language
@@ -220,7 +220,7 @@ const DashboardComponent = ({ developerData }) => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-green-600 p-2.5 rounded-md bg-green-600/10">
+            <span className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10">
               <GoCodeOfConduct />
             </span>
           </div>
@@ -265,7 +265,7 @@ const DashboardComponent = ({ developerData }) => {
                   </div>
                   <p className="text-neutral-400 text-lg font-medium">
                     {Math.round(activity.totalDuration)}m{" "}
-                    <span className="text-green-600">
+                    <span className="text-red-600">
                       (
                       {Math.round(
                         (activity.totalDuration / totalDurationMinutes) * 100

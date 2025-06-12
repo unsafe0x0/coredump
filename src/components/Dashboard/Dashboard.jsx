@@ -31,7 +31,7 @@ const Dashboard = () => {
       >
         <svg
           aria-hidden="true"
-          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-green-600"
+          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

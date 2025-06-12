@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className}>
-        {/* <div className="w-full h-full bg-gradient-to-br from-green-400 to-green-600 blur-[1000px] fixed top-0 left-0 z-[-1] p-0 opacity-15"></div> */}
+        {/* <div className="w-full h-full bg-gradient-to-br from-red-400 to-red-600 blur-[1000px] fixed top-0 left-0 z-[-1] p-0 opacity-15"></div> */}
         {children}
       </body>
     </html>

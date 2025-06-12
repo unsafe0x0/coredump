@@ -58,8 +58,8 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                       <DeveloperCard developerData={dev} />
                     </td>
                     <td className="px-10 py-3 align-middle text-center">
-                      <span className="px-3 py-1 bg-green-600/10 rounded-md inline-flex items-center gap-1 whitespace-nowrap">
-                        <MdOutlineWatchLater className="text-green-600 text-lg font-medium" />
+                      <span className="px-3 py-1 bg-red-600/10 rounded-md inline-flex items-center gap-1 whitespace-nowrap">
+                        <MdOutlineWatchLater className="text-red-600 text-lg font-medium" />
                         {Math.round(totalTime)} m
                       </span>
                     </td>

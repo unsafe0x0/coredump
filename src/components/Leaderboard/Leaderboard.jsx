@@ -90,9 +90,9 @@ const Leaderboard = () => {
         <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/60 backdrop-blur-2xl rounded">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-green-600 border-green-600"
+                ? "bg-red-600 border-red-600"
                 : "bg-neutral-800/60 border-neutral-700/40"
             }`}
           >
@@ -100,9 +100,9 @@ const Leaderboard = () => {
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-green-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-green-600 border-green-600"
+                ? "bg-red-600 border-red-600"
                 : "bg-neutral-800/60 border-neutral-700/40"
             }`}
           >

@@ -17,7 +17,7 @@ const data = [
     icon: (
       <FaFire
         size={48}
-        className="p-2.5 rounded-md bg-gradient-to-l from-red-600 to-red-700 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-orange-600 to-orange-700 text-white"
       />
     ),
   },
@@ -52,7 +52,7 @@ const data = [
     icon: (
       <FaCode
         size={48}
-        className="p-2.5 rounded-md bg-gradient-to-l from-rose-600 to-rose-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-violet-600 to-violet-600 text-white"
       />
     ),
   },
@@ -64,7 +64,7 @@ const data = [
     icon: (
       <FaBullseye
         size={48}
-        className="p-2.5 rounded-md bg-gradient-to-l from-green-600 to-green-600 text-white"
+        className="p-2.5 rounded-md bg-gradient-to-l from-red-600 to-red-600 text-white"
       />
     ),
   },
