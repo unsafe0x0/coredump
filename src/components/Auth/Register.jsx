@@ -64,7 +64,7 @@ const RegisterForm = () => {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/80 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/70 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -78,7 +78,7 @@ const RegisterForm = () => {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/80 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/70 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -92,7 +92,7 @@ const RegisterForm = () => {
               placeholder="GitHub Username"
               value={gitUsername}
               onChange={(e) => setgitUsername(e.target.value)}
-              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/80 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/70 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
@@ -106,14 +106,14 @@ const RegisterForm = () => {
               placeholder="Twitter Username"
               value={twitterUsername}
               onChange={(e) => setTwitterUsername(e.target.value)}
-              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/80 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
+              className="text-md font-medium text-neutral-400 outline-hidden bg-neutral-800/70 w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded"
             />
           </div>
           <div className="flex flex-col justify-start items-start w-full gap-1">
             <label htmlFor="" className="text-lg text-neutral-400 font-medium">
               Password
             </label>
-            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded  bg-neutral-800/80">
+            <div className="flex justify-between items-center w-full border border-neutral-700/40 px-3 py-1.5 md:py-1.5 rounded  bg-neutral-800/70">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -124,7 +124,7 @@ const RegisterForm = () => {
                 className="text-md font-medium text-neutral-400 outline-hidden w-full"
               />
               <button
-                className="text-red-600 text-lg"
+                className="text-red-500 text-lg"
                 onClick={handleShowPassword}
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
@@ -132,11 +132,11 @@ const RegisterForm = () => {
             </div>
           </div>
           {error && (
-            <p className="text-red-600 font-normal text-sm">{error}</p>
+            <p className="text-red-500 font-normal text-sm">{error}</p>
           )}
           <button
             onClick={handleRegister}
-            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out w-full cursor-pointer"
+            className="px-5 py-1.5 md:py-1.5 text-lg font-normal bg-red-500 rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out w-full cursor-pointer"
           >
             Create Account
           </button>
@@ -144,7 +144,7 @@ const RegisterForm = () => {
             <p className="">{`Already have an account?`}</p>
             <Link
               href="/login"
-              className="text-red-600 underline font-normal"
+              className="text-red-500 underline font-normal"
             >
               Login here
             </Link>

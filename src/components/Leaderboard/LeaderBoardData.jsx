@@ -26,7 +26,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/50 backdrop-blur-2xl min-w-full">
+        <tbody className="text-md md:text-lg text-neutral-400 bg-neutral-800/70 backdrop-blur-2xl min-w-full">
           {LeaderboardData.length > 0
             ? LeaderboardData.map((dev, index) => {
                 const totalTime = dev.activities?.reduce(
@@ -59,7 +59,7 @@ const LeaderboardData = ({ LeaderboardData, activeBtn }) => {
                     </td>
                     <td className="px-10 py-3 align-middle text-center">
                       <span className="px-3 py-1 bg-red-600/10 rounded-md inline-flex items-center gap-1 whitespace-nowrap">
-                        <MdOutlineWatchLater className="text-red-600 text-lg font-medium" />
+                        <MdOutlineWatchLater className="text-red-500 text-lg font-medium" />
                         {Math.round(totalTime)} m
                       </span>
                     </td>

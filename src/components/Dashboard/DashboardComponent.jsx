@@ -82,13 +82,13 @@ const DashboardComponent = ({ developerData }) => {
         <div className="flex justify-end items-center w-full mb-5">
           <Link
             href="/leaderboard"
-            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out"
+            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-red-500 rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out"
           >
             Leaderboard
           </Link>
           <button
             onClick={handleLogout}
-            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-orange-600 rounded-md hover:bg-orange-600/70 border border-orange-600 transition-all duration-300 ease-in-out ml-5"
+            className="px-3 py-1.5 text-md font-normal cursor-pointer bg-orange-500 rounded-md hover:bg-orange-600 border border-orange-500 transition-all duration-300 ease-in-out ml-5"
           >
             Logout
           </button>
@@ -150,22 +150,22 @@ const DashboardComponent = ({ developerData }) => {
             Keep this key safe and do not share it with anyone
           </p>
           <div className="flex flex-row justify-start items-center w-full gap-2 mt-5">
-            <p className="text-neutral-400 text-md font-normal px-5 py-3 bg-neutral-800/80 rounded-md break-words w-full">
+            <p className="text-neutral-400 text-md font-normal px-5 py-3 bg-neutral-800/70 rounded-md break-words w-full">
               {showPrivateKey ? developerData.privateKey : "****************"}
             </p>
             {showPrivateKey ? (
               <IoEyeOff
-                className="text-2xl text-yellow-600 hover:scale-110 transition-all duration-200 cursor-pointer"
+                className="text-2xl text-yellow-500 hover:scale-110 transition-all duration-200 cursor-pointer"
                 onClick={togglePrivateKeyVisibility}
               />
             ) : (
               <IoMdEye
-                className="text-2xl text-yellow-600 hover:scale-110 transition-all duration-200 cursor-pointer"
+                className="text-2xl text-yellow-500 hover:scale-110 transition-all duration-200 cursor-pointer"
                 onClick={togglePrivateKeyVisibility}
               />
             )}
             <MdFileCopy
-              className="text-2xl text-red-600 hover:scale-110 transition-all duration-200 cursor-pointer"
+              className="text-2xl text-red-500 hover:scale-110 transition-all duration-200 cursor-pointer"
               onClick={copyToClipboard.bind(null, developerData.privateKey)}
             />
           </div>
@@ -181,7 +181,7 @@ const DashboardComponent = ({ developerData }) => {
                 {developerData.streak}
               </p>
             </div>
-            <span className="text-4xl text-orange-600 p-2.5 rounded-md bg-orange-600/10">
+            <span className="text-4xl text-orange-500 p-2.5 rounded-md bg-orange-600/10">
               <FaFireAlt />
             </span>
           </div>
@@ -194,7 +194,7 @@ const DashboardComponent = ({ developerData }) => {
                 {totalTime}hr
               </p>
             </div>
-            <span className="text-4xl text-blue-600 p-2.5 rounded-md bg-blue-600/10">
+            <span className="text-4xl text-blue-500 p-2.5 rounded-md bg-blue-600/10">
               <GiStopwatch />
             </span>
           </div>
@@ -220,7 +220,7 @@ const DashboardComponent = ({ developerData }) => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10">
+            <span className="text-4xl text-red-500 p-2.5 rounded-md bg-red-600/10">
               <GoCodeOfConduct />
             </span>
           </div>
@@ -274,7 +274,7 @@ const DashboardComponent = ({ developerData }) => {
                     </span>
                   </p>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-neutral-800/80 backdrop-blur-2xl">
+                <div className="w-full h-2.5 rounded-full bg-neutral-800/70 backdrop-blur-2xl">
                   <div
                     className={`h-full rounded-full ${
                       languageProgressBgColor[

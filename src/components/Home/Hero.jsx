@@ -23,14 +23,14 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center md:justify-start items-center md:items-start w-full gap-2">
             <Link
               href="/leaderboard"
-              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out flex items-center gap-2"
+              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-red-500 rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-2"
             >
               Leaderboard <MdLeaderboard />
             </Link>
             <Link
               href="https://github.com/muxdust/BashForge-extension"
               target="_blank"
-              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out text-red-600 hover:text-neutral-300 flex items-center gap-2"
+              className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out text-red-500 hover:text-neutral-300 flex items-center gap-2"
             >
               Extension <VscVscode />
             </Link>
@@ -81,7 +81,7 @@ const Hero = () => {
 
         {/* Mock UI Card */}
         <div className="w-full flex justify-center md:justify-end items-center">
-          <div className="bg-neutral-800/50 backdrop-blur-2xl rounded-md p-6 w-full max-w-md border border-neutral-700/40">
+          <div className="bg-neutral-800/70 backdrop-blur-2xl rounded-md p-6 w-full max-w-md border border-neutral-700/40">
             <div className="flex justify-between items-center mb-4 text-sm text-neutral-400">
               <span>May 11, 2025</span>
               <span className="bg-orange-600/80 text-white px-2 py-0.5 rounded-md text-xs flex items-center gap-1">
@@ -94,21 +94,21 @@ const Hero = () => {
             </h3>
             <div className="flex justify-between  text-neutral-300 mb-4">
               <div className="flex items-center gap-2">
-                <MdToday className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10" />
+                <MdToday className="text-4xl text-red-500 p-2.5 rounded-md bg-red-600/10" />
                 <div>
                   <p className="text-sm">Today</p>
                   <p className="text-xl font-medium">4h 32m</p>
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-500 text-xs">
                     +18% from yesterday
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <FaFire className="text-4xl text-orange-600 p-2.5 rounded-md bg-orange-600/10" />
+                <FaFire className="text-4xl text-orange-500 p-2.5 rounded-md bg-orange-600/10" />
                 <div>
                   <p className="text-sm">Streak</p>
                   <p className="text-xl font-medium">21 days</p>
-                  <p className="text-red-600 text-xs">Personal best!</p>
+                  <p className="text-red-500 text-xs">Personal best!</p>
                 </div>
               </div>
             </div>
@@ -116,18 +116,18 @@ const Hero = () => {
               <p className="text-neutral-400 text-xl font-medium">
                 Language used
               </p>
-              <div className="bg-neutral-800/80 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/70 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
-                  className="bg-yellow-600 h-2.5"
+                  className="bg-yellow-500 h-2.5"
                   style={{ width: "55%" }}
                 ></div>
               </div>
               <p className="text-neutral-400 text-sm mt-1 text-right">
                 JavaScript
               </p>
-              <div className="bg-neutral-800/80 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
+              <div className="bg-neutral-800/70 backdrop-blur-2xl rounded-full h-2.5 overflow-hidden mt-2">
                 <div
-                  className="bg-blue-600 h-2.5"
+                  className="bg-blue-500 h-2.5"
                   style={{ width: "45%" }}
                 ></div>
               </div>
@@ -139,7 +139,7 @@ const Hero = () => {
               <div className="bg-neutral-800/60 backdrop-blur-2xl px-3 py-3 rounded">
                 <p className="text-xl font-medium text-left flex items-center gap-2">
                   <GiDiamondTrophy className="inline-block text-yellow-500" />
-                  Rank <span className="text-red-600 font-medium">#7</span>{" "}
+                  Rank <span className="text-red-500 font-medium">#7</span>{" "}
                   <span className="text-red-600">↑ +4</span>
                 </p>
               </div>

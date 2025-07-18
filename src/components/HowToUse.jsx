@@ -15,7 +15,7 @@ const HowToUse = () => {
             <Link
               href="https://github.com/muxdust/BashForge-extension"
               target="_blank"
-              className="px-3 py-1.5 md:py-1.5 text-md font-medium cursor-pointer bg-red-600 rounded-md hover:bg-red-700 border border-red-600 transition-all duration-300 ease-in-out flex items-center gap-1"
+              className="px-3 py-1.5 md:py-1.5 text-md font-medium cursor-pointer bg-red-500 rounded-md hover:bg-red-700 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-1"
             >
               Install
             </Link>

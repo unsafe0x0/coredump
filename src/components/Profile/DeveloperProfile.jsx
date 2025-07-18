@@ -46,7 +46,7 @@ const DeveloperProfile = () => {
       >
         <svg
           aria-hidden="true"
-          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
+          className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-500 fill-red-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,7 @@ const DeveloperProfile = () => {
                 {profileData.streak}
               </p>
             </div>
-            <span className="text-4xl text-orange-600 p-2.5 rounded-md bg-orange-600/10">
+            <span className="text-4xl text-orange-500 p-2.5 rounded-md bg-orange-600/10">
               <FaFireAlt />
             </span>
           </div>
@@ -169,7 +169,7 @@ const DeveloperProfile = () => {
                 {totalTime}hr
               </p>
             </div>
-            <span className="text-4xl text-blue-600 p-2.5 rounded-md bg-blue-600/10">
+            <span className="text-4xl text-blue-500 p-2.5 rounded-md bg-blue-600/10">
               <GiStopwatch />
             </span>
           </div>
@@ -195,7 +195,7 @@ const DeveloperProfile = () => {
                 {topLanguage}
               </p>
             </div>
-            <span className="text-4xl text-red-600 p-2.5 rounded-md bg-red-600/10">
+            <span className="text-4xl text-red-500 p-2.5 rounded-md bg-red-600/10">
               <GoCodeOfConduct />
             </span>
           </div>
@@ -249,7 +249,7 @@ const DeveloperProfile = () => {
                     </span>
                   </p>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-neutral-800/80 backdrop-blur-2xl">
+                <div className="w-full h-2.5 rounded-full bg-neutral-800/70 backdrop-blur-2xl">
                   <div
                     className={`h-full rounded-full ${
                       languageProgressBgColor[

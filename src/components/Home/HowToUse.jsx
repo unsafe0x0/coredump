@@ -60,7 +60,7 @@ const HowToUse = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className="flex flex-col justify-start items-start w-full gap-2 p-5 rounded-md bg-neutral-800/50 backdrop-blur-2xl break-inside-avoid"
+              className="flex flex-col justify-start items-start w-full gap-2 p-5 rounded-md bg-neutral-800/70 backdrop-blur-2xl break-inside-avoid"
             >
               <h3 className="text-xl font-medium text-neutral-300">
                 {step.title}
@@ -72,7 +72,7 @@ const HowToUse = () => {
                 <Link
                   href={step.link.href}
                   target="_blank"
-                  className="px-3 py-1.5 text-md font-medium cursor-pointer bg-red-600 rounded-md hover:bg-red-700 border border-red-600 transition-all duration-300 ease-in-out flex items-center gap-1"
+                  className="px-3 py-1.5 text-md font-medium cursor-pointer bg-red-500 rounded-md hover:bg-red-700 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-1"
                 >
                   {step.link.label}
                 </Link>

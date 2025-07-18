@@ -90,9 +90,9 @@ const Leaderboard = () => {
         <div className="flex justify-end items-center mt-5 mb-5 self-end p-0.5 bg-neutral-800/60 backdrop-blur-2xl rounded">
           <button
             onClick={() => setActiveBtn("24Hours")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "24Hours"
-                ? "bg-red-600 border-red-600"
+                ? "bg-red-500 border-red-600"
                 : "bg-neutral-800/60 border-neutral-700/40"
             }`}
           >
@@ -100,9 +100,9 @@ const Leaderboard = () => {
           </button>
           <button
             onClick={() => setActiveBtn("7Days")}
-            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600/70 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
+            className={`px-3 py-1 text-md font-normal cursor-pointer rounded-md hover:bg-red-600 border transition-all duration-300 ease-in-out flex items-center gap-1 ${
               activeBtn === "7Days"
-                ? "bg-red-600 border-red-600"
+                ? "bg-red-500 border-red-600"
                 : "bg-neutral-800/60 border-neutral-700/40"
             }`}
           >
@@ -114,7 +114,7 @@ const Leaderboard = () => {
           leaderboardLength={leaderboardData.length}
           remainingTime={remainingTime}
         />
-        <div className="flex justify-start items-center w-full bg-neutral-800/50 backdrop-blur-2xl px-5 py-3 border-b border-neutral-700/40 mt-2 rounded">
+        <div className="flex justify-start items-center w-full bg-neutral-800/70 backdrop-blur-2xl px-5 py-3 border-b border-neutral-700/40 mt-2 rounded">
           <p className="text-xl font-medium  text-neutral-300">
             {activeBtn === "24Hours"
               ? "Today's Leaderboard"

@@ -6,7 +6,7 @@ import { VscVscode } from "react-icons/vsc";
 const Banner = () => {
   return (
     <section className="flex justify-center items-center w-full">
-      <div className="flex flex-col justify-center items-center w-full gap-5 px-3 py-20 bg-neutral-800/50 backdrop-blur-2xl rounded-md lg:container mx-3">
+      <div className="flex flex-col justify-center items-center w-full gap-5 px-3 py-20 bg-neutral-800/70 backdrop-blur-2xl rounded-md lg:container mx-3">
         <h2 className="text-4xl font-medium text-neutral-300 text-center">
           Ready to start Your Journey?
         </h2>
@@ -17,14 +17,14 @@ const Banner = () => {
         <div className="flex flex-wrap justify-center items-center w-full gap-2">
           <Link
             href="/leaderboard"
-            className="px-6 py-2.5 text-md font-medium cursor-pointer bg-red-600 rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out flex items-center gap-2"
+            className="px-6 py-2.5 text-md font-medium cursor-pointer bg-red-500 rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out flex items-center gap-2"
           >
             Leaderboard <MdLeaderboard />
           </Link>
           <Link
             href="https://github.com/muxdust/BashForge-extension"
             target="_blank"
-            className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded-md hover:bg-red-600/70 border border-red-600 transition-all duration-300 ease-in-out text-red-600 hover:text-neutral-300 flex items-center gap-2"
+            className="px-6 py-2.5 text-md font-medium cursor-pointer bg-transparent rounded-md hover:bg-red-600 border border-red-500 transition-all duration-300 ease-in-out text-red-500 hover:text-neutral-300 flex items-center gap-2"
           >
             Extension <VscVscode />
           </Link>
