@@ -1,0 +1,84 @@
+import React from "react";
+import {
+  FaFire,
+  FaChartLine,
+  FaCode,
+  FaBullseye,
+  FaMedal,
+} from "react-icons/fa";
+import { MdLeaderboard } from "react-icons/md";
+
+const data = [
+  {
+    id: 1,
+    title: "Daily Streak",
+    description:
+      "Build consistent coding habits with daily streak tracking and motivation",
+    icon: <FaFire size={24} />,
+  },
+  {
+    id: 2,
+    title: "Leaderboards",
+    description:
+      "Compete with developers worldwide and climb the global rankings",
+    icon: <MdLeaderboard size={24} />,
+  },
+  {
+    id: 3,
+    title: "Progress Analytics",
+    description:
+      "Detailed insights into your coding patterns and productivity trends",
+    icon: <FaChartLine size={24} />,
+  },
+  {
+    id: 4,
+    title: "Language Tracking",
+    description: "Monitor your usage across different programming languages",
+    icon: <FaCode size={24} />,
+  },
+  {
+    id: 5,
+    title: "Goal Setting",
+    description:
+      "Set personalized coding goals and track your journey towards achieving them",
+    icon: <FaBullseye size={24} />,
+  },
+  {
+    id: 6,
+    title: "Achievements",
+    description: "Earn badges and rewards for your coding achievements",
+    icon: <FaMedal size={24} />,
+  },
+];
+
+const Features = () => {
+  return (
+    <section className="flex items-center justify-center w-full">
+      <div className="flex flex-col items-center justify-center p-3 lg:container w-full gap-12">
+        <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading">
+          Everything you need to level up
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full">
+          {data.map((feature) => (
+            <div
+              key={feature.id}
+              className="flex flex-col items-start justify-start p-5 bg-neutral-900 rounded-lg gap-2"
+            >
+              <div className="p-2 bg-neutral-100 rounded-md text-neutral-800">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-white font-heading mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-neutral-300 text-base font-normal">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Features;
