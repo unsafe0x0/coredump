@@ -15,7 +15,7 @@ model User {
   gitUsername     String   @unique
   twitterUsername String   @unique
   profileImage    String
-  password        String
+  password        String?
   privateKey      String   @unique
   role            String   @default("USER")
   streak          Int?     @default(0)
@@ -33,14 +33,14 @@ model Activity {
   id                  String   @id @default(cuid()) @map("_id")
   userId              String
   languageName        String
-  shortLanguageName   String?  @default("NULL")
-  totalDuration       Float
-  last24HoursDuration Float
-  last7DaysDuration   Float
+  shortLanguageName   String  @default("NULL")
+  totalDuration       Float?
+  last24HoursDuration Float?
+  last7DaysDuration   Float?
   lastUpdated         DateTime @default(now())
   createdAt           DateTime @default(now())
 
-  User User @relation(fields: [userId], references: [id])
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
