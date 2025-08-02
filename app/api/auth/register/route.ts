@@ -13,8 +13,8 @@ interface RegisterBody {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: RegisterBody = await request.json();
-    let { name, email, gitUsername, twitterUsername, password } = body;
+    const { name, email, gitUsername, twitterUsername, password } =
+      await request.json();
 
     if (!name || !email || !password || !gitUsername || !twitterUsername) {
       return NextResponse.json(
@@ -23,12 +23,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    email = email.toLowerCase();
-    gitUsername = gitUsername.toLowerCase();
-    twitterUsername = twitterUsername.toLowerCase();
+    const normalisedEmail = email.toLowerCase();
+    const normalisedGitUsername = gitUsername.toLowerCase();
+    const normalisedTwitterUsername = twitterUsername.toLowerCase();
 
     const existingUser = await dbClient.user.findUnique({
-      where: { email },
+      where: { email: normalisedEmail },
     });
 
     if (existingUser) {
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     const githubResponse = await fetch(
-      `https://api.github.com/users/${gitUsername}`,
+      `https://api.github.com/users/${normalisedGitUsername}`,
     );
     if (!githubResponse.ok) {
       return NextResponse.json(
@@ -57,9 +57,9 @@ export async function POST(request: NextRequest) {
     const newUser = await dbClient.user.create({
       data: {
         name,
-        email,
-        gitUsername,
-        twitterUsername,
+        email: normalisedEmail,
+        gitUsername: normalisedGitUsername,
+        twitterUsername: normalisedTwitterUsername,
         profileImage,
         password: hashedPassword,
         privateKey,

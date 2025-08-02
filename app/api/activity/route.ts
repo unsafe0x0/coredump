@@ -115,7 +115,7 @@ export async function POST(req: Request) {
       });
     }
 
-    let activity = (await dbClient.activity.findFirst({
+    const activity = (await dbClient.activity.findFirst({
       where: {
         userId: user.id,
         languageName: normalizedLang,

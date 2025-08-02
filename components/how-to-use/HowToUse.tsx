@@ -20,7 +20,8 @@ const HowToUse = () => {
     },
     {
       number: 2,
-      title: "Go to the Extensions view by clicking the Extensions icon in the Activity Bar.",
+      title:
+        "Go to the Extensions view by clicking the Extensions icon in the Activity Bar.",
       icon: <FaCode className="text-2xl" />,
     },
     {
@@ -36,7 +37,8 @@ const HowToUse = () => {
     },
     {
       number: 5,
-      title: 'Open the Command Palette and search for "BashForge: Enter Private Key".',
+      title:
+        'Open the Command Palette and search for "BashForge: Enter Private Key".',
       icon: <FaKey className="text-2xl" />,
     },
     {

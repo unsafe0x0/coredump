@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "google") {
         const googleId = profile?.sub || user.id;
 
-        let dbUser = await dbClient.user.findUnique({
+        const dbUser = await dbClient.user.findUnique({
           where: { googleId },
         });
 
