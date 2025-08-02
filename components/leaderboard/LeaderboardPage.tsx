@@ -59,11 +59,11 @@ const LeaderboardPage = () => {
             (activeButton === "7Days"
               ? act.last7DaysDuration || 0
               : act.last24HoursDuration || 0),
-          0,
+          0
         ) || 0;
       return getTimeSum(b) - getTimeSum(a);
     });
-  }, [activeButton, allData?.length]);
+  }, [activeButton, allData]);
 
   return (
     <section className="flex justify-center items-start w-full min-h-screen py-20 relative">
