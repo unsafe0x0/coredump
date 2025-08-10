@@ -15,7 +15,7 @@ const Banner = () => {
         </p>
         <Button
           label="Get Started"
-          onClick={() => (window.location.href = "/register")}
+          forwardRoute="/register"
           variant="primary"
         />
       </div>

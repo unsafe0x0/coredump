@@ -99,11 +99,10 @@ const HowToUse = () => {
                 <div className="flex-shrink-0">
                   <Button
                     label={step.action}
-                    onClick={() =>
-                      window.open(
-                        "https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge",
-                        "_blank",
-                      )
+                    forwardRoute={
+                      step.action === "Install"
+                        ? "https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge"
+                        : undefined
                     }
                     variant="primary"
                     icon={<FaDownload />}

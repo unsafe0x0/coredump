@@ -25,16 +25,13 @@ const Hero = () => {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button
             label="Leaderboard"
-            onClick={() => (window.location.href = "/leaderboard")}
+            forwardRoute="/leaderboard"
             variant="primary"
             icon={<MdLeaderboard className="text-xl" />}
           />
           <Button
             label="Extension"
-            onClick={() =>
-              (window.location.href =
-                "https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge")
-            }
+            forwardRoute="https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge"
             variant="secondary"
             icon={<VscVscode className="text-xl" />}
           />

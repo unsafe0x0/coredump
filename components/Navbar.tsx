@@ -47,14 +47,14 @@ const Navbar = () => {
           {session ? (
             <Button
               label="Dashboard"
-              onClick={() => (window.location.href = "/dashboard")}
+              forwardRoute="/dashboard"
               variant="primary"
               className="hidden lg:block"
             />
           ) : (
             <Button
               label="Login"
-              onClick={() => (window.location.href = "/login")}
+              forwardRoute="/login"
               variant="primary"
               className="hidden lg:block"
             />
@@ -88,13 +88,13 @@ const Navbar = () => {
             {session ? (
               <Button
                 label="Dashboard"
-                onClick={() => (window.location.href = "/dashboard")}
+                forwardRoute="/dashboard"
                 variant="primary"
               />
             ) : (
               <Button
                 label="Login"
-                onClick={() => (window.location.href = "/login")}
+                forwardRoute="/login"
                 variant="primary"
               />
             )}

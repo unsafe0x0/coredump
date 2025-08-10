@@ -1,5 +1,7 @@
+"use client"
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
@@ -10,6 +12,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "tertiary";
   className?: string;
   image?: string;
+  forwardRoute?: string;
 }
 
 const variantClasses = {
@@ -29,11 +32,21 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   className = "",
   image,
+  forwardRoute,
 }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (forwardRoute) {
+      router.push(forwardRoute);
+    }
+    onClick?.();
+  };
+
   return (
     <button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md cursor-pointer text-base font-normal ${variantClasses[variant]} ${className}`}
     >
