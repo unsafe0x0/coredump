@@ -45,12 +45,13 @@ const Navbar = () => {
             </li>
           </ul>
           {session ? (
-            <Button
-              label="Dashboard"
-              forwardRoute="/dashboard"
-              variant="primary"
-              className="hidden lg:block"
-            />
+            <Link href="/dashboard" className="hidden lg:block">
+              <img
+                src={session.user?.image ?? "/file.svg"}
+                alt={session.user?.name ? `${session.user.name} profile` : "profile"}
+                className="w-10 h-10 rounded-full object-cover border border-neutral-600"
+              />
+            </Link>
           ) : (
             <Button
               label="Login"
@@ -86,11 +87,13 @@ const Navbar = () => {
               </Link>
             </li>
             {session ? (
-              <Button
-                label="Dashboard"
-                forwardRoute="/dashboard"
-                variant="primary"
-              />
+              <Link href="/dashboard">
+                <img
+                  src={session.user?.image ?? "/file.svg"}
+                  alt={session.user?.name ? `${session.user.name} profile` : "profile"}
+                  className="w-10 h-10 rounded-full object-cover border border-neutral-600"
+                />
+              </Link>
             ) : (
               <Button
                 label="Login"
