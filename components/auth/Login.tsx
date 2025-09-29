@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
+import Button from "../common/Button";
+import Input from "../common/Input";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
@@ -41,10 +41,8 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center w-full">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
       <div className="relative z-10 w-full max-w-lg mx-3 md:mx-0">
-        <div className="bg-neutral-900 rounded-lg p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
+        <div className="bg-[#202020] rounded-md p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
           <div className="flex flex-col justify-center items-center gap-2 text-center">
             <h2 className="text-3xl font-semibold text-white font-heading">
               Welcome Back
@@ -54,16 +52,17 @@ const Login = () => {
             </p>
           </div>
           <Button
-            label="Login with Google"
             onClick={() => signIn("google")}
             variant="primary"
             className="w-full"
-            image="/google.svg"
-          />
+          >
+            <img src="/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
+            Login with Google
+          </Button>
           <div className="flex items-center">
-            <div className="flex-1 border-t border-neutral-700/50"></div>
+            <div className="flex-1 border-t border-[#2a2a2a]"></div>
             <span className="px-3 text-neutral-400 text-sm">or</span>
-            <div className="flex-1 border-t border-neutral-700/50"></div>
+            <div className="flex-1 border-t border-[#2a2a2a]"></div>
           </div>
           <form onSubmit={handleLogin}>
             <Input
@@ -92,12 +91,9 @@ const Login = () => {
               {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
               <span>Show Password</span>
             </button>
-            <Button
-              label="Login your account"
-              type="submit"
-              variant="primary"
-              className="w-full"
-            />
+            <Button type="submit" variant="primary" className="w-full">
+              Login your account
+            </Button>
           </form>
 
           <p className="flex items-center justify-start gap-1 text-neutral-300 text-sm">

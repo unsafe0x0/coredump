@@ -1,14 +1,7 @@
 "use client";
 import React from "react";
-import Button from "../ui/Button";
-import {
-  FaDownload,
-  FaCode,
-  FaCog,
-  FaKey,
-  FaSync,
-  FaPlay,
-} from "react-icons/fa";
+import Button from "../common/Button";
+import { FaDownload, FaCode, FaKey, FaSync, FaPlay } from "react-icons/fa";
 import { VscVscode } from "react-icons/vsc";
 
 const HowToUse = () => {
@@ -26,24 +19,24 @@ const HowToUse = () => {
     },
     {
       number: 3,
-      title: 'Search for "BashForge" in the Marketplace.',
+      title: 'Search for "CoreDump" in the Marketplace.',
       icon: <FaDownload className="text-2xl" />,
     },
     {
       number: 4,
-      title: 'Click "Install" on the BashForge extension page.',
+      title: 'Click "Install" on the CoreDump extension page.',
       action: "Install",
       icon: <FaDownload className="text-2xl" />,
     },
     {
       number: 5,
       title:
-        'Open the Command Palette and search for "BashForge: Enter Private Key".',
+        'Open the Command Palette and search for "CoreDump: Enter Private Key".',
       icon: <FaKey className="text-2xl" />,
     },
     {
       number: 6,
-      title: "Retrieve your private key from the BashForge dashboard.",
+      title: "Retrieve your private key from the CoreDump dashboard.",
       icon: <FaKey className="text-2xl" />,
     },
     {
@@ -58,22 +51,20 @@ const HowToUse = () => {
     },
     {
       number: 9,
-      title: "Start using the BashForge extension.",
+      title: "Start using the CoreDump extension.",
       icon: <FaPlay className="text-2xl" />,
     },
   ];
 
   return (
     <section className="flex justify-center items-start w-full min-h-screen py-20 relative">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
-      <div className="flex flex-col justify-start items-center w-full lg:container px-3 gap-8 relative z-10">
+      <div className="flex flex-col justify-start items-center w-full max-w-7xl px-3 gap-8 relative z-10">
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-semibold text-white font-heading">
-            How to Use BashForge
+            How to Use CoreDump
           </h1>
           <p className="text-neutral-300 text-base font-normal max-w-2xl mx-auto">
-            Follow these simple steps to get started with the BashForge
+            Follow these simple steps to get started with the CoreDump
             extension and begin tracking your coding journey
           </p>
         </div>
@@ -82,9 +73,9 @@ const HowToUse = () => {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex justify-start items-center bg-neutral-900 rounded-lg p-5 backdrop-blur-sm gap-5"
+              className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5"
             >
-              <span className="p-4 bg-neutral-100 rounded-lg text-neutral-800 text-2xl flex-shrink-0">
+              <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-2xl flex-shrink-0">
                 {step.icon}
               </span>
               <div className="flex flex-col justify-center items-start gap-2 flex-1">
@@ -98,15 +89,15 @@ const HowToUse = () => {
               {step.action && (
                 <div className="flex-shrink-0">
                   <Button
-                    label={step.action}
                     forwardRoute={
                       step.action === "Install"
-                        ? "https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge"
+                        ? "https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
                         : undefined
                     }
                     variant="primary"
-                    icon={<FaDownload />}
-                  />
+                  >
+                    <FaDownload />
+                  </Button>
                 </div>
               )}
             </div>

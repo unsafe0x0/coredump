@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Public_Sans } from "next/font/google";
+import { Inter, Public_Sans } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/context/QueryProvider";
 import AuthProvider from "@/context/AuthProvider";
 import ToastProvider from "@/context/ToastProvider";
 
-const headingFont = Bricolage_Grotesque({
+const headingFont = Inter({
   variable: "--font-heading",
   subsets: ["latin"],
 });
@@ -17,11 +17,11 @@ const bodyFont = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "BashForge - Track and Compete in Coding Time",
+  title: "CoreDump - Track and Compete in Coding Time",
   description:
-    "BashForge is a dynamic leaderboard platform that tracks coding time and languages, helping developers compete and improve their productivity.",
+    "CoreDump is a dynamic leaderboard platform that tracks coding time and languages, helping developers compete and improve their productivity.",
   keywords: [
-    "BashForge",
+    "CoreDump",
     "coding",
     "time tracking",
     "leaderboard",

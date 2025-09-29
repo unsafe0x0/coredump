@@ -33,7 +33,7 @@ const languageIconsImage = {
 };
 
 const languageColors = {
-  plaintext: "bg-gray-500/20 border-gray-500",
+  plaintext: "bg-neutral-500/20 border-neutral-500",
   javascript: "bg-yellow-500/20 border-yellow-500",
   javascriptreact: "bg-amber-500/20 border-amber-500",
   typescript: "bg-blue-500/20 border-blue-500",
@@ -60,14 +60,14 @@ const languageColors = {
   scala: "bg-red-500/20 border-red-500",
   perl: "bg-indigo-500/20 border-indigo-500",
   lua: "bg-blue-500/20 border-blue-500",
-  groovy: "bg-gray-500/20 border-gray-500",
+  groovy: "bg-neutral-500/20 border-neutral-500",
   powershell: "bg-blue-500/20 border-blue-500",
   sql: "bg-emerald-500/20 border-emerald-500",
   prisma: "bg-teal-500/20 border-teal-500",
 };
 
 const languageProgressBgColor = {
-  plaintext: "bg-gray-500",
+  plaintext: "bg-neutral-500",
   javascript: "bg-yellow-500",
   javascriptreact: "bg-amber-500",
   typescript: "bg-blue-500",
@@ -94,7 +94,7 @@ const languageProgressBgColor = {
   scala: "bg-red-500",
   perl: "bg-indigo-500",
   lua: "bg-blue-500",
-  groovy: "bg-gray-500",
+  groovy: "bg-neutral-500",
   powershell: "bg-blue-500",
   sql: "bg-emerald-500",
   prisma: "bg-teal-500",

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import LanguageBadge from "@/components/ui/LanguageBadge";
+import LanguageBadge from "@/components/common/LanguageBadge";
 import {
   languageColors,
   languageIconsImage,
@@ -26,7 +26,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
   );
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-lg bg-neutral-900 backdrop-blur-sm">
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm">
       <h2 className="text-3xl font-semibold text-white mb-5 font-heading">
         Languages
       </h2>
@@ -44,7 +44,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
               }
               color={
                 languageColors[key as keyof typeof languageColors] ||
-                "bg-gray-500/20 border-gray-500"
+                "bg-neutral-500/20 border-neutral-500"
               }
               duration={Math.round(activity.totalDuration)}
             />
@@ -66,7 +66,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
           return (
             <div
               key={index}
-              className="flex flex-col justify-start items-start gap-3 w-full"
+              className="flex flex-col justify-start items-start gap-3 w-full bg-[#222222] p-3 rounded-md border border-[#2a2a2a]"
             >
               <div className="flex flex-row justify-between items-center w-full">
                 <div className="flex items-center gap-3">
@@ -81,20 +81,20 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
                     height={24}
                     className="w-6 h-6"
                   />
-                  <p className="text-neutral-300 text-lg font-medium capitalize">
+                  <p className="text-neutral-300 text-base font-medium capitalize">
                     {activity.languageName}
                   </p>
                 </div>
-                <p className="text-neutral-300 text-lg font-medium">
+                <p className="text-neutral-300 text-base font-medium">
                   {Math.round(activity.totalDuration)}m{" "}
                   <span className="text-white font-semibold">
                     ({Math.round(percent)}%)
                   </span>
                 </p>
               </div>
-              <div className="w-full h-3 rounded-full bg-neutral-800">
+              <div className="w-full h-3 rounded-full bg-[#282828]">
                 <div
-                  className={`h-full rounded-full ${languageProgressBgColor[key as keyof typeof languageProgressBgColor] || "bg-gray-500"}`}
+                  className={`h-full rounded-full ${languageProgressBgColor[key as keyof typeof languageProgressBgColor] || "bg-neutral-500"}`}
                   style={{ width: `${percent}%` }}
                 />
               </div>

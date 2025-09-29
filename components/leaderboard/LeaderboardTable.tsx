@@ -1,6 +1,6 @@
 import React from "react";
-import DeveloperCard from "../ui/DevloperCard";
-import LanguageBadge from "../ui/LanguageBadge";
+import DeveloperCard from "../common/DevloperCard";
+import LanguageBadge from "../common/LanguageBadge";
 import { languageIconsImage, languageColors } from "@/utils/LanguageData";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { IoFlame } from "react-icons/io5";
@@ -152,17 +152,17 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
 
   if (!leaderboardData || leaderboardData.length === 0) {
     return (
-      <div className="flex justify-center items-center w-full bg-neutral-900 backdrop-blur-sm p-8 rounded-lg">
+      <div className="flex justify-center items-center w-full bg-[#202020] backdrop-blur-sm p-8 rounded-md">
         <p className="text-neutral-400 text-base font-semibold">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto w-full rounded-lg">
+    <div className="overflow-x-auto w-full rounded-md custom-scrollbar">
       <table className="w-full border-collapse text-left backdrop-blur-3xl min-w-[1000px]">
-        <thead className="bg-neutral-900 backdrop-blur-2xl">
-          <tr className="border-b border-neutral-700/50">
+        <thead className="bg-[#202020] backdrop-blur-2xl">
+          <tr className="border-b border-[#2a2a2a]">
             <th className="text-center text-base font-semibold font-heading text-neutral-300 tracking-wider px-8 py-4 w-20 whitespace-nowrap">
               Rank
             </th>
@@ -180,7 +180,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
             </th>
           </tr>
         </thead>
-        <tbody className="bg-neutral-900 backdrop-blur-2xl">
+        <tbody className="bg-[#202020] backdrop-blur-2xl">
           {leaderboardData.map((user, index) => {
             const totalTime = getTotalTime(user.activities);
             const topLanguages = getTopLanguages(user.activities);
@@ -188,7 +188,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
             return (
               <tr
                 key={user.gitUsername}
-                className="border-b border-neutral-700/50 hover:bg-neutral-800/50"
+                className="border-b border-[#2a2a2a] hover:bg-[#222222] transition-colors"
               >
                 {/* Rank */}
                 <td className="px-8 py-5 text-center w-20 whitespace-nowrap">
@@ -197,10 +197,10 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                       index === 0
                         ? "bg-yellow-500/20 border-2 border-yellow-500 text-yellow-400 shadow-lg shadow-yellow-500/20"
                         : index === 1
-                          ? "bg-gray-400/20 border-2 border-gray-400 text-gray-300 shadow-lg shadow-gray-400/20"
+                          ? "bg-neutral-400/20 border-2 border-neutral-400 text-neutral-300 shadow-lg shadow-neutral-400/20"
                           : index === 2
                             ? "bg-orange-500/20 border-2 border-orange-500 text-orange-400 shadow-lg shadow-orange-500/20"
-                            : "bg-neutral-600/30 border-2 border-neutral-500 text-neutral-300"
+                            : "bg-[#282828]/30 border-2 border-neutral-500 text-neutral-300"
                     }`}
                   >
                     {index < 3 ? (

@@ -7,7 +7,7 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ icon, title, value }) => (
-  <div className="flex justify-start items-center bg-neutral-900 rounded-lg p-5 backdrop-blur-sm gap-5 w-full">
+  <div className="flex justify-start items-center bg-[#202020] rounded-lg p-5 backdrop-blur-sm gap-5 w-full">
     <span className="p-4 bg-neutral-100 rounded-lg text-neutral-800 text-3xl flex-shrink-0">
       {icon}
     </span>

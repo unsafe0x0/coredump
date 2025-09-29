@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         required={required}
         autoComplete="off"
-        className={`w-full px-4 py-2 border border-neutral-700/50 rounded-md bg-neutral-800 text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-100 ${disabled ? "opacity-50 cursor-not-allowed bg-neutral-700" : ""} ${error ? "border-red-500 focus:border-red-500" : ""} ${className}`}
+        className={`w-full px-4 py-2 border border-[#2a2a2a] rounded-md bg-[#222222] text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-100 ${disabled ? "opacity-50 cursor-not-allowed bg-[#222222]" : ""} ${error ? "border-red-500 focus:border-red-500" : ""} ${className}`}
       />
       {error && <span className="text-sm text-red-400">{error}</span>}
     </div>

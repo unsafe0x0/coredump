@@ -1,5 +1,5 @@
 import React from "react";
-import DeveloperCard from "../ui/DevloperCard";
+import DeveloperCard from "../common/DevloperCard";
 import { SiHoneybadger } from "react-icons/si";
 import { FiUsers } from "react-icons/fi";
 import { GiClockwork } from "react-icons/gi";
@@ -21,8 +21,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full">
-      <div className="flex justify-start items-center bg-neutral-900 rounded-lg p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-lg text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
           <SiHoneybadger />
         </span>
         <div className="flex flex-col justify-center items-start gap-2 min-w-0 flex-1">
@@ -42,8 +42,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-neutral-900 rounded-lg p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-lg text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
           <FiUsers />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">
@@ -53,8 +53,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
           <p className="text-2xl font-bold text-white">{leaderboardLength}</p>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-neutral-900 rounded-lg p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-lg text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
           <GiClockwork />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">

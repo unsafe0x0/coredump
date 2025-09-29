@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaArrowLeft, FaSave } from "react-icons/fa";
-import { MdOutlineLogout } from "react-icons/md";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
+import { FaArrowLeft } from "react-icons/fa";
+import Input from "../common/Input";
+import Button from "../common/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { signOut } from "next-auth/react";
@@ -68,7 +67,7 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
       <div className="flex items-center gap-4 mb-5">
         <button
           onClick={onBack}
-          className="p-3 bg-neutral-900 rounded-lg text-neutral-300 hover:text-white hover:bg-neutral-800"
+          className="p-3 bg-[#202020] rounded-md text-neutral-300 hover:text-white hover:bg-[#222222]"
         >
           <FaArrowLeft className="text-xl" />
         </button>
@@ -77,7 +76,7 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
         </h2>
       </div>
 
-      <div className="bg-neutral-900 rounded-lg p-5 backdrop-blur-sm">
+      <div className="bg-[#202020] rounded-md p-5 backdrop-blur-sm">
         <h3 className="text-xl font-semibold text-white mb-4 font-heading">
           Profile Information
         </h3>
@@ -115,19 +114,16 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
         </div>
 
         <div className="flex justify-end items-center gap-4">
+          <Button onClick={handleSignOut} variant="tertiary">
+            Logout
+          </Button>
           <Button
-            label="Log Out"
-            onClick={handleSignOut}
-            variant="tertiary"
-            icon={<MdOutlineLogout />}
-          />
-          <Button
-            label={updateUserMutation.isPending ? "Saving..." : "Save Changes"}
             onClick={handleSave}
             disabled={updateUserMutation.isPending}
             variant="primary"
-            icon={<FaSave />}
-          />
+          >
+            {updateUserMutation.isPending ? "Saving..." : "Save Changes"}
+          </Button>
         </div>
       </div>
     </div>

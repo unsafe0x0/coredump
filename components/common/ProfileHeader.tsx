@@ -21,14 +21,14 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   thisWeekTotalTime,
   joinedDate,
 }) => (
-  <div className="flex flex-col justify-start items-start w-full p-5 rounded-lg bg-neutral-900 backdrop-blur-sm mb-5">
+  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm mb-5">
     <div className="flex flex-row justify-start items-start gap-5 mt-2">
       <Image
         src={profileImage || "/default-avatar.png"}
         alt={gitUsername}
         width={100}
         height={100}
-        className="w-24 h-24 rounded-lg object-cover"
+        className="w-24 h-24 rounded-md object-cover"
       />
       <div className="flex flex-col justify-start items-start gap-2">
         <p className="text-white text-2xl font-semibold font-heading">{name}</p>
@@ -52,11 +52,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             </Link>
           )}
         </div>
-        <p className="text-neutral-300 text-lg font-medium">
+        <p className="text-neutral-300 text-base font-medium">
           Crushed{" "}
-          <span className="text-white font-semibold">
-            {thisWeekTotalTime}hr
-          </span>{" "}
+          <span className="text-white font-semibold">{thisWeekTotalTime}</span>{" "}
           this week
         </p>
         {joinedDate && (

@@ -3,22 +3,22 @@ import Link from "next/link";
 import { FaGithub, FaDiscord } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { VscVscode } from "react-icons/vsc";
-import { GiShieldBash } from "react-icons/gi";
+import { SiCodeblocks } from "react-icons/si";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-neutral-950/50 border-t border-neutral-700/50">
+    <footer className="w-full bg-[#191919]/50 border-t border-[#2a2a2a]">
       <div className="flex items-center justify-center w-full">
-        <div className="flex flex-col lg:container w-full p-5 gap-8">
+        <div className="flex flex-col max-w-7xl w-full p-5 gap-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-2xl font-semibold text-white font-heading">
-              <GiShieldBash />
-              <span>BashForge</span>
+              <SiCodeblocks />
+              <span>CoreDump</span>
             </div>
             <p className="text-neutral-400 text-sm font-normal">
-              © {currentYear} BashForge. All rights reserved.
+              © {currentYear} CoreDump. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <Link
@@ -49,7 +49,7 @@ const Footer = () => {
                 <FaDiscord size={20} />
               </Link>
               <Link
-                href="https://marketplace.visualstudio.com/items?itemName=Unsafezero.bashforge"
+                href="https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
                 className="text-neutral-400 hover:text-white"
                 target="_blank"
                 rel="noopener noreferrer"

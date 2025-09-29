@@ -11,9 +11,9 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     id: 1,
-    question: "What is BashForge?",
+    question: "What is CoreDump?",
     answer:
-      "BashForge is a comprehensive coding tracking platform that helps developers monitor their progress, maintain daily streaks, compete on leaderboards, and enhance their programming skills through gamification.",
+      "CoreDump is a comprehensive coding tracking platform that helps developers monitor their progress, maintain daily streaks, compete on leaderboards, and enhance their programming skills through gamification.",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const faqData: FAQItem[] = [
     id: 3,
     question: "Can I track multiple programming languages?",
     answer:
-      "Yes! BashForge supports tracking across all major programming languages including JavaScript, Python, Java, C++, React, and many more. You can see detailed analytics for each language you use.",
+      "Yes! CoreDump supports tracking across all major programming languages including JavaScript, Python, Java, C++, React, and many more. You can see detailed analytics for each language you use.",
   },
   {
     id: 4,
@@ -35,15 +35,15 @@ const faqData: FAQItem[] = [
   },
   {
     id: 5,
-    question: "Is BashForge free to use?",
+    question: "Is CoreDump free to use?",
     answer:
-      "Yes, BashForge offers a comprehensive free tier with access to core features including streak tracking, basic analytics, and leaderboards. Premium features may be available for advanced users.",
+      "Yes, CoreDump offers a comprehensive free tier with access to core features including streak tracking, basic analytics, and leaderboards. Premium features may be available for advanced users.",
   },
   {
     id: 6,
     question: "How do I install the VS Code extension?",
     answer:
-      "You can install the BashForge VS Code extension directly from the VS Code marketplace or from our GitHub repository. The extension automatically tracks your coding activity and syncs with your BashForge account.",
+      "You can install the CoreDump VS Code extension directly from the VS Code marketplace or from our GitHub repository. The extension automatically tracks your coding activity and syncs with your CoreDump account.",
   },
   {
     id: 7,
@@ -70,28 +70,24 @@ const FAQ = () => {
 
   return (
     <section className="flex items-center justify-center w-full">
-      <div className="flex flex-col items-center justify-center p-3 lg:container w-full gap-12">
+      <div className="flex flex-col items-center justify-center p-3 max-w-7xl w-full gap-12">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading mb-4 text-center">
             Frequently Asked Questions
           </h2>
-          <p className="text-neutral-300 text-base font-normal max-w-2xl">
-            Got questions? We've got answers. Find everything you need to know
-            about BashForge.
-          </p>
         </div>
 
         <div className="w-full max-w-4xl">
           {faqData.map((item) => (
             <div
               key={item.id}
-              className="mb-4 bg-neutral-900 rounded-lg overflow-hidden"
+              className="mb-4 bg-[#202020] rounded-md overflow-hidden"
             >
               <button
                 onClick={() => toggleItem(item.id)}
                 className="w-full flex items-center justify-between p-5 text-left"
               >
-                <h3 className="text-lg font-medium text-white font-heading pr-4">
+                <h3 className="text-base font-medium text-white font-heading pr-4">
                   {item.question}
                 </h3>
                 <div className="flex-shrink-0 text-neutral-300">

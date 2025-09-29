@@ -3,19 +3,31 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { FaFireAlt } from "react-icons/fa";
-import { GiClockwork } from "react-icons/gi";
-import { RiCodeSSlashLine } from "react-icons/ri";
-import { GoCodeOfConduct } from "react-icons/go";
-import ProfileHeader from "../ProfileHeader";
-import StatCard from "../StatCard";
-import LanguageSection from "../LanguageSection";
+import ProfileHeader from "../common/ProfileHeader";
+import LanguageSection from "../common/LanguageSection";
+import WeekStats from "../common/WeekStats";
+import StatsGrid from "../common/StatsGrid";
+
+import {
+  calculateAverageMinutes,
+  calculateLast24HoursDurationMinutes,
+  calculateLast7DaysDurationMinutes,
+  calculateTotalDurationMinutes,
+  formatMinutesAsHoursLabel,
+  getTopLanguageShortName,
+  getTopWeeklyActivities,
+  calculateWeeklyAverageMinutes,
+  sortActivitiesByTotalDuration,
+  sumWeeklyDurations,
+  calculateBashPoints
+} from "@/utils/ActivityMetrics";
 
 interface LanguageActivity {
   languageName: string;
   shortLanguageName: string;
   totalDuration: number;
   last7DaysDuration: number;
+  last24HoursDuration: number;
 }
 
 interface DeveloperProfileData {
@@ -66,7 +78,7 @@ const DeveloperProfile = () => {
     if (error || !profileData) {
       return (
         <div className="flex justify-center items-center w-full min-h-screen">
-          <div className="text-center p-8 bg-neutral-900 rounded-lg">
+          <div className="text-center p-8 bg-[#202020] rounded-md">
             <p className="text-neutral-400 text-lg font-semibold">
               {error ? `Error: ${error.message}` : "No profile data found"}
             </p>
@@ -75,26 +87,42 @@ const DeveloperProfile = () => {
       );
     }
 
-    const totalDurationMinutes = profileData.activities.reduce(
-      (sum, activity) => sum + activity.totalDuration,
-      0,
+    const overallDurationMinutes = calculateTotalDurationMinutes(
+      profileData.activities,
     );
 
-    const totalTime = (totalDurationMinutes / 60).toFixed(2);
+    const totalTime = formatMinutesAsHoursLabel(overallDurationMinutes, 2);
 
-    const thisWeekTotalTime = (
-      profileData.activities.reduce(
-        (sum, activity) => sum + activity.last7DaysDuration,
-        0,
-      ) / 60
-    ).toFixed(2);
+    const thisWeekMinutes = calculateLast7DaysDurationMinutes(
+      profileData.activities,
+    );
+    const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
 
-    const sortedActivities = [...profileData.activities].sort(
-      (a, b) => b.totalDuration - a.totalDuration,
+    const sortedActivities = sortActivitiesByTotalDuration(
+      profileData.activities,
     );
 
-    const topLanguageActivity = sortedActivities[0];
-    const topLanguage = topLanguageActivity?.shortLanguageName || "N/A";
+    const topLanguage = getTopLanguageShortName(sortedActivities);
+
+    const weeklyTopActivities = getTopWeeklyActivities(profileData.activities);
+
+    const topWeeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
+    const last24HoursMinutes = calculateLast24HoursDurationMinutes(
+      profileData.activities,
+    );
+
+    const streakDays = Math.max(profileData.streak || 0, 1);
+    const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
+      overallDurationMinutes,
+      streakDays,
+    );
+    const totalAverageMinutes = calculateAverageMinutes(
+      overallDurationMinutes,
+      streakDays,
+    );
+    const dailyAverageMinutes = calculateAverageMinutes(last24HoursMinutes, 1);
+
+    const bashPoints = calculateBashPoints(overallDurationMinutes, streakDays);
 
     return (
       <>
@@ -110,42 +138,32 @@ const DeveloperProfile = () => {
           thisWeekTotalTime={thisWeekTotalTime}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-5 w-full">
-          <StatCard
-            icon={<FaFireAlt />}
-            title="Streak"
-            value={profileData.streak}
-          />
-          <StatCard
-            icon={<GiClockwork />}
-            title="Total Time"
-            value={`${totalTime}hr`}
-          />
-          <StatCard
-            icon={<RiCodeSSlashLine />}
-            title="Languages"
-            value={profileData.activities.length}
-          />
-          <StatCard
-            icon={<GoCodeOfConduct />}
-            title="Top Language"
-            value={topLanguage}
-          />
-        </div>
+        <StatsGrid
+          streak={profileData.streak}
+          totalTime={totalTime}
+          languageCount={profileData.activities.length}
+          topLanguage={topLanguage}
+          weeklyAverageTime={formatMinutesAsHoursLabel(weeklyAverageMinutes, 1)}
+          totalAverageTime={formatMinutesAsHoursLabel(totalAverageMinutes, 1)}
+          dailyAverageTime={formatMinutesAsHoursLabel(dailyAverageMinutes, 1)}
+          bashPoints={bashPoints}
+        />
+        <WeekStats
+          activities={weeklyTopActivities}
+          totalDurationMinutes={topWeeklyDurationMinutes}
+        />
 
         <LanguageSection
           activities={sortedActivities}
-          totalDurationMinutes={totalDurationMinutes}
+          totalDurationMinutes={overallDurationMinutes}
         />
       </>
     );
   };
 
   return (
-    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-neutral-950 relative">
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-
-      <div className="flex flex-col justify-start items-start lg:container w-full px-3 relative z-10">
+    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-[#191919] relative">
+      <div className="flex flex-col justify-start items-start max-w-7xl w-full px-3 relative z-10">
         {renderContent()}
       </div>
     </section>

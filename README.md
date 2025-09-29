@@ -1,4 +1,4 @@
-# BashForge
+# CoreDump
 
 <div align="center">
 
@@ -11,7 +11,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 [![Prisma](https://img.shields.io/badge/Prisma-6.13.0-2D3748?style=for-the-badge&logo=prisma)](https://prisma.io/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-[🚀 Live Demo](https://bashforge.vercel.app) • [📖 Documentation](https://bashforge.vercel.app/how-to-use) • [🔌 VS Code Extension](https://github.com/unsafe0x0/BashForge-Extension)
+[🚀 Live Demo](https://CoreDump.vercel.app) • [📖 Documentation](https://CoreDump.vercel.app/how-to-use) • [🔌 VS Code Extension](https://github.com/unsafe0x0/CoreDump-Extension)
 
 </div>
 
@@ -77,8 +77,8 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/unsafe0x0/BashForge.git
-   cd BashForge/client
+   git clone https://github.com/unsafe0x0/CoreDump.git
+   cd CoreDump/client
    ```
 
 2. **Install dependencies**
@@ -101,7 +101,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 
    ```env
    # Database
-   DATABASE_URL="postgresql://username:password@localhost:5432/bashforge"
+   DATABASE_URL="postgresql://username:password@localhost:5432/CoreDump"
 
    # NextAuth
    NEXTAUTH_SECRET="your-secret-key"
@@ -127,8 +127,8 @@ A comprehensive coding tracking platform that helps developers monitor their pro
    ```
 
 6. **Install VS Code Extension**
-   - Download from [GitHub](https://github.com/unsafe0x0/BashForge-Extension)
-   - Or search "BashForge" in VS Code marketplace
+   - Download from [GitHub](https://github.com/unsafe0x0/CoreDump-Extension)
+   - Or search "CoreDump" in VS Code marketplace
 
 ## 📁 Project Structure
 
@@ -202,6 +202,6 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 **Made with ❤️ by UnsafeZero, for developers**
 
-[Website](https://bashforge.vercel.app) • [GitHub](https://github.com/unsafe0x0) • [Twitter](https://twitter.com/unsafezero) • [Discord](https://discord.gg/unsafezero)
+[Website](https://CoreDump.vercel.app) • [GitHub](https://github.com/unsafe0x0) • [Twitter](https://twitter.com/unsafezero) • [Discord](https://discord.gg/unsafezero)
 
 </div>

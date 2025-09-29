@@ -1,0 +1,79 @@
+import React from "react";
+import Image from "next/image";
+import { languageIconsImage } from "@/utils/LanguageData";
+
+interface WeeklyActivity {
+  languageName: string;
+  duration: number;
+}
+
+interface WeekStatsProps {
+  activities: WeeklyActivity[];
+  totalDurationMinutes: number;
+}
+
+const WeekStats: React.FC<WeekStatsProps> = ({
+  activities,
+  totalDurationMinutes,
+}) => {
+  const sorted = [...activities].sort((a, b) => b.duration - a.duration);
+
+  return (
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm mt-5 mb-5">
+      <h2 className="text-3xl font-semibold text-white mb-5 font-heading">
+        This Week's Stats
+      </h2>
+      {sorted.length === 0 ? (
+        <div className="w-full text-center py-10 border border-dashed border-[#2a2a2a] rounded-md bg-[#222222]/60">
+          <p className="text-neutral-400 text-base font-medium">
+            No coding activity recorded this week yet.
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-start items-start w-full gap-5">
+          {sorted.map((activity, index) => {
+            const key = activity.languageName.toLowerCase().replace(/\s+/g, "");
+            const percent =
+              totalDurationMinutes > 0
+                ? (activity.duration / totalDurationMinutes) * 100
+                : 0;
+
+            return (
+              <div
+                key={index}
+                className="flex flex-col justify-start items-start gap-3 w-full bg-[#222222] p-3 rounded-md border border-[#2a2a2a]"
+              >
+                <div className="flex flex-row justify-between items-center w-full">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={
+                        languageIconsImage[
+                          key as keyof typeof languageIconsImage
+                        ] || "/icons/txt.svg"
+                      }
+                      alt={activity.languageName}
+                      width={24}
+                      height={24}
+                      className="w-8 h-8"
+                    />
+                    <p className="text-neutral-300 text-base font-medium capitalize">
+                      {activity.languageName}
+                    </p>
+                  </div>
+                  <p className="text-neutral-300 text-base font-medium">
+                    {Math.round(activity.duration)}m{" "}
+                    <span className="text-white font-semibold">
+                      ({Math.round(percent)}%)
+                    </span>
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default WeekStats;

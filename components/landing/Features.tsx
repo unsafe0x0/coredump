@@ -54,15 +54,15 @@ const data = [
 const Features = () => {
   return (
     <section className="flex items-center justify-center w-full">
-      <div className="flex flex-col items-center justify-center p-3 lg:container w-full gap-12">
-        <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading">
+      <div className="flex flex-col items-center justify-center p-3 max-w-7xl w-full gap-12">
+        <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading mb-4 text-center">
           Everything you need to level up
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full">
           {data.map((feature) => (
             <div
               key={feature.id}
-              className="flex flex-col items-start justify-start p-5 bg-neutral-900 rounded-lg gap-2"
+              className="flex flex-col items-start justify-start p-5 bg-[#202020] rounded-md gap-2"
             >
               <div className="p-2 bg-neutral-100 rounded-md text-neutral-800">
                 {feature.icon}

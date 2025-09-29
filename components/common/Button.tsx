@@ -1,17 +1,15 @@
-"use client"
+"use client";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface ButtonProps {
+  children?: React.ReactNode;
   type?: "button" | "submit" | "reset";
-  icon?: React.ReactNode;
-  label?: string;
   onClick?: () => void;
   disabled?: boolean;
   variant?: "primary" | "secondary" | "tertiary";
   className?: string;
-  image?: string;
   forwardRoute?: string;
 }
 
@@ -24,14 +22,12 @@ const variantClasses = {
 };
 
 const Button: React.FC<ButtonProps> = ({
+  children,
   type = "button",
-  icon,
-  label,
   onClick,
   disabled,
   variant = "primary",
   className = "",
-  image,
   forwardRoute,
 }) => {
   const router = useRouter();
@@ -50,9 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md cursor-pointer text-base font-normal ${variantClasses[variant]} ${className}`}
     >
-      {image && <Image src={image} alt={""} width={20} height={20} />}
-      {label && <span className="label">{label}</span>}
-      {icon && <span className="icon">{icon}</span>}
+      {children}
     </button>
   );
 };
