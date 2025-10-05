@@ -19,13 +19,13 @@ const WeekStats: React.FC<WeekStatsProps> = ({
   const sorted = [...activities].sort((a, b) => b.duration - a.duration);
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm mt-5 mb-5">
-      <h2 className="text-3xl font-semibold text-white mb-5 font-heading">
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md mt-5 mb-5">
+      <h2 className="text-3xl font-semibold text-foreground mb-5 font-heading">
         This Week's Stats
       </h2>
       {sorted.length === 0 ? (
-        <div className="w-full text-center py-10 border border-dashed border-[#2a2a2a] rounded-md bg-[#222222]/60">
-          <p className="text-neutral-400 text-base font-medium">
+        <div className="w-full text-center py-10 rounded-md bg-card/60">
+          <p className="text-foreground/80 text-base font-medium">
             No coding activity recorded this week yet.
           </p>
         </div>
@@ -41,7 +41,7 @@ const WeekStats: React.FC<WeekStatsProps> = ({
             return (
               <div
                 key={index}
-                className="flex flex-col justify-start items-start gap-3 w-full bg-[#222222] p-3 rounded-md border border-[#2a2a2a]"
+                className="flex flex-col justify-start items-start gap-3 w-full bg-card p-3 rounded-md"
               >
                 <div className="flex flex-row justify-between items-center w-full">
                   <div className="flex items-center gap-3">
@@ -56,13 +56,13 @@ const WeekStats: React.FC<WeekStatsProps> = ({
                       height={24}
                       className="w-8 h-8"
                     />
-                    <p className="text-neutral-300 text-base font-medium capitalize">
+                    <p className="text-foreground/80 text-base font-medium capitalize">
                       {activity.languageName}
                     </p>
                   </div>
-                  <p className="text-neutral-300 text-base font-medium">
+                  <p className="text-foreground/80 text-base font-medium">
                     {Math.round(activity.duration)}m{" "}
-                    <span className="text-white font-semibold">
+                    <span className="text-foreground font-semibold">
                       ({Math.round(percent)}%)
                     </span>
                   </p>

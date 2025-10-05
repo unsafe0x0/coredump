@@ -20,7 +20,7 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
   return (
     <div className="relative z-50">
       <div
-        className={`flex items-center justify-center gap-1 px-3 py-2 border rounded-md text-sm font-semibold whitespace-nowrap min-w-[70px] h-[36px] text-white ${color}`}
+        className={`flex items-center justify-center gap-1 px-3 py-2 border rounded-md text-sm font-semibold whitespace-nowrap min-w-[70px] h-[36px] ${color}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -31,12 +31,12 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
           height={18}
           className="object-contain flex-shrink-0"
         />
-        <span className="text-white">{duration}m</span>
+        <span className="text-foreground font-normal">{duration}m</span>
       </div>
       {isHovered && (
-        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-white text-black text-sm rounded-md whitespace-nowrap z-[9999] shadow-xl border border-[#2a2a2a]">
+        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-card text-foreground text-sm rounded-md whitespace-nowrap z-[9999] shadow-xl border border-border">
           {lang}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-black"></div>
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-card"></div>
         </div>
       )}
     </div>

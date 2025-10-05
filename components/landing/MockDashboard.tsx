@@ -22,21 +22,21 @@ const MockDashboard = () => {
 
   const totalDurationMinutes = mockLanguages.reduce(
     (sum, l) => sum + (typeof l.duration === "number" ? l.duration : 0),
-    0
+    0,
   );
 
   return (
-    <div className="w-full max-w-7xl bg-[#191919] rounded-xl border border-[#2a2a2a] p-6 backdrop-blur-sm">
+    <div className="w-full max-w-7xl bg-background rounded-md border-4 border-border p-6 backdrop-blur-sm">
       <div className="flex justify-between items-center mb-6">
         <div></div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#202020] rounded-md"></div>
-          <div className="w-8 h-8 bg-[#202020] rounded-md"></div>
+          <div className="w-8 h-8 bg-card rounded-md"></div>
+          <div className="w-8 h-8 bg-card rounded-md"></div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-[#202020] backdrop-blur-sm mb-4">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card backdrop-blur-sm mb-4">
         <div className="flex flex-row justify-start items-start gap-4 mt-2">
-          <div className="w-16 h-16 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-md flex items-center justify-center">
+          <div className="w-16 h-16 rounded-md flex items-center justify-center">
             <img
               src="https://avatars.githubusercontent.com/u/165533860?v=4"
               alt="Unsafezero"
@@ -44,76 +44,76 @@ const MockDashboard = () => {
             />
           </div>
           <div className="flex flex-col justify-start items-start gap-2">
-            <p className="text-white text-xl font-semibold font-heading">
+            <p className="text-foreground text-xl font-semibold font-heading">
               Unsafezero
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <div className="text-neutral-400 text-sm flex gap-2 items-center">
+              <div className="text-foreground/80 text-sm flex gap-2 items-center">
                 <FaGithub />
                 Unsafe0x0
               </div>
-              <div className="text-neutral-400 text-sm flex gap-2 items-center">
+              <div className="text-foreground/80 text-sm flex gap-2 items-center">
                 <FaSquareXTwitter />
                 Unsafezero
               </div>
             </div>
-            <div className="flex items-center gap-4 text-sm text-neutral-400">
+            <div className="flex items-center gap-4 text-sm text-foreground/80">
               <span>Crushed 12.5h this week</span>
             </div>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="flex justify-start items-center bg-[#202020] rounded-md p-3 backdrop-blur-sm gap-3">
-          <span className="p-2 bg-neutral-100 rounded-md text-neutral-800 text-lg flex-shrink-0">
+        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <FaFireAlt />
           </span>
           <div className="flex flex-col justify-center items-start">
-            <h3 className="text-sm font-semibold text-white font-heading">
+            <h3 className="text-sm font-semibold text-foreground font-heading">
               Streak
             </h3>
-            <p className="text-lg font-bold text-white">42</p>
+            <p className="text-lg font-bold text-foreground">42</p>
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-[#202020] rounded-md p-3 backdrop-blur-sm gap-3">
-          <span className="p-2 bg-neutral-100 rounded-md text-neutral-800 text-lg flex-shrink-0">
+        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <GiClockwork />
           </span>
           <div className="flex flex-col justify-center items-start">
-            <h3 className="text-sm font-semibold text-white font-heading">
+            <h3 className="text-sm font-semibold text-foreground font-heading">
               Total Time
             </h3>
-            <p className="text-lg font-bold text-white">247h</p>
+            <p className="text-lg font-bold text-foreground">247h</p>
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-[#202020] rounded-md p-3 backdrop-blur-sm gap-3">
-          <span className="p-2 bg-neutral-100 rounded-md text-neutral-800 text-lg flex-shrink-0">
+        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <RiCodeSSlashLine />
           </span>
           <div className="flex flex-col justify-center items-start">
-            <h3 className="text-sm font-semibold text-white font-heading">
+            <h3 className="text-sm font-semibold text-foreground font-heading">
               Languages
             </h3>
-            <p className="text-lg font-bold text-white">12</p>
+            <p className="text-lg font-bold text-foreground">12</p>
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-[#202020] rounded-md p-3 backdrop-blur-sm gap-3">
-          <span className="p-2 bg-neutral-100 rounded-md text-neutral-800 text-lg flex-shrink-0">
+        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <TbTrendingUp />
           </span>
           <div className="flex flex-col justify-center items-start">
-            <h3 className="text-sm font-semibold text-white font-heading">
+            <h3 className="text-sm font-semibold text-foreground font-heading">
               Points
             </h3>
-            <p className="text-lg font-bold text-white">2,847</p>
+            <p className="text-lg font-bold text-foreground">2,847</p>
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-[#202020] backdrop-blur-sm">
-        <h3 className="text-xl font-semibold text-white mb-3 font-heading">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card backdrop-blur-sm">
+        <h3 className="text-xl font-semibold text-foreground mb-3 font-heading">
           Languages
         </h3>
 
@@ -128,7 +128,7 @@ const MockDashboard = () => {
             return (
               <div key={index} className="relative z-50">
                 <div
-                  className={`flex items-center justify-center gap-1 px-2 py-1 border rounded-md text-sm font-normal whitespace-nowrap min-w-[70px] text-white ${colorClass}`}
+                  className={`flex items-center justify-center gap-1 px-2 py-1 border rounded-md text-sm font-normal whitespace-nowrap min-w-[70px] text-foreground ${colorClass}`}
                 >
                   <img
                     src={icon}
@@ -137,7 +137,7 @@ const MockDashboard = () => {
                     height={18}
                     className="w-4 h-4"
                   />
-                  <span className="text-white">
+                  <span className="text-foreground">
                     {Math.round(lang.duration)}m
                   </span>
                 </div>
@@ -174,18 +174,18 @@ const MockDashboard = () => {
                     alt={lang.displayName}
                     className="w-5 h-5 flex-shrink-0"
                   />
-                  <span className="text-white text-sm font-medium truncate">
+                  <span className="text-foreground text-sm font-medium truncate">
                     {lang.displayName}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 ml-4">
-                  <div className="w-20 h-2 bg-neutral-700 rounded-full overflow-hidden">
+                  <div className="w-20 h-2 bg-border rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-300 ${progressClass}`}
                       style={{ width: `${percent}%` }}
                     />
                   </div>
-                  <span className="text-neutral-400 text-xs font-medium w-10 text-right">
+                  <span className="text-foreground/80 text-xs font-medium w-10 text-right">
                     {Math.round(percent)}%
                   </span>
                 </div>

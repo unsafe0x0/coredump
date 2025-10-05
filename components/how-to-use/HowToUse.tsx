@@ -60,12 +60,12 @@ const HowToUse = () => {
     <section className="flex justify-center items-start w-full min-h-screen py-20 relative">
       <div className="flex flex-col justify-start items-center w-full max-w-7xl px-3 gap-8 relative z-10">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-semibold text-white font-heading">
+          <h1 className="text-4xl md:text-5xl font-semibold text-foreground font-heading">
             How to Use CoreDump
           </h1>
-          <p className="text-neutral-300 text-base font-normal max-w-2xl mx-auto">
-            Follow these simple steps to get started with the CoreDump
-            extension and begin tracking your coding journey
+          <p className="text-foreground/80 text-base font-normal max-w-2xl mx-auto">
+            Follow these simple steps to get started with the CoreDump extension
+            and begin tracking your coding journey
           </p>
         </div>
 
@@ -73,16 +73,16 @@ const HowToUse = () => {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5"
+              className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5"
             >
-              <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-2xl flex-shrink-0">
+              <span className="p-4 bg-accent rounded-md text-accent-text text-2xl flex-shrink-0">
                 {step.icon}
               </span>
               <div className="flex flex-col justify-center items-start gap-2 flex-1">
-                <h3 className="text-lg font-semibold text-white font-heading">
+                <h3 className="text-lg font-semibold text-foreground font-heading">
                   Step {step.number}
                 </h3>
-                <p className="text-neutral-300 text-base font-normal">
+                <p className="text-foreground/80 text-base font-normal">
                   {step.title}
                 </p>
               </div>

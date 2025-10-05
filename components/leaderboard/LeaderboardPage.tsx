@@ -10,9 +10,7 @@ import {
 
 const LeaderboardPage = () => {
   const [remainingTime, setRemainingTime] = useState("00:00:00");
-  const [activeButton, setActiveButton] = useState<LeaderboardRange>(
-    "24Hours",
-  );
+  const [activeButton, setActiveButton] = useState<LeaderboardRange>("24Hours");
 
   const {
     data: allData,
@@ -58,22 +56,22 @@ const LeaderboardPage = () => {
   return (
     <section className="flex justify-center items-start w-full min-h-screen py-20 relative">
       <div className="flex flex-col justify-start items-center w-full max-w-7xl px-3 gap-5 relative z-10">
-        <div className="flex justify-end items-center self-end p-0.5 bg-[#202020] backdrop-blur-sm rounded-md">
+        <div className="flex justify-end items-center self-end p-0.5 bg-background backdrop-blur-sm rounded-md">
           <button
-            className={`px-3 py-1 rounded-md text-base font-normal border border-[#2a2a2a] cursor-pointer ${
+            className={`px-3 py-1 rounded-md text-base font-normal border border-border cursor-pointer ${
               activeButton === "24Hours"
-                ? "bg-neutral-100 text-neutral-800"
-                : "bg-neutral-white text-neutral-100 hover:bg-neutral-100 hover:text-neutral-800"
+                ? "bg-accent text-accent-text"
+                : "bg-card text-foreground hover:bg-accent hover:text-accent-text"
             }`}
             onClick={() => setActiveButton("24Hours")}
           >
             24 Hours
           </button>
           <button
-            className={`px-3 py-1 rounded-md text-base font-normal border border-[#2a2a2a] cursor-pointer ${
+            className={`px-3 py-1 rounded-md text-base font-normal border border-border cursor-pointer ${
               activeButton === "7Days"
-                ? "bg-neutral-100 text-neutral-800"
-                : "bg-neutral-white text-neutral-100 hover:bg-neutral-100 hover:text-neutral-800"
+                ? "bg-accent text-accent-text"
+                : "bg-card text-foreground hover:bg-accent hover:text-accent-text"
             }`}
             onClick={() => setActiveButton("7Days")}
           >
@@ -85,8 +83,8 @@ const LeaderboardPage = () => {
           leaderboardLength={sortedData.length}
           leaderboardTopper={sortedData[0] || null}
         />
-        <div className="flex justify-start items-start w-full bg-[#202020] backdrop-blur-sm px-5 py-2 rounded-md">
-          <h2 className="text-2xl font-semibold text-white font-heading">
+        <div className="flex justify-start items-start w-full bg-background backdrop-blur-sm px-5 py-2 rounded-md">
+          <h2 className="text-2xl font-semibold text-foreground font-heading">
             {activeButton === "24Hours"
               ? "Leaderboard for Last 24 Hours"
               : "Leaderboard for Last 7 Days"}

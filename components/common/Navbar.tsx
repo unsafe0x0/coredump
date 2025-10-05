@@ -7,6 +7,7 @@ import { SiCodeblocks } from "react-icons/si";
 import { RiMenuLine } from "react-icons/ri";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
+import ToggleTheme from "./ToggleTheme";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,21 +17,25 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="fixed top-0 w-full bg-[#191919]/10 backdrop-blur-sm z-20 flex items-center justify-center">
+    <nav className="fixed top-0 w-full bg-background/10 backdrop-blur-sm z-20 flex items-center justify-center">
       <div className="flex flex-col items-center justify-center p-3 max-w-7xl w-full">
         <div className="flex items-center justify-between w-full">
           <Link
             href={"/"}
-            className="flex items-center gap-1 text-2xl font-semibold text-white font-heading"
+            className="flex items-center text-2xl font-semibold text-foreground font-heading"
           >
-            <SiCodeblocks />
+            <img
+              src="/logo.svg"
+              alt="CoreDump Logo"
+              className="h-10 w-10 dark:invert"
+            />
             <span>CoreDump</span>
           </Link>
-          <ul className="hidden lg:flex items-center gap-5 text-white">
+          <ul className="hidden lg:flex items-center gap-5 text-foreground">
             <li>
               <Link
                 href="/how-to-use"
-                className="text-base font-normal text-neutral-100 hover:text-neutral-300"
+                className="text-base font-normal text-foreground hover:text-accent"
               >
                 How To Use
               </Link>
@@ -38,47 +43,53 @@ const Navbar = () => {
             <li>
               <Link
                 href="/leaderboard"
-                className="text-base font-normal text-neutral-100 hover:text-neutral-300"
+                className="text-base font-normal text-foreground hover:text-accent"
               >
                 Leaderboard
               </Link>
             </li>
           </ul>
-          {session ? (
-            <Link href="/dashboard" className="hidden lg:block">
-              <img
-                src={session.user?.image ?? "/file.svg"}
-                alt={
-                  session.user?.name
-                    ? `${session.user.name} profile`
-                    : "profile"
-                }
-                className="w-10 h-10 rounded-full object-cover border border-[#2a2a2a]"
-              />
-            </Link>
-          ) : (
-            <Button
-              forwardRoute="/login"
-              variant="primary"
-              className="hidden lg:block"
-            >
-              Login
-            </Button>
-          )}
-          <button onClick={toggleMenu} className="lg:hidden text-neutral-100">
-            {isMenuOpen ? (
-              <IoMdClose className="text-3xl" />
+          <div className="hidden lg:flex items-center gap-5">
+            <ToggleTheme />
+            {session ? (
+              <Link href="/dashboard" className="hidden lg:block">
+                <img
+                  src={session.user?.image ?? "/file.svg"}
+                  alt={
+                    session.user?.name
+                      ? `${session.user.name} profile`
+                      : "profile"
+                  }
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+              </Link>
             ) : (
-              <RiMenuLine className="text-3xl" />
+              <Button
+                forwardRoute="/login"
+                variant="primary"
+                className="hidden lg:block"
+              >
+                Login
+              </Button>
             )}
-          </button>
+          </div>
+          <div className="lg:hidden text-foreground flex items-center gap-2">
+            <ToggleTheme />
+            <button onClick={toggleMenu} className="">
+              {isMenuOpen ? (
+                <IoMdClose className="text-3xl" />
+              ) : (
+                <RiMenuLine className="text-3xl" />
+              )}
+            </button>
+          </div>
         </div>
         {isMenuOpen && (
           <ul className="flex flex-col items-center gap-3 mt-4 lg:hidden">
             <li>
               <Link
                 href="/how-to-use"
-                className="text-base font-normal text-neutral-100 hover:text-neutral-300"
+                className="text-base font-normal text-foreground hover:text-accent"
               >
                 How To Use
               </Link>
@@ -86,7 +97,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/leaderboard"
-                className="text-base font-normal text-neutral-100 hover:text-neutral-300"
+                className="text-base font-normal text-foreground hover:text-accent"
               >
                 Leaderboard
               </Link>
@@ -100,7 +111,7 @@ const Navbar = () => {
                       ? `${session.user.name} profile`
                       : "profile"
                   }
-                  className="w-10 h-10 rounded-full object-cover border border-[#2a2a2a]"
+                  className="w-10 h-10 rounded-full object-cover"
                 />
               </Link>
             ) : (

@@ -28,9 +28,9 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="flex flex-col justify-start items-start gap-2 w-full">
       {label && (
-        <label className="text-base font-medium text-neutral-300">
+        <label className="text-base font-medium text-foreground/80">
           {label}
-          {required && <span className="text-red-400 ml-1">*</span>}
+          {required && <span className="text-destructive ml-1">*</span>}
         </label>
       )}
       <input
@@ -42,9 +42,13 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         required={required}
         autoComplete="off"
-        className={`w-full px-4 py-2 border border-[#2a2a2a] rounded-md bg-[#222222] text-neutral-100 placeholder-neutral-400 focus:outline-none focus:border-neutral-100 ${disabled ? "opacity-50 cursor-not-allowed bg-[#222222]" : ""} ${error ? "border-red-500 focus:border-red-500" : ""} ${className}`}
+        className={`w-full px-4 py-2 border border-border rounded-md bg-card text-foreground placeholder-foreground/80 focus:outline-none focus:border-accent ${
+          disabled ? "opacity-50 cursor-not-allowed bg-card" : ""
+        } ${
+          error ? "border-destructive focus:border-destructive" : ""
+        } ${className}`}
       />
-      {error && <span className="text-sm text-red-400">{error}</span>}
+      {error && <span className="text-sm text-destructive">{error}</span>}
     </div>
   );
 };

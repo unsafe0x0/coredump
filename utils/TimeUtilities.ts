@@ -1,6 +1,7 @@
 export type LeaderboardRange = "24Hours" | "7Days";
 
-const padToTwoDigits = (value: number): string => value.toString().padStart(2, "0");
+const padToTwoDigits = (value: number): string =>
+  value.toString().padStart(2, "0");
 
 const getTomorrowMidnight = (reference: Date): Date => {
   const target = new Date(reference);

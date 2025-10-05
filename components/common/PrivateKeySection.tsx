@@ -22,26 +22,26 @@ const PrivateKeySection: React.FC<PrivateKeySectionProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm mb-5">
-      <h2 className="text-3xl font-semibold text-white mb-4 font-heading">
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card backdrop-blur-sm mb-5">
+      <h2 className="text-3xl font-semibold text-foreground mb-4 font-heading">
         Private Key
       </h2>
-      <p className="text-neutral-400 text-base mb-4">
+      <p className="text-foreground/80 text-base mb-4">
         Keep this key secure. Do not share it.
       </p>
       <div className="flex flex-row items-center w-full gap-3">
-        <p className="text-neutral-300 text-sm px-4 py-3 bg-[#282828] rounded-md w-full break-all">
+        <p className="text-foreground/80 text-sm px-4 py-3 bg-border rounded-md w-full break-all">
           {showKey ? privateKey : "****************"}
         </p>
         <button
           onClick={toggleVisibility}
-          className="text-neutral-400 hover:text-white text-2xl hover:scale-110"
+          className="text-foreground/80 hover:text-foreground text-2xl hover:scale-110"
         >
           {showKey ? <IoEyeOff /> : <IoMdEye />}
         </button>
         <button
           onClick={copyToClipboard}
-          className="text-neutral-400 hover:text-white text-2xl hover:scale-110"
+          className="text-foreground/80 hover:text-foreground text-2xl hover:scale-110"
         >
           <MdFileCopy />
         </button>

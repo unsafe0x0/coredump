@@ -72,7 +72,7 @@ const FAQ = () => {
     <section className="flex items-center justify-center w-full">
       <div className="flex flex-col items-center justify-center p-3 max-w-7xl w-full gap-12">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-semibold text-white font-heading mb-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold text-foreground font-heading mb-4 text-center">
             Frequently Asked Questions
           </h2>
         </div>
@@ -81,16 +81,16 @@ const FAQ = () => {
           {faqData.map((item) => (
             <div
               key={item.id}
-              className="mb-4 bg-[#202020] rounded-md overflow-hidden"
+              className="mb-4 bg-card rounded-md overflow-hidden"
             >
               <button
                 onClick={() => toggleItem(item.id)}
                 className="w-full flex items-center justify-between p-5 text-left"
               >
-                <h3 className="text-base font-medium text-white font-heading pr-4">
+                <h3 className="text-base font-medium text-foreground font-heading pr-4">
                   {item.question}
                 </h3>
-                <div className="flex-shrink-0 text-neutral-300">
+                <div className="flex-shrink-0 text-foreground/80">
                   {openItems.includes(item.id) ? (
                     <FaChevronUp size={20} />
                   ) : (
@@ -102,7 +102,7 @@ const FAQ = () => {
               {openItems.includes(item.id) && (
                 <div className="px-5 pb-5 pt-0">
                   <div className="pt-4">
-                    <p className="text-neutral-300 text-base font-normal leading-relaxed">
+                    <p className="text-foreground/80 text-base font-normal leading-relaxed">
                       {item.answer}
                     </p>
                   </div>

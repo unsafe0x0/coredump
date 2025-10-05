@@ -21,7 +21,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   thisWeekTotalTime,
   joinedDate,
 }) => (
-  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-[#202020] backdrop-blur-sm mb-5">
+  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card backdrop-blur-sm mb-5">
     <div className="flex flex-row justify-start items-start gap-5 mt-2">
       <Image
         src={profileImage || "/default-avatar.png"}
@@ -31,12 +31,14 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         className="w-24 h-24 rounded-md object-cover"
       />
       <div className="flex flex-col justify-start items-start gap-2">
-        <p className="text-white text-2xl font-semibold font-heading">{name}</p>
+        <p className="text-foreground text-2xl font-semibold font-heading">
+          {name}
+        </p>
         <div className="flex flex-wrap items-center gap-3">
           <Link
             href={`https://github.com/${gitUsername}`}
             target="_blank"
-            className="text-neutral-400 hover:text-white  text-base flex gap-2 items-center"
+            className="text-foreground/80 hover:text-accent text-base flex gap-2 items-center"
           >
             <FaGithub />
             {gitUsername}
@@ -45,22 +47,21 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             <Link
               href={`https://twitter.com/${twitterUsername}`}
               target="_blank"
-              className="text-neutral-400 hover:text-white  text-base flex gap-2 items-center"
+              className="text-foreground/80 hover:text-accent text-base flex gap-2 items-center"
             >
               <FaSquareXTwitter />
               {twitterUsername}
             </Link>
           )}
         </div>
-        <p className="text-neutral-300 text-base font-medium">
-          Crushed{" "}
-          <span className="text-white font-semibold">{thisWeekTotalTime}</span>{" "}
+        <p className="text-foreground/80 text-base font-medium">
+          Crushed <span className="text-foreground">{thisWeekTotalTime}</span>{" "}
           this week
         </p>
         {joinedDate && (
-          <p className="text-neutral-500 text-sm">
+          <p className="text-foreground/80 text-sm">
             Joined on{" "}
-            <span className="text-neutral-300">
+            <span className="text-foreground/80">
               {new Date(joinedDate).toLocaleDateString()}
             </span>
           </p>

@@ -24,6 +24,7 @@ import {
   sumWeeklyDurations,
   calculateBashPoints,
 } from "@/utils/ActivityMetrics";
+import ToggleTheme from "../common/ToggleTheme";
 
 interface LanguageActivity {
   languageName: string;
@@ -67,7 +68,7 @@ const Dashboard = () => {
     if (isLoading) {
       return (
         <div className="flex justify-center items-center w-full min-h-screen py-20">
-          <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-white/80 border-solid border-l-transparent" />
+          <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-border border-solid border-l-transparent" />
         </div>
       );
     }
@@ -75,8 +76,8 @@ const Dashboard = () => {
     if (error || !dashboardData) {
       return (
         <div className="flex justify-center items-center w-full min-h-screen">
-          <div className="text-center p-8 bg-[#202020] rounded-md">
-            <p className="text-neutral-400 text-lg font-semibold">
+          <div className="text-center p-8 bg-card rounded-md">
+            <p className="text-foreground/80 text-lg font-semibold">
               {error ? `Error: ${error.message}` : "No dashboard data found"}
             </p>
           </div>
@@ -84,39 +85,39 @@ const Dashboard = () => {
       );
     }
     const totalDurationMinutes = calculateTotalDurationMinutes(
-      dashboardData.activities
+      dashboardData.activities,
     );
 
     const totalTime = formatMinutesAsHoursLabel(totalDurationMinutes, 2);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      dashboardData.activities
+      dashboardData.activities,
     );
     const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
 
     const last24HoursMinutes = calculateLast24HoursDurationMinutes(
-      dashboardData.activities
+      dashboardData.activities,
     );
 
     const sortedActivities = sortActivitiesByTotalDuration(
-      dashboardData.activities
+      dashboardData.activities,
     );
 
     const topLanguage = getTopLanguageShortName(sortedActivities);
 
     const weeklyTopActivities = getTopWeeklyActivities(
-      dashboardData.activities
+      dashboardData.activities,
     );
     const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
 
     const streakDays = Math.max(dashboardData.streak || 0, 1);
     const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
       totalDurationMinutes,
-      streakDays
+      streakDays,
     );
     const totalAverageMinutes = calculateAverageMinutes(
       totalDurationMinutes,
-      streakDays
+      streakDays,
     );
     const dailyAverageMinutes = calculateAverageMinutes(last24HoursMinutes, 1);
 
@@ -134,20 +135,21 @@ const Dashboard = () => {
     return (
       <>
         <div className="flex justify-between items-center w-full mb-5">
-          <h2 className="text-3xl font-semibold text-neutral-300 text-left font-heading">
+          <h2 className="text-3xl font-semibold text-foreground/80 text-left font-heading">
             Welcome back,{" "}
-            <span className="text-white">{dashboardData.name}</span>
+            <span className="text-foreground">{dashboardData.name}</span>
           </h2>
           <div className="flex items-center gap-3 justify-end">
             <Link
               href={"/"}
-              className="p-3 bg-[#202020] rounded-md text-neutral-300 hover:text-white hover:bg-[#222222]"
+              className="p-3 bg-card rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
             >
               <MdHomeFilled className="text-xl" />
             </Link>
+            <ToggleTheme />
             <button
               onClick={() => setShowSettings(true)}
-              className="p-3 bg-[#202020] rounded-md text-neutral-300 hover:text-white hover:bg-[#222222]"
+              className="p-3 bg-card rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
             >
               <FaCog className="text-xl" />
             </button>
@@ -189,7 +191,7 @@ const Dashboard = () => {
   };
 
   return (
-    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-[#191919] relative">
+    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-background relative">
       <div className="flex flex-col justify-start items-start max-w-7xl w-full px-3 relative z-10">
         {renderContent()}
       </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import QueryProvider from "@/context/QueryProvider";
 import AuthProvider from "@/context/AuthProvider";
 import ToastProvider from "@/context/ToastProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 const headingFont = Inter({
   variable: "--font-heading",
@@ -36,14 +37,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light" suppressHydrationWarning>
+      <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
       <body
         className={`${headingFont.variable} ${bodyFont.variable} antialiased`}
       >
         <AuthProvider>
           <QueryProvider>
-            {children}
-            <ToastProvider />
+            <ThemeProvider>
+              {children}
+              <ToastProvider />
+            </ThemeProvider>
           </QueryProvider>
         </AuthProvider>
       </body>

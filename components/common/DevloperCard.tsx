@@ -27,8 +27,10 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({
         className="rounded-full object-cover"
       />
       <div className="flex flex-col justify-start items-start gap-0.5">
-        <h2 className="text-base font-medium font-heading text-white">{name}</h2>
-        <span className="text-sm text-neutral-400 flex items-center">
+        <h2 className="text-base font-medium font-heading text-foreground">
+          {name}
+        </h2>
+        <span className="text-sm text-foreground/80 hover:text-accent flex items-center">
           <FaGithub className="inline mr-1" />
           {gitUsername}
         </span>

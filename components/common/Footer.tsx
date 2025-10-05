@@ -9,21 +9,25 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#191919]/50 border-t border-[#2a2a2a]">
+    <footer className="w-full bg-background border-t border-border">
       <div className="flex items-center justify-center w-full">
         <div className="flex flex-col max-w-7xl w-full p-5 gap-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-2xl font-semibold text-white font-heading">
-              <SiCodeblocks />
+            <div className="flex items-center text-2xl font-semibold text-foreground font-heading">
+              <img
+                src="/logo.svg"
+                alt="CoreDump Logo"
+                className="h-10 w-10 dark:invert"
+              />
               <span>CoreDump</span>
             </div>
-            <p className="text-neutral-400 text-sm font-normal">
+            <p className="text-foreground/80 text-sm font-normal">
               © {currentYear} CoreDump. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               <Link
                 href="https://github.com/unsafe0x0"
-                className="text-neutral-400 hover:text-white"
+                className="text-foreground/80 hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -32,7 +36,7 @@ const Footer = () => {
               </Link>
               <Link
                 href="https://twitter.com/unsafezero"
-                className="text-neutral-400 hover:text-white"
+                className="text-foreground/80 hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
@@ -41,7 +45,7 @@ const Footer = () => {
               </Link>
               <Link
                 href="https://discord.gg/unsafezero"
-                className="text-neutral-400 hover:text-white"
+                className="text-foreground/80 hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord"
@@ -50,7 +54,7 @@ const Footer = () => {
               </Link>
               <Link
                 href="https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
-                className="text-neutral-400 hover:text-white"
+                className="text-foreground/80 hover:text-accent"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="VS Code Extension"

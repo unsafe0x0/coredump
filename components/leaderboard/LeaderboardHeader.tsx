@@ -21,12 +21,12 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full">
-      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
           <SiHoneybadger />
         </span>
         <div className="flex flex-col justify-center items-start gap-2 min-w-0 flex-1">
-          <h2 className="text-lg font-semibold text-white font-heading">
+          <h2 className="text-lg font-semibold text-foreground font-heading">
             Top Developer
           </h2>
           <div className="w-full">
@@ -37,31 +37,33 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
                 gitUsername={leaderboardTopper.gitUsername}
               />
             ) : (
-              <p className="text-neutral-400">Loading...</p>
+              <p className="text-foreground/80">Loading...</p>
             )}
           </div>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
           <FiUsers />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">
-          <h2 className="text-lg font-semibold text-white font-heading">
+          <h2 className="text-lg font-semibold text-foreground font-heading">
             Total Developers
           </h2>
-          <p className="text-2xl font-bold text-white">{leaderboardLength}</p>
+          <p className="text-2xl font-bold text-foreground">
+            {leaderboardLength}
+          </p>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-[#202020] rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-neutral-100 rounded-md text-neutral-800 text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
           <GiClockwork />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">
-          <h2 className="text-lg font-semibold text-white font-heading">
+          <h2 className="text-lg font-semibold text-foreground font-heading">
             Remaining Time
           </h2>
-          <p className="text-2xl font-bold text-white font-mono">
+          <p className="text-2xl font-bold text-foreground font-mono">
             {remainingTime}
           </p>
         </div>

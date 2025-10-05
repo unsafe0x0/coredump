@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface ButtonProps {
@@ -15,10 +14,11 @@ interface ButtonProps {
 
 const variantClasses = {
   primary:
-    "bg-white hover:bg-neutral-100 text-neutral-800 border border-neutral-100",
+    "bg-accent hover:bg-accent-hover text-accent-text border border-accent",
   secondary:
-    "bg-transparent border border-neutral-100 text-neutral-100 hover:bg-neutral-100 hover:text-neutral-800",
-  tertiary: "bg-red-500 hover:bg-red-600 text-white border border-red-500",
+    "bg-transparent border border-accent text-accent hover:bg-accent hover:text-accent-text",
+  tertiary:
+    "bg-destructive hover:bg-destructive-hover text-accent-text border border-destructive",
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -44,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={handleClick}
       disabled={disabled}
-      className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md cursor-pointer text-base font-normal ${variantClasses[variant]} ${className}`}
+      className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md cursor-pointer text-base font-normal transition-colors duration-200 ${variantClasses[variant]} ${className}`}
     >
       {children}
     </button>

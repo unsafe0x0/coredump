@@ -67,17 +67,17 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
       <div className="flex items-center gap-4 mb-5">
         <button
           onClick={onBack}
-          className="p-3 bg-[#202020] rounded-md text-neutral-300 hover:text-white hover:bg-[#222222]"
+          className="p-3 bg-card rounded-md text-foreground/80 hover:text-accent hover:bg-card/80"
         >
           <FaArrowLeft className="text-xl" />
         </button>
-        <h2 className="text-3xl font-semibold text-white font-heading">
+        <h2 className="text-3xl font-semibold text-foreground font-heading">
           Settings
         </h2>
       </div>
 
-      <div className="bg-[#202020] rounded-md p-5 backdrop-blur-sm">
-        <h3 className="text-xl font-semibold text-white mb-4 font-heading">
+      <div className="bg-card rounded-md p-5 backdrop-blur-sm">
+        <h3 className="text-xl font-semibold text-foreground mb-4 font-heading">
           Profile Information
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">

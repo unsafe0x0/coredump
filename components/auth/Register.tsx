@@ -58,27 +58,27 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center w-full">
       <div className="relative z-10 w-full max-w-lg mx-3 md:mx-0">
-        <div className="bg-[#202020] rounded-md p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
+        <div className="bg-card rounded-md p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
           <div className="flex flex-col justify-center items-center gap-2 text-center">
-            <h2 className="text-3xl font-semibold text-white font-heading">
+            <h2 className="text-3xl font-semibold text-foreground font-heading">
               Create Account
             </h2>
-            <p className="text-neutral-300 text-sm">
+            <p className="text-foreground/80 text-sm">
               Register to start your coding journey
             </p>
           </div>
           <Button
             onClick={() => signIn("google")}
-            variant="primary"
+            variant="secondary"
             className="w-full"
           >
             <img src="/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
             Register with Google
           </Button>
           <div className="flex items-center">
-            <div className="flex-1 border-t border-[#2a2a2a]"></div>
-            <span className="px-3 text-neutral-400 text-sm">or</span>
-            <div className="flex-1 border-t border-[#2a2a2a]"></div>
+            <div className="flex-1 border-t border-border"></div>
+            <span className="px-3 text-foreground/80 text-sm">or</span>
+            <div className="flex-1 border-t border-border"></div>
           </div>
           <form
             onSubmit={(e) => {
@@ -134,7 +134,7 @@ const Register = () => {
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              className="text-neutral-400 flex items-center justify-start w-full gap-2 mb-4"
+              className="text-foreground/80 flex items-center justify-start w-full gap-2 mb-4"
             >
               {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
               <span>Show Password</span>
@@ -149,7 +149,7 @@ const Register = () => {
             </Button>
           </form>
 
-          <p className="flex items-center justify-start gap-1 text-neutral-300 text-sm">
+          <p className="flex items-center justify-start gap-1 text-foreground/80 text-sm">
             <span>Already have an account?</span>
             <Link href="/login" className="hover:underline">
               Login
