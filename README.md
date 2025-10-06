@@ -11,13 +11,13 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 [![Prisma](https://img.shields.io/badge/Prisma-6.13.0-2D3748?style=for-the-badge&logo=prisma)](https://prisma.io/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-[🚀 Live Demo](https://CoreDump.vercel.app) • [📖 Documentation](https://CoreDump.vercel.app/how-to-use) • [🔌 VS Code Extension](https://github.com/unsafe0x0/CoreDump-Extension)
+[Live Demo](https://CoreDump.vercel.app) • [Documentation](https://CoreDump.vercel.app/how-to-use) • [VS Code Extension](https://github.com/unsafe0x0/CoreDump-Extension)
 
 </div>
 
-## ✨ Features
+## Features
 
-### 🔥 Core Features
+### Core Features
 
 - **Daily Streak Tracking** - Build consistent coding habits with streak monitoring
 - **Global Leaderboards** - Compete with developers worldwide (24h & 7-day rankings)
@@ -25,21 +25,21 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 - **Real-time Progress** - Live coding time tracking and productivity insights
 - **Developer Profiles** - Comprehensive profiles with coding statistics and achievements
 
-### 📊 Analytics & Insights
+### Analytics & Insights
 
 - **Time Distribution** - Visual breakdown of coding time across languages
 - **Progress Visualization** - Interactive charts and progress bars
 - **Language Badges** - Beautiful badges showing your language proficiency
 - **Weekly/Daily Reports** - Detailed coding activity summaries
 
-### 🏆 Gamification
+### Gamification
 
 - **Achievement System** - Earn badges for milestones and accomplishments
 - **Competitive Rankings** - Climb the global developer leaderboard
 - **Streak Rewards** - Special recognition for consistent coding habits
 - **Language Mastery** - Track and showcase expertise in different technologies
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -64,7 +64,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 - **Code Quality**: ESLint
 - **Database Management**: Prisma Studio
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -130,7 +130,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
    - Download from [GitHub](https://github.com/unsafe0x0/CoreDump-Extension)
    - Or search "CoreDump" in VS Code marketplace
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 client/
@@ -152,7 +152,7 @@ client/
 └── public/                # Static assets
 ```
 
-## 🎯 Key Components
+## Key Components
 
 ### Leaderboard System
 
@@ -175,7 +175,7 @@ client/
 - **Progress Visualization**: Charts and progress indicators
 - **Goal Setting**: Personal targets and achievements
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ```typescript
 GET  /api/leaderboard      # Get leaderboard data
@@ -186,7 +186,7 @@ POST /api/auth/register    # User registration
 GET  /api/activity         # Get user activity data
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
@@ -200,7 +200,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 <div align="center">
 
-**Made with ❤️ by UnsafeZero, for developers**
+**Made by UnsafeZero, for developers**
 
 [Website](https://CoreDump.vercel.app) • [GitHub](https://github.com/unsafe0x0) • [Twitter](https://twitter.com/unsafezero) • [Discord](https://discord.gg/unsafezero)
 
