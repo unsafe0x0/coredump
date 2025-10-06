@@ -6,7 +6,6 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const username = searchParams.get("username");
-    const format = searchParams.get("format");
 
     if (!username) {
       return NextResponse.json(
@@ -43,22 +42,12 @@ export async function GET(req: Request) {
         (languageStats[lang] || 0) + (activity.totalDuration || 0);
     }
 
-    if (format === "svg") {
-      const svg = generateSVG(totalTime, languageStats);
-      return new Response(svg, {
-        headers: {
-          "Content-Type": "image/svg+xml",
-          "Cache-Control": "s-maxage=3600, stale-while-revalidate",
-        },
-      });
-    }
-
-    return NextResponse.json({
-      totalTime,
-      languages: Object.entries(languageStats).map(([language, time]) => ({
-        language,
-        time,
-      })),
+    const svg = generateSVG(totalTime, languageStats);
+    return new Response(svg, {
+      headers: {
+        "Content-Type": "image/svg+xml",
+        "Cache-Control": "s-maxage=3600, stale-while-revalidate",
+      },
     });
   } catch (error) {
     console.error("Error fetching stats:", error);

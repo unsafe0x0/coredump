@@ -6,16 +6,14 @@ export function generateSVG(
 ) {
   const langs = Object.entries(languageStats).sort((a, b) => b[1] - a[1]);
   const padding = 28;
-  const gapX = 18;
-  const gapY = 14;
-  const pillHeight = 48;
+  const gapX = 8;
+  const gapY = 5;
+  const pillHeight = 36;
   const pillPaddingX = 14;
   const fontSize = 14;
-  // Title sizing and vertical layout
-  const titleFontSize = 52;
-  const titleY = padding + titleFontSize; // place title just below padding
-  // keep pills close to the title baseline — small vertical gap
-  const pillsStartY = titleY + 16; // 16px below the title baseline
+  const titleFontSize = 36;
+  const titleY = padding + titleFontSize; 
+  const pillsStartY = titleY + 16;
   const svgWidth = 500;
   const maxPillsPerRow = 1;
 
@@ -27,7 +25,7 @@ export function generateSVG(
     PYTHON: "#3572A5",
     JAVA: "#b07219",
     "C++": "#f34b7d",
-    C: "#555555",
+  C: "#9aa0a6",
     GO: "#00ADD8",
     RUST: "#dea584",
     RB: "#701516",
@@ -38,19 +36,19 @@ export function generateSVG(
     HTML: "#e34c26",
     CSS: "#563d7c",
     SCSS: "#c6538c",
-    JSON: "#353535",
+  JSON: "#7a7a7a",
     MD: "#083fa1",
     SHELL: "#89e051",
     BASH: "#89e051",
     SQL: "#e38c00",
     YAML: "#cb171e",
-    PRISMA: "#2d3748",
+  PRISMA: "#6b7280",
     DART: "#00B4AB",
     SCALA: "#c22d40",
-    LUA: "#000080",
-    PS: "#012456",
+  LUA: "#154cba",
+  PS: "#2b5ca6",
     HS: "#5e5086",
-    default: "#8b949e",
+  default: "#cc5f44",
   };
 
   function formatTime(minutes: number): string {
@@ -122,11 +120,11 @@ export function generateSVG(
 
   <!-- progress bar background (use #282828) and filled portion in language color -->
   <rect x="${barX}" y="${
-      pillHeight / 2 - 7
-    }" width="${innerBarWidth}" height="14" rx="7" fill="#282828" />
+      pillHeight / 2 - 5
+    }" width="${innerBarWidth}" height="10" rx="5" fill="#282828" />
   <rect x="${barX}" y="${
-      pillHeight / 2 - 7
-    }" width="${filledWidth}" height="14" rx="7" fill="${color}" />
+      pillHeight / 2 - 5
+    }" width="${filledWidth}" height="10" rx="5" fill="${color}" />
 
   <!-- percent/time text (pill time) - show time and percent in brackets -->
   <text x="${pillWidth - pillPaddingX}" y="${
