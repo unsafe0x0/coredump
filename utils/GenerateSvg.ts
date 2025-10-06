@@ -11,6 +11,11 @@ export function generateSVG(
   const pillHeight = 48;
   const pillPaddingX = 14;
   const fontSize = 14;
+  // Title sizing and vertical layout
+  const titleFontSize = 52;
+  const titleY = padding + titleFontSize; // place title just below padding
+  // keep pills close to the title baseline — small vertical gap
+  const pillsStartY = titleY + 16; // 16px below the title baseline
   const svgWidth = 500;
   const maxPillsPerRow = 1;
 
@@ -33,7 +38,7 @@ export function generateSVG(
     HTML: "#e34c26",
     CSS: "#563d7c",
     SCSS: "#c6538c",
-    JSON: "#292929",
+    JSON: "#353535",
     MD: "#083fa1",
     SHELL: "#89e051",
     BASH: "#89e051",
@@ -78,7 +83,7 @@ export function generateSVG(
     Object.values(languageStats).reduce((a, b) => a + b, 0) || 1;
 
   let x = padding;
-  let y = 180;
+  let y = pillsStartY;
   let pillsInRow = 0;
   const pills: string[] = [];
 
@@ -158,11 +163,9 @@ export function generateSVG(
   <rect width="100%" height="100%" fill="#181818" />
 
       <!-- Title and totals (non-pill text should be weight 500 and white) -->
-      <text x="${padding}" y="40" font-size="20" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="500">COREDUMP STATS</text>
-      <text x="${padding}" y="110" font-size="52" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="600">${formatTime(
+      <text x="${padding}" y="${titleY}" font-size="${titleFontSize}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="600">${formatTime(
     totalTime
   )}</text>
-  <text x="${padding}" y="142" font-size="16" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="500">Total coding time</text>
 
       <!-- Pills -->
       ${pills.join("")}
