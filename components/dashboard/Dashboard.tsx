@@ -76,7 +76,7 @@ const Dashboard = () => {
     if (error || !dashboardData) {
       return (
         <div className="flex justify-center items-center w-full min-h-screen">
-          <div className="text-center p-8 bg-card rounded-md">
+          <div className="text-center p-8 bg-card border border-border rounded-md">
             <p className="text-foreground/80 text-lg font-semibold">
               {error ? `Error: ${error.message}` : "No dashboard data found"}
             </p>
@@ -137,14 +137,14 @@ const Dashboard = () => {
           <div className="flex items-center gap-3 justify-end">
             <Link
               href={"/"}
-              className="p-3 bg-card rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
+              className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
             >
               <MdHomeFilled className="text-xl" />
             </Link>
             <ToggleTheme />
             <button
               onClick={() => setShowSettings(true)}
-              className="p-3 bg-card rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
+              className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
             >
               <FaCog className="text-xl" />
             </button>

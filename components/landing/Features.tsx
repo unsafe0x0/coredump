@@ -62,7 +62,7 @@ const Features = () => {
           {data.map((feature) => (
             <div
               key={feature.id}
-              className="flex flex-col items-start justify-start p-5 bg-card rounded-md gap-2"
+              className="flex flex-col items-start justify-start p-5 bg-card border border-border rounded-md gap-2"
             >
               <div className="p-2 bg-accent rounded-md text-accent-text">
                 {feature.icon}

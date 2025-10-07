@@ -21,8 +21,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full">
-      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card border border-border rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-gradient-to-br from-accent to-accent/80 rounded-md text-accent-text text-3xl flex-shrink-0">
           <SiHoneybadger />
         </span>
         <div className="flex flex-col justify-center items-start gap-2 min-w-0 flex-1">
@@ -42,8 +42,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card border border-border rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-gradient-to-br from-accent to-accent/80 rounded-md text-accent-text text-3xl flex-shrink-0">
           <FiUsers />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">
@@ -55,8 +55,8 @@ const LeaderboardHeader: React.FC<LeaderboardHeaderProps> = ({
           </p>
         </div>
       </div>
-      <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5">
-        <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
+      <div className="flex justify-start items-center bg-card border border-border rounded-md p-5 backdrop-blur-sm gap-5">
+        <span className="p-4 bg-gradient-to-br from-accent to-accent/80 rounded-md text-accent-text text-3xl flex-shrink-0">
           <GiClockwork />
         </span>
         <div className="flex flex-col justify-center items-start gap-2">

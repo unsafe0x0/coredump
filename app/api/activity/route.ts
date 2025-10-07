@@ -26,6 +26,7 @@ interface Activity {
 
 interface User {
   id: string;
+  name: string;
   privateKey: string;
   streak: number;
   streakUpdatedAt: Date;
@@ -84,6 +85,9 @@ export async function POST(req: Request) {
 
     const user = (await dbClient.user.findUnique({
       where: { privateKey },
+      select: {
+        name: true,
+      },
     })) as User | null;
 
     if (!user) {
@@ -199,7 +203,10 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ message: "Activity updated", status: 200 });
+    return NextResponse.json({
+      message: `Activity updated ${user.name} ${normalizedLang}: +${roundedTime}m`,
+      status: 200,
+    });
   } catch (err) {
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }

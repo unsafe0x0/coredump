@@ -73,9 +73,9 @@ const HowToUse = () => {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5"
+              className="flex justify-start items-center bg-card border border-border rounded-md p-5 backdrop-blur-sm gap-5"
             >
-              <span className="p-4 bg-accent rounded-md text-accent-text text-2xl flex-shrink-0">
+              <span className="p-4 bg-gradient-to-br from-accent to-accent/80 rounded-md text-accent-text text-2xl flex-shrink-0">
                 {step.icon}
               </span>
               <div className="flex flex-col justify-center items-start gap-2 flex-1">

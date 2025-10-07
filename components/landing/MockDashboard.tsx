@@ -22,19 +22,19 @@ const MockDashboard = () => {
 
   const totalDurationMinutes = mockLanguages.reduce(
     (sum, l) => sum + (typeof l.duration === "number" ? l.duration : 0),
-    0,
+    0
   );
 
   return (
-    <div className="w-full max-w-7xl bg-background rounded-md border-4 border-border p-6 backdrop-blur-sm">
+    <div className="w-full max-w-7xl bg-background rounded-md border-4 border-border p-6">
       <div className="flex justify-between items-center mb-6">
         <div></div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-card rounded-md"></div>
-          <div className="w-8 h-8 bg-card rounded-md"></div>
+          <div className="w-8 h-8 bg-card border border-border rounded-md"></div>
+          <div className="w-8 h-8 bg-card border border-border rounded-md"></div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card backdrop-blur-sm mb-4">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card border border-border mb-4">
         <div className="flex flex-row justify-start items-start gap-4 mt-2">
           <div className="w-16 h-16 rounded-md flex items-center justify-center">
             <img
@@ -64,7 +64,7 @@ const MockDashboard = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
           <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <FaFireAlt />
           </span>
@@ -76,7 +76,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
           <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <GiClockwork />
           </span>
@@ -88,7 +88,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
           <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <RiCodeSSlashLine />
           </span>
@@ -100,7 +100,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card rounded-md p-3 backdrop-blur-sm gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
           <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
             <TbTrendingUp />
           </span>
@@ -112,7 +112,7 @@ const MockDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card backdrop-blur-sm">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card border border-border">
         <h3 className="text-xl font-semibold text-foreground mb-3 font-heading">
           Languages
         </h3>

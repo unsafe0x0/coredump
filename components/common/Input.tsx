@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         required={required}
         autoComplete="off"
-        className={`w-full px-4 py-2 border border-border rounded-md bg-card text-foreground placeholder-foreground/80 focus:outline-none focus:border-accent ${
+        className={`w-full px-4 py-2 bg-card border border-border rounded-md text-foreground placeholder-foreground/80 focus:outline-none focus:border-accent ${
           disabled ? "opacity-50 cursor-not-allowed bg-card" : ""
         } ${
           error ? "border-destructive focus:border-destructive" : ""

@@ -58,7 +58,7 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center w-full">
       <div className="relative z-10 w-full max-w-lg mx-3 md:mx-0">
-        <div className="bg-card rounded-md p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
+        <div className="bg-card border border-border rounded-md p-5 flex flex-col gap-5 w-full backdrop-blur-sm">
           <div className="flex flex-col justify-center items-center gap-2 text-center">
             <h2 className="text-3xl font-semibold text-foreground font-heading">
               Create Account

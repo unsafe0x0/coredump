@@ -79,7 +79,7 @@ const DeveloperProfile = () => {
     if (error || !profileData) {
       return (
         <div className="flex justify-center items-center w-full min-h-screen">
-          <div className="text-center p-8 bg-card rounded-md">
+          <div className="text-center p-8 bg-card border border-border rounded-md">
             <p className="text-foreground/80 text-lg font-semibold">
               {error ? `Error: ${error.message}` : "No profile data found"}
             </p>

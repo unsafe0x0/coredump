@@ -21,7 +21,7 @@ const ToggleTheme = () => {
   return (
     <button
       onClick={handleThemeToggle}
-      className="p-3 bg-card rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
+      className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
     >
       {theme === "dark" ? (
         <BiSun className="text-xl" />

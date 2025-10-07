@@ -147,8 +147,8 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
 
   return (
     <div className="overflow-x-auto w-full rounded-md custom-scrollbar">
-      <table className="w-full border-collapse text-left backdrop-blur-3xl min-w-[1000px]">
-        <thead className="bg-background backdrop-blur-2xl">
+      <table className="w-full border-collapse text-left min-w-[1000px]">
+        <thead className="bg-background">
           <tr className="border-b border-border">
             <th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-20 whitespace-nowrap">
               Rank
