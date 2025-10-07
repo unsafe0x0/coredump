@@ -118,7 +118,6 @@ const DeveloperProfile = () => {
       overallDurationMinutes,
       streakDays
     );
-    // last24hTime removed; using achievements count instead
 
     const bashPoints = profileData.totalPoints;
 

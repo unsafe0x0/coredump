@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
         profileImage: true,
         privateKey: true,
         streak: true,
+        totalPoints: true,
         createdAt: true,
         achievements: true,
         activities: {

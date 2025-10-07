@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
 import { isSameDay, isSameWeek } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
-import {
-  generateAchievements,
-  countAchievementsPoints,
-} from "@/utils/AchievementsData";
+import { generateAchievements } from "@/utils/GenerateAchievements";
 
 interface RequestBody {
   privateKey: string;
@@ -157,7 +154,11 @@ export async function POST(req: Request) {
       })) as Activity[];
 
       const newAchievements = generateAchievements(user, activitiesAfter);
-      const addedPoints = countAchievementsPoints(newAchievements);
+      const totalMinutes = activitiesAfter.reduce(
+        (sum, a) => sum + (a.totalDuration || 0),
+        0
+      );
+      const computedPoints = Math.floor(totalMinutes / 10);
 
       const newStreak = calculateNewStreak(
         user.streak,
@@ -170,11 +171,9 @@ export async function POST(req: Request) {
         data: {
           streak: newStreak,
           streakUpdatedAt: now,
+          totalPoints: computedPoints,
           ...(newAchievements.length > 0
-            ? {
-                totalPoints: (user.totalPoints || 0) + addedPoints,
-                achievements: { push: newAchievements.map((a) => a.id) },
-              }
+            ? { achievements: { push: newAchievements.map((a) => a.id) } }
             : {}),
         },
       });
@@ -207,18 +206,20 @@ export async function POST(req: Request) {
     })) as Activity[];
 
     const newAchievements = generateAchievements(user, activitiesAfter);
-    const addedPoints = countAchievementsPoints(newAchievements);
+    const totalMinutes = activitiesAfter.reduce(
+      (sum, a) => sum + (a.totalDuration || 0),
+      0
+    );
+    const computedPoints = Math.floor(totalMinutes / 10);
 
     await dbClient.user.update({
       where: { id: user.id },
       data: {
         streak: newStreak,
         streakUpdatedAt: now,
+        totalPoints: computedPoints,
         ...(newAchievements.length > 0
-          ? {
-              totalPoints: (user.totalPoints || 0) + addedPoints,
-              achievements: { push: newAchievements.map((a) => a.id) },
-            }
+          ? { achievements: { push: newAchievements.map((a) => a.id) } }
           : {}),
       },
     });

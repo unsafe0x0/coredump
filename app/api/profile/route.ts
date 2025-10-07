@@ -20,6 +20,7 @@ interface UserDetails {
   twitterUsername: string;
   profileImage: string;
   streak: number | null;
+  totalPoints: number;
   activities: Activity[];
 }
 
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
         twitterUsername: true,
         profileImage: true,
         streak: true,
+        totalPoints: true,
         achievements: true,
         activities: {
           select: {
@@ -78,6 +80,7 @@ export async function POST(req: NextRequest) {
     const normalizedUser: UserDetails = {
       ...user,
       streak: user.streak ?? 0,
+      totalPoints: user.totalPoints ?? 0,
       activities: user.activities.map((activity) => ({
         ...activity,
         shortLanguageName: activity.shortLanguageName ?? "",
