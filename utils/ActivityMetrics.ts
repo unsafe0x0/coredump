@@ -40,21 +40,19 @@ export const calculateLast7DaysDurationMinutes = <
     0
   );
 
-export const minutesToHoursString = (
-  minutes: number,
-  fractionDigits = 2
-): string => (minutes / 60).toFixed(fractionDigits);
-
 export const calculateAverageMinutes = (
   minutes: number,
   divisor: number
 ): number => (divisor > 0 ? minutes / divisor : 0);
 
-export const formatMinutesAsHoursLabel = (
-  minutes: number,
-  fractionDigits = 1,
-  suffix = "hr"
-): string => `${minutesToHoursString(minutes, fractionDigits)}${suffix}`;
+export const formatMinutesAsHrMin = (minutes: number): string => {
+  const total = Math.max(0, Math.round(minutes || 0));
+  const h = Math.floor(total / 60);
+  const m = total % 60;
+  if (h === 0) return `${m}m`;
+  if (m === 0) return `${h}h`;
+  return `${h}h ${m}m`;
+};
 
 export const calculateWeeklyAverageMinutes = (
   totalMinutes: number,

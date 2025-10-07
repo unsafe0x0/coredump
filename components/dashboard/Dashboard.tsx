@@ -16,7 +16,7 @@ import {
   calculateAverageMinutes,
   calculateLast7DaysDurationMinutes,
   calculateTotalDurationMinutes,
-  formatMinutesAsHoursLabel,
+  formatMinutesAsHrMin,
   getTopLanguageShortName,
   getTopWeeklyActivities,
   calculateWeeklyAverageMinutes,
@@ -88,12 +88,12 @@ const Dashboard = () => {
       dashboardData.activities
     );
 
-    const totalTime = formatMinutesAsHoursLabel(totalDurationMinutes, 2);
+  const totalTime = formatMinutesAsHrMin(totalDurationMinutes);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
       dashboardData.activities
     );
-    const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
+  const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
 
     const sortedActivities = sortActivitiesByTotalDuration(
       dashboardData.activities
@@ -166,8 +166,8 @@ const Dashboard = () => {
           totalTime={totalTime}
           languageCount={dashboardData.activities.length}
           topLanguage={topLanguage}
-          weeklyAverageTime={formatMinutesAsHoursLabel(weeklyAverageMinutes, 1)}
-          totalAverageTime={formatMinutesAsHoursLabel(totalAverageMinutes, 1)}
+          weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
+          totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
           achievementsCount={dashboardData.achievements.length}
           bashPoints={bashPoints}
         />

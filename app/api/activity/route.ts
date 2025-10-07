@@ -86,9 +86,19 @@ export async function POST(req: Request) {
     const user = (await dbClient.user.findUnique({
       where: { privateKey },
       select: {
+        id: true,
         name: true,
+        achievements: true,
+        totalPoints: true,
+        streak: true,
+        streakUpdatedAt: true,
       },
-    })) as User | null;
+    })) as
+      | (User & {
+          achievements: string[];
+          totalPoints: number;
+        })
+      | null;
 
     if (!user) {
       return NextResponse.json({ message: "User not found", status: 404 });
@@ -142,6 +152,12 @@ export async function POST(req: Request) {
           lastUpdated: now,
         },
       });
+      const activitiesAfter = (await dbClient.activity.findMany({
+        where: { userId: user.id },
+      })) as Activity[];
+
+      const newAchievements = generateAchievements(user, activitiesAfter);
+      const addedPoints = countAchievementsPoints(newAchievements);
 
       const newStreak = calculateNewStreak(
         user.streak,
@@ -154,25 +170,16 @@ export async function POST(req: Request) {
         data: {
           streak: newStreak,
           streakUpdatedAt: now,
+          ...(newAchievements.length > 0
+            ? {
+                totalPoints: (user.totalPoints || 0) + addedPoints,
+                achievements: { push: newAchievements.map((a) => a.id) },
+              }
+            : {}),
         },
       });
 
       return NextResponse.json({ message: "Activity created", status: 200 });
-    }
-
-    const newAchievements = generateAchievements(user, allActivities);
-    const points = countAchievementsPoints(newAchievements);
-
-    if (newAchievements.length > 0) {
-      await dbClient.user.update({
-        where: { id: user.id },
-        data: {
-          totalPoints: points,
-          achievements: {
-            push: newAchievements.map((a) => a.id),
-          },
-        },
-      });
     }
 
     const newLast24 = activity.last24HoursDuration + roundedTime;
@@ -195,11 +202,24 @@ export async function POST(req: Request) {
       now
     );
 
+    const activitiesAfter = (await dbClient.activity.findMany({
+      where: { userId: user.id },
+    })) as Activity[];
+
+    const newAchievements = generateAchievements(user, activitiesAfter);
+    const addedPoints = countAchievementsPoints(newAchievements);
+
     await dbClient.user.update({
       where: { id: user.id },
       data: {
         streak: newStreak,
         streakUpdatedAt: now,
+        ...(newAchievements.length > 0
+          ? {
+              totalPoints: (user.totalPoints || 0) + addedPoints,
+              achievements: { push: newAchievements.map((a) => a.id) },
+            }
+          : {}),
       },
     });
 

@@ -6,6 +6,7 @@ import {
   languageIconsImage,
   languageProgressBgColor,
 } from "@/utils/LanguageData";
+import { formatMinutesAsHrMin } from "@/utils/ActivityMetrics";
 
 interface Activity {
   languageName: string;
@@ -86,7 +87,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
                   </p>
                 </div>
                 <p className="text-foreground/80 text-base font-medium">
-                  {Math.round(activity.totalDuration)}m{" "}
+                  {formatMinutesAsHrMin(activity.totalDuration)}{" "}
                   <span className="text-foreground font-semibold">
                     ({Math.round(percent)}%)
                   </span>

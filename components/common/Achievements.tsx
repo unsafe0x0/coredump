@@ -10,11 +10,6 @@ type AchievementsProps = {
   className?: string;
 };
 
-const iconFallbackById: Record<string, string> = {
-  "total-100h": "/achievements/total-100h.svg",
-  "day-8h": "/achievements/day-8h.svg",
-};
-
 const Achievements: React.FC<AchievementsProps> = ({
   title = "Achievements",
   achievements,
@@ -40,8 +35,7 @@ const Achievements: React.FC<AchievementsProps> = ({
           {achievements.map((id, index) => {
             const def = ACHIEVEMENT_MAP.get(id);
             const titleText = def?.title ?? id;
-            const points = def?.points ?? 0;
-            const iconSrc = def?.icon ?? iconFallbackById[id] ?? "/file.svg";
+            const iconSrc = def?.icon ?? "/file.svg";
             const altText = `${titleText} achievement icon`;
 
             return (
@@ -60,12 +54,6 @@ const Achievements: React.FC<AchievementsProps> = ({
                   <div className="flex flex-col">
                     <p className="text-foreground font-semibold">{titleText}</p>
                   </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs px-2 py-1 rounded bg-accent/10 text-accent font-medium">
-                    {points} pts
-                  </span>
                 </div>
               </div>
             );

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { languageIconsImage } from "@/utils/LanguageData";
+import { formatMinutesAsHrMin } from "@/utils/ActivityMetrics";
 
 interface WeeklyActivity {
   languageName: string;
@@ -61,7 +62,7 @@ const WeekStats: React.FC<WeekStatsProps> = ({
                     </p>
                   </div>
                   <p className="text-foreground/80 text-base font-medium">
-                    {Math.round(activity.duration)}m{" "}
+                    {formatMinutesAsHrMin(activity.duration)}{" "}
                     <span className="text-foreground font-semibold">
                       ({Math.round(percent)}%)
                     </span>

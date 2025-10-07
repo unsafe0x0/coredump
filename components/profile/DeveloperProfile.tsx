@@ -13,7 +13,7 @@ import {
   calculateAverageMinutes,
   calculateLast7DaysDurationMinutes,
   calculateTotalDurationMinutes,
-  formatMinutesAsHoursLabel,
+  formatMinutesAsHrMin,
   getTopLanguageShortName,
   getTopWeeklyActivities,
   calculateWeeklyAverageMinutes,
@@ -92,12 +92,12 @@ const DeveloperProfile = () => {
       profileData.activities
     );
 
-    const totalTime = formatMinutesAsHoursLabel(overallDurationMinutes, 2);
+    const totalTime = formatMinutesAsHrMin(overallDurationMinutes);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
       profileData.activities
     );
-    const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
+    const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
 
     const sortedActivities = sortActivitiesByTotalDuration(
       profileData.activities
@@ -118,7 +118,7 @@ const DeveloperProfile = () => {
       overallDurationMinutes,
       streakDays
     );
-  // last24hTime removed; using achievements count instead
+    // last24hTime removed; using achievements count instead
 
     const bashPoints = profileData.totalPoints;
 
@@ -141,8 +141,8 @@ const DeveloperProfile = () => {
           totalTime={totalTime}
           languageCount={profileData.activities.length}
           topLanguage={topLanguage}
-          weeklyAverageTime={formatMinutesAsHoursLabel(weeklyAverageMinutes, 1)}
-          totalAverageTime={formatMinutesAsHoursLabel(totalAverageMinutes, 1)}
+          weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
+          totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
           achievementsCount={profileData.achievements.length}
           bashPoints={bashPoints}
         />
