@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     if (!username || typeof username !== "string") {
       return NextResponse.json(
         { message: "Username is required", status: 400 },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
         twitterUsername: true,
         profileImage: true,
         streak: true,
+        achievements: true,
         activities: {
           select: {
             languageName: true,
@@ -100,7 +101,7 @@ export async function POST(req: NextRequest) {
         message: "Something went wrong",
         status: 500,
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

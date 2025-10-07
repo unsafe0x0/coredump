@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
 import { isSameDay, isSameWeek } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
-import { generateAchievements } from "@/utils/GenerateActivity";
+import {
+  generateAchievements,
+  countAchievementsPoints,
+} from "@/utils/AchievementsData";
 
 interface RequestBody {
   privateKey: string;
@@ -154,11 +157,13 @@ export async function POST(req: Request) {
     }
 
     const newAchievements = generateAchievements(user, allActivities);
+    const points = countAchievementsPoints(newAchievements);
 
     if (newAchievements.length > 0) {
       await dbClient.user.update({
         where: { id: user.id },
         data: {
+          totalPoints: points,
           achievements: {
             push: newAchievements.map((a) => a.id),
           },
@@ -199,4 +204,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 }
- 

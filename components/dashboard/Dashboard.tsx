@@ -9,11 +9,11 @@ import LanguageSection from "../common/LanguageSection";
 import PrivateKeySection from "../common/PrivateKeySection";
 import WeekStats from "../common/WeekStats";
 import StatsGrid from "../common/StatsGrid";
+import Achievements from "../common/Achievements";
 import Settings from "./Settings";
 import Link from "next/link";
 import {
   calculateAverageMinutes,
-  calculateLast24HoursDurationMinutes,
   calculateLast7DaysDurationMinutes,
   calculateTotalDurationMinutes,
   formatMinutesAsHoursLabel,
@@ -22,7 +22,6 @@ import {
   calculateWeeklyAverageMinutes,
   sortActivitiesByTotalDuration,
   sumWeeklyDurations,
-  calculateBashPoints,
 } from "@/utils/ActivityMetrics";
 import ToggleTheme from "../common/ToggleTheme";
 
@@ -42,7 +41,8 @@ interface DashboardData {
   streak: number;
   privateKey: string;
   activities: LanguageActivity[];
-  joinedDate: string;
+  achievements: string[];
+  totalPoints: number;
 }
 
 const fetchDashboardData = async (): Promise<DashboardData> => {
@@ -85,43 +85,38 @@ const Dashboard = () => {
       );
     }
     const totalDurationMinutes = calculateTotalDurationMinutes(
-      dashboardData.activities,
+      dashboardData.activities
     );
 
     const totalTime = formatMinutesAsHoursLabel(totalDurationMinutes, 2);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      dashboardData.activities,
+      dashboardData.activities
     );
     const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
 
-    const last24HoursMinutes = calculateLast24HoursDurationMinutes(
-      dashboardData.activities,
-    );
-
     const sortedActivities = sortActivitiesByTotalDuration(
-      dashboardData.activities,
+      dashboardData.activities
     );
 
     const topLanguage = getTopLanguageShortName(sortedActivities);
 
     const weeklyTopActivities = getTopWeeklyActivities(
-      dashboardData.activities,
+      dashboardData.activities
     );
     const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
 
     const streakDays = Math.max(dashboardData.streak || 0, 1);
     const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
       totalDurationMinutes,
-      streakDays,
+      streakDays
     );
     const totalAverageMinutes = calculateAverageMinutes(
       totalDurationMinutes,
-      streakDays,
+      streakDays
     );
-    const dailyAverageMinutes = calculateAverageMinutes(last24HoursMinutes, 1);
 
-    const bashPoints = calculateBashPoints(totalDurationMinutes, streakDays);
+    const bashPoints = dashboardData.totalPoints;
 
     if (showSettings) {
       return (
@@ -162,7 +157,6 @@ const Dashboard = () => {
           twitterUsername={dashboardData.twitterUsername}
           profileImage={dashboardData.profileImage}
           thisWeekTotalTime={thisWeekTotalTime}
-          joinedDate={dashboardData.joinedDate}
         />
 
         <PrivateKeySection privateKey={dashboardData.privateKey} />
@@ -174,9 +168,11 @@ const Dashboard = () => {
           topLanguage={topLanguage}
           weeklyAverageTime={formatMinutesAsHoursLabel(weeklyAverageMinutes, 1)}
           totalAverageTime={formatMinutesAsHoursLabel(totalAverageMinutes, 1)}
-          dailyAverageTime={formatMinutesAsHoursLabel(dailyAverageMinutes, 1)}
+          achievementsCount={dashboardData.achievements.length}
           bashPoints={bashPoints}
         />
+
+        <Achievements achievements={dashboardData.achievements} />
 
         <WeekStats
           activities={weeklyTopActivities}

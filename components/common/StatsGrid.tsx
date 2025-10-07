@@ -4,7 +4,7 @@ import { GiClockwork } from "react-icons/gi";
 import { RiCodeSSlashLine } from "react-icons/ri";
 import { LuCalendarRange } from "react-icons/lu";
 import { TbTrendingUp } from "react-icons/tb";
-import { MdOutlineAccessTime } from "react-icons/md";
+import { MdOutlineEmojiEvents } from "react-icons/md";
 import { SiCodeclimate } from "react-icons/si";
 import { LuWaypoints } from "react-icons/lu";
 import StatCard from "./StatCard";
@@ -16,7 +16,7 @@ export interface StatsGridProps {
   topLanguage: string;
   weeklyAverageTime: string | number;
   totalAverageTime: string | number;
-  dailyAverageTime: string | number;
+  achievementsCount: number;
   bashPoints: number;
   className?: string;
 }
@@ -28,7 +28,7 @@ const StatsGrid: React.FC<StatsGridProps> = ({
   topLanguage,
   weeklyAverageTime,
   totalAverageTime,
-  dailyAverageTime,
+  achievementsCount,
   bashPoints,
   className,
 }) => {
@@ -68,13 +68,13 @@ const StatsGrid: React.FC<StatsGridProps> = ({
       icon: <TbTrendingUp />,
     },
     {
-      title: "Daily Avg Time",
-      value: dailyAverageTime,
-      icon: <MdOutlineAccessTime />,
+      title: "Achievements",
+      value: achievementsCount,
+      icon: <MdOutlineEmojiEvents />,
     },
     {
       title: "Bash Points",
-      value: bashPoints,
+      value: bashPoints || 0,
       icon: <LuWaypoints />,
     },
   ];

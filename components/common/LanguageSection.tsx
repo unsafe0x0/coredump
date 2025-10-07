@@ -26,8 +26,8 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
   );
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-background backdrop-blur-sm">
-      <h2 className="text-3xl font-semibold text-foreground mb-5 font-heading">
+    <div className="flex flex-col justify-start items-start w-full">
+      <h2 className="text-3xl font-semibold text-foreground mb-5 mt-5 font-heading">
         Languages
       </h2>
 
@@ -66,7 +66,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
           return (
             <div
               key={index}
-              className="flex flex-col justify-start items-start gap-3 w-full bg-card p-3 rounded-md"
+              className="flex flex-col justify-start items-start gap-3 w-full bg-card border border-border p-3 rounded-md"
             >
               <div className="flex flex-row justify-between items-center w-full">
                 <div className="flex items-center gap-3">

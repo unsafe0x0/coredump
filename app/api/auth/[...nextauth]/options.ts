@@ -2,7 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcryptjs from "bcryptjs";
-import crypto from "crypto";
+import { generatePrivateKey } from "@/utils/GeneratePrivateKey";
 import dbClient from "@/prisma/DbClient";
 
 export const authOptions: NextAuthOptions = {
@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
 
         const isPasswordValid = await bcryptjs.compare(
           credentials.password,
-          user.password as string,
+          user.password as string
         );
 
         if (!isPasswordValid) throw new Error("Invalid password");
@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!dbUser) {
-          const privateKey = crypto.randomBytes(32).toString("hex");
+          const privateKey = generatePrivateKey();
 
           await dbClient.user.create({
             data: {

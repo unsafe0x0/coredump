@@ -7,8 +7,8 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ icon, title, value }) => (
-  <div className="flex justify-start items-center bg-card rounded-md p-5 backdrop-blur-sm gap-5 w-full">
-    <span className="p-4 bg-accent rounded-md text-accent-text text-3xl flex-shrink-0">
+  <div className="flex justify-start items-center bg-card border border-border rounded-md p-4 backdrop-blur-sm gap-5 w-full">
+    <span className="p-4 bg-gradient-to-br from-accent to-accent/80 rounded-md text-accent-text text-3xl flex-shrink-0">
       {icon}
     </span>
     <div className="flex flex-col justify-center items-start gap-2">

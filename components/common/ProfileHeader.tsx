@@ -21,7 +21,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   thisWeekTotalTime,
   joinedDate,
 }) => (
-  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card backdrop-blur-sm mb-5">
+  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
     <div className="flex flex-row justify-start items-start gap-5 mt-2">
       <Image
         src={profileImage || "/default-avatar.png"}

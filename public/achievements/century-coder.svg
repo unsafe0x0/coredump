@@ -1,0 +1,40 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Century Coder</title>
+  <defs>
+    <linearGradient id="paint0_linear_century" x1="28" y1="20" x2="136" y2="144" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6B8CFF"/>
+      <stop offset="1" stop-color="#2C3CFF"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_century" x1="80" y1="44" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF1FF"/>
+      <stop offset="1" stop-color="#D5DCFF"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear_century" x1="80" y1="60" x2="80" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8BBFF"/>
+      <stop offset="1" stop-color="#5E78FF"/>
+    </linearGradient>
+    <radialGradient id="glow_century" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(80 80) rotate(90) scale(60)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#8FA3FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_century)"/>
+  <rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <g transform="translate(0,-4)">
+    <circle cx="80" cy="84" r="44" fill="url(#glow_century)"/>
+    <!-- Trophy base -->
+    <path d="M60 108H100V116C100 120.418 96.4183 124 92 124H68C63.5817 124 60 120.418 60 116V108Z" fill="#EFF2FF"/>
+    <!-- Trophy cup -->
+    <path d="M56 44H104V58C104 69.0457 95.0457 78 84 78H76C64.9543 78 56 69.0457 56 58V44Z" fill="url(#paint1_linear_century)"/>
+    <!-- Handles -->
+    <path d="M56 54H46C46 63.3888 53.6112 71 63 71" stroke="#9EAFFF" stroke-width="6" stroke-linecap="round"/>
+    <path d="M104 54H114C114 63.3888 106.389 71 97 71" stroke="#9EAFFF" stroke-width="6" stroke-linecap="round"/>
+    <!-- Stem -->
+    <path d="M70 78H90V94C90 97.3137 87.3137 100 84 100H76C72.6863 100 70 97.3137 70 94V78Z" fill="url(#paint2_linear_century)"/>
+    <!-- Stars -->
+    <path d="M80 60l2 6h6l-5 3.6L85 76l-5-3.6L75 76l2-6.4-5-3.6h6l2-6z" fill="#9EAFFF" opacity="0.9"/>
+    <!-- 100 badge -->
+    <rect x="60" y="124" width="40" height="16" rx="8" fill="#4F68FF" opacity="0.85"/>
+    <text x="80" y="136" text-anchor="middle" dominant-baseline="middle" font-family="'Inter','Segoe UI',sans-serif" font-size="12" font-weight="700" fill="#E8ECFF">100</text>
+  </g>
+</svg>

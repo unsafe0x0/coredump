@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
 import bcryptjs from "bcryptjs";
-import crypto from "crypto";
-
-interface RegisterBody {
-  name: string;
-  email: string;
-  gitUsername: string;
-  twitterUsername: string;
-  password: string;
-}
+import { generatePrivateKey } from "@/utils/GeneratePrivateKey";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,7 +11,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !password || !gitUsername || !twitterUsername) {
       return NextResponse.json(
         { message: "Please fill all fields" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -34,17 +26,17 @@ export async function POST(request: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { error: "User already exists" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
     const githubResponse = await fetch(
-      `https://api.github.com/users/${normalisedGitUsername}`,
+      `https://api.github.com/users/${normalisedGitUsername}`
     );
     if (!githubResponse.ok) {
       return NextResponse.json(
         { message: "GitHub user not found" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -52,9 +44,9 @@ export async function POST(request: NextRequest) {
     const profileImage: string = githubData.avatar_url;
 
     const hashedPassword = await bcryptjs.hash(password, 10);
-    const privateKey = crypto.randomBytes(32).toString("hex");
+    const privateKey = generatePrivateKey();
 
-    const newUser = await dbClient.user.create({
+    await dbClient.user.create({
       data: {
         name,
         email: normalisedEmail,
@@ -68,13 +60,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { message: "User registered successfully" },
-      { status: 201 },
+      { status: 201 }
     );
   } catch (error) {
     console.error("Error in registration:", error);
     return NextResponse.json(
       { error: "Failed to register user" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

@@ -13,79 +13,69 @@ export interface WeeklyActivitySummary {
 
 const getDurationValue = <
   T extends ActivityMetricsBase,
-  K extends keyof ActivityMetricsBase,
+  K extends keyof ActivityMetricsBase
 >(
   activity: T,
-  key: K,
+  key: K
 ): number => {
   const value = activity[key];
   return typeof value === "number" ? value : 0;
 };
 
 export const calculateTotalDurationMinutes = <T extends ActivityMetricsBase>(
-  activities: T[] = [],
+  activities: T[] = []
 ): number =>
   activities.reduce(
     (sum, activity) => sum + getDurationValue(activity, "totalDuration"),
-    0,
+    0
   );
 
 export const calculateLast7DaysDurationMinutes = <
-  T extends ActivityMetricsBase,
+  T extends ActivityMetricsBase
 >(
-  activities: T[] = [],
+  activities: T[] = []
 ): number =>
   activities.reduce(
     (sum, activity) => sum + getDurationValue(activity, "last7DaysDuration"),
-    0,
-  );
-
-export const calculateLast24HoursDurationMinutes = <
-  T extends ActivityMetricsBase,
->(
-  activities: T[] = [],
-): number =>
-  activities.reduce(
-    (sum, activity) => sum + getDurationValue(activity, "last24HoursDuration"),
-    0,
+    0
   );
 
 export const minutesToHoursString = (
   minutes: number,
-  fractionDigits = 2,
+  fractionDigits = 2
 ): string => (minutes / 60).toFixed(fractionDigits);
 
 export const calculateAverageMinutes = (
   minutes: number,
-  divisor: number,
+  divisor: number
 ): number => (divisor > 0 ? minutes / divisor : 0);
 
 export const formatMinutesAsHoursLabel = (
   minutes: number,
   fractionDigits = 1,
-  suffix = "hr",
+  suffix = "hr"
 ): string => `${minutesToHoursString(minutes, fractionDigits)}${suffix}`;
 
 export const calculateWeeklyAverageMinutes = (
   totalMinutes: number,
-  streakDays: number,
+  streakDays: number
 ): number => {
   const weeksTracked = Math.max(Math.ceil(Math.max(streakDays, 0) / 7), 1);
   return calculateAverageMinutes(totalMinutes, weeksTracked);
 };
 
 export const sortActivitiesByTotalDuration = <T extends ActivityMetricsBase>(
-  activities: T[] = [],
+  activities: T[] = []
 ): T[] => [...activities].sort((a, b) => b.totalDuration - a.totalDuration);
 
 export const getTopLanguageShortName = <T extends ActivityMetricsBase>(
   activities: T[] = [],
-  fallback = "N/A",
+  fallback = "N/A"
 ): string => activities[0]?.shortLanguageName ?? fallback;
 
 export const getTopWeeklyActivities = <T extends ActivityMetricsBase>(
   activities: T[] = [],
-  limit = 6,
+  limit = 6
 ): WeeklyActivitySummary[] =>
   activities
     .map((activity) => ({
@@ -97,15 +87,5 @@ export const getTopWeeklyActivities = <T extends ActivityMetricsBase>(
     .slice(0, limit);
 
 export const sumWeeklyDurations = (
-  activities: WeeklyActivitySummary[] = [],
+  activities: WeeklyActivitySummary[] = []
 ): number => activities.reduce((sum, activity) => sum + activity.duration, 0);
-
-export const calculateBashPoints = (
-  totalMinutes: number,
-  streakDays: number,
-): number => {
-  const basePoints = 10;
-  const bonusPoints = Math.floor(totalMinutes / 60) * 5;
-  const streakBonus = Math.floor(streakDays / 7) * 10;
-  return basePoints + bonusPoints + streakBonus;
-};

@@ -84,3 +84,18 @@ export function generateAchievements(
 
   return earned;
 }
+export function countAchievementsPoints(
+  achievements: (string | Achievement)[] = []
+): number {
+  const achievementMap = new Map(ACHIEVEMENTS.map((a) => [a.id, a]));
+  return achievements.reduce((sum, entry) => {
+    if (typeof entry === "string") {
+      return sum + (achievementMap.get(entry)?.points || 0);
+    }
+    const pts =
+      typeof entry.points === "number"
+        ? entry.points
+        : achievementMap.get(entry.id)?.points || 0;
+    return sum + pts;
+  }, 0);
+}

@@ -22,7 +22,7 @@ const PrivateKeySection: React.FC<PrivateKeySectionProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card backdrop-blur-sm mb-5">
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card border border-border mb-5">
       <h2 className="text-3xl font-semibold text-foreground mb-4 font-heading">
         Private Key
       </h2>

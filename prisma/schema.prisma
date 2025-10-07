@@ -21,6 +21,7 @@ model User {
   role            String   @default("USER")
   streak          Int?     @default(0)
   achievements    String[] @default([])
+  totalPoints     Int?     @default(0)
 
   streakUpdatedAt DateTime @default(now())
   pingTime        DateTime @default(now())
@@ -34,7 +35,7 @@ model Activity {
   id                  String   @id @default(cuid()) @map("_id")
   userId              String
   languageName        String
-  shortLanguageName   String  @default("NULL")
+  shortLanguageName   String   @default("NULL")
   totalDuration       Float?
   last24HoursDuration Float?
   last7DaysDuration   Float?

@@ -7,10 +7,10 @@ import ProfileHeader from "../common/ProfileHeader";
 import LanguageSection from "../common/LanguageSection";
 import WeekStats from "../common/WeekStats";
 import StatsGrid from "../common/StatsGrid";
+import Achievements from "../common/Achievements";
 
 import {
   calculateAverageMinutes,
-  calculateLast24HoursDurationMinutes,
   calculateLast7DaysDurationMinutes,
   calculateTotalDurationMinutes,
   formatMinutesAsHoursLabel,
@@ -19,7 +19,6 @@ import {
   calculateWeeklyAverageMinutes,
   sortActivitiesByTotalDuration,
   sumWeeklyDurations,
-  calculateBashPoints,
 } from "@/utils/ActivityMetrics";
 
 interface LanguageActivity {
@@ -36,11 +35,13 @@ interface DeveloperProfileData {
   twitterUsername: string;
   profileImage: string;
   streak: number;
+  totalPoints: number;
   activities: LanguageActivity[];
+  achievements: string[];
 }
 
 const fetchDeveloperData = async (
-  username: string,
+  username: string
 ): Promise<DeveloperProfileData> => {
   const response = await fetch(`/api/profile`, {
     method: "POST",
@@ -88,18 +89,18 @@ const DeveloperProfile = () => {
     }
 
     const overallDurationMinutes = calculateTotalDurationMinutes(
-      profileData.activities,
+      profileData.activities
     );
 
     const totalTime = formatMinutesAsHoursLabel(overallDurationMinutes, 2);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      profileData.activities,
+      profileData.activities
     );
     const thisWeekTotalTime = formatMinutesAsHoursLabel(thisWeekMinutes, 2);
 
     const sortedActivities = sortActivitiesByTotalDuration(
-      profileData.activities,
+      profileData.activities
     );
 
     const topLanguage = getTopLanguageShortName(sortedActivities);
@@ -107,22 +108,19 @@ const DeveloperProfile = () => {
     const weeklyTopActivities = getTopWeeklyActivities(profileData.activities);
 
     const topWeeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
-    const last24HoursMinutes = calculateLast24HoursDurationMinutes(
-      profileData.activities,
-    );
 
     const streakDays = Math.max(profileData.streak || 0, 1);
     const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
       overallDurationMinutes,
-      streakDays,
+      streakDays
     );
     const totalAverageMinutes = calculateAverageMinutes(
       overallDurationMinutes,
-      streakDays,
+      streakDays
     );
-    const dailyAverageMinutes = calculateAverageMinutes(last24HoursMinutes, 1);
+  // last24hTime removed; using achievements count instead
 
-    const bashPoints = calculateBashPoints(overallDurationMinutes, streakDays);
+    const bashPoints = profileData.totalPoints;
 
     return (
       <>
@@ -145,9 +143,15 @@ const DeveloperProfile = () => {
           topLanguage={topLanguage}
           weeklyAverageTime={formatMinutesAsHoursLabel(weeklyAverageMinutes, 1)}
           totalAverageTime={formatMinutesAsHoursLabel(totalAverageMinutes, 1)}
-          dailyAverageTime={formatMinutesAsHoursLabel(dailyAverageMinutes, 1)}
+          achievementsCount={profileData.achievements.length}
           bashPoints={bashPoints}
         />
+
+        <Achievements
+          achievements={profileData.achievements}
+          className="mt-6 w-full"
+        />
+
         <WeekStats
           activities={weeklyTopActivities}
           totalDurationMinutes={topWeeklyDurationMinutes}

@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
         privateKey: true,
         streak: true,
         createdAt: true,
+        achievements: true,
         activities: {
           select: {
             languageName: true,
