@@ -1,0 +1,32 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="paint0_linear_first" x1="32" y1="24" x2="128" y2="140" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#9D7BFF" />
+			<stop offset="1" stop-color="#5D2CFF" />
+		</linearGradient>
+		<linearGradient id="paint1_linear_first" x1="80" y1="36" x2="80" y2="124" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#F5F0FF" />
+			<stop offset="1" stop-color="#E4D5FF" />
+		</linearGradient>
+		<linearGradient id="paint2_linear_first" x1="80" y1="72" x2="80" y2="112" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FF9FB5" />
+			<stop offset="1" stop-color="#FF6F91" />
+		</linearGradient>
+	</defs>
+	<rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_first)" />
+	<rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+	<g transform="translate(0,2)">
+		<path d="M80 116C80 116 108 108 112 100C116 92 108 88 108 80C108 56 98 36 80 36C62 36 52 56 52 80C52 88 44 92 48 100C52 108 80 116 80 116Z" fill="url(#paint1_linear_first)" />
+		<path d="M80 52C87.732 52 94 58.268 94 66C94 73.732 87.732 80 80 80C72.268 80 66 73.732 66 66C66 58.268 72.268 52 80 52Z" fill="#7456FF" />
+		<path d="M80 116C80 116 90 98 90 88C90 80 86 74 80 74C74 74 70 80 70 88C70 98 80 116 80 116Z" fill="url(#paint2_linear_first)" />
+		<path d="M72 102L64 120" stroke="#FF98B0" stroke-width="6" stroke-linecap="round" />
+		<path d="M88 102L96 120" stroke="#FF98B0" stroke-width="6" stroke-linecap="round" />
+		<path d="M70 90C66 98 56 104 50 104C46 104 44 102 44 100C44 94 50 86 60 82" stroke="#D5C5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M90 90C94 98 104 104 110 104C114 104 116 102 116 100C116 94 110 86 100 82" stroke="#D5C5FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<circle cx="80" cy="68" r="8" fill="#F6F3FF" />
+		<path d="M80 60V64" stroke="#5F3DFF" stroke-width="4" stroke-linecap="round" />
+		<path d="M80 72V76" stroke="#5F3DFF" stroke-width="4" stroke-linecap="round" />
+		<path d="M72 68H76" stroke="#5F3DFF" stroke-width="4" stroke-linecap="round" />
+		<path d="M84 68H88" stroke="#5F3DFF" stroke-width="4" stroke-linecap="round" />
+	</g>
+</svg>

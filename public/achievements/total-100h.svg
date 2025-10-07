@@ -1,0 +1,37 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="paint0_linear_total" x1="34" y1="20" x2="126" y2="144" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#6B8CFF" />
+			<stop offset="1" stop-color="#2C3CFF" />
+		</linearGradient>
+		<linearGradient id="paint1_linear_total" x1="80" y1="40" x2="80" y2="136" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#EEF1FF" />
+			<stop offset="1" stop-color="#D5DCFF" />
+		</linearGradient>
+		<linearGradient id="paint2_linear_total" x1="80" y1="56" x2="80" y2="112" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#A8BBFF" />
+			<stop offset="1" stop-color="#5E78FF" />
+		</linearGradient>
+		<linearGradient id="paint3_linear_total" x1="80" y1="88" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#90A5FF" />
+			<stop offset="1" stop-color="#4F68FF" />
+		</linearGradient>
+	</defs>
+	<rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_total)" />
+	<rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+	<g transform="translate(0,-8)">
+		<path d="M52 36H108V52C108 59.732 101.732 66 94 66H66C58.268 66 52 59.732 52 52V36Z" fill="#F2F4FF" />
+		<path d="M52 124C52 116.268 58.268 110 66 110H94C101.732 110 108 116.268 108 124V140H52V124Z" fill="#F2F4FF" />
+		<path d="M66 66H94C101.732 66 108 59.732 108 52V36H52V52C52 59.732 58.268 66 66 66Z" stroke="#9EAFFF" stroke-width="6" stroke-linecap="round" />
+		<path d="M66 110H94C101.732 110 108 116.268 108 124V140H52V124C52 116.268 58.268 110 66 110Z" stroke="#9EAFFF" stroke-width="6" stroke-linecap="round" />
+		<path d="M64 52L80 72L96 52" stroke="#97A9FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M96 124L80 104L64 124" stroke="#97A9FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M80 72L96 92C96 102.493 88.4934 110 78 110H82C71.5066 110 64 102.493 64 92L80 72Z" fill="url(#paint1_linear_total)" />
+		<path d="M80 72L92 60H68L80 72Z" fill="url(#paint2_linear_total)" />
+		<path d="M80 104L92 116H68L80 104Z" fill="url(#paint3_linear_total)" />
+		<circle cx="80" cy="76" r="4" fill="#E5EAFF" />
+		<circle cx="80" cy="100" r="4" fill="#E5EAFF" />
+		<path d="M64 44H96" stroke="#E5EAFF" stroke-width="6" stroke-linecap="round" />
+		<path d="M64 132H96" stroke="#E5EAFF" stroke-width="6" stroke-linecap="round" />
+	</g>
+</svg>

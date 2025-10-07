@@ -1,0 +1,33 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="paint0_linear_streak30" x1="28" y1="20" x2="132" y2="144" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FF6AA0" />
+			<stop offset="1" stop-color="#A83CFF" />
+		</linearGradient>
+		<linearGradient id="paint1_linear_streak30" x1="80" y1="40" x2="80" y2="132" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFF0F7" />
+			<stop offset="1" stop-color="#F3D4FF" />
+		</linearGradient>
+		<linearGradient id="paint2_linear_streak30" x1="80" y1="60" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FF8AB8" />
+			<stop offset="1" stop-color="#C869FF" />
+		</linearGradient>
+		<linearGradient id="paint3_linear_streak30" x1="80" y1="76" x2="80" y2="112" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFB2D6" />
+			<stop offset="1" stop-color="#FF7EBF" />
+		</linearGradient>
+	</defs>
+	<rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_streak30)" />
+	<rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
+	<g transform="translate(0,-8)">
+		<path d="M80 40C92 56 120 64 120 100C120 124 102.091 140 80 140C57.9086 140 40 124 40 100C40 64 68 56 80 40Z" fill="url(#paint1_linear_streak30)" />
+		<path d="M80 52C90 64 108 70 108 96C108 114.225 94.2254 128 76 128C57.7746 128 44 114.225 44 96C44 70 64 64 80 52Z" fill="url(#paint2_linear_streak30)" />
+		<path d="M80 68C86 78 96 82 96 98C96 109.046 87.0457 118 76 118C64.9543 118 56 109.046 56 98C56 82 68 78 80 68Z" fill="url(#paint3_linear_streak30)" />
+		<path d="M66 104C66 108.418 69.5817 112 74 112H86C90.4183 112 94 108.418 94 104C94 99.5817 90.4183 96 86 96C81.5817 96 78 92.4183 78 88C78 83.5817 74.4183 80 70 80C65.5817 80 62 83.5817 62 88V92" stroke="#FFE4F1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M92 72C99.732 72 106 65.732 106 58C106 50.268 99.732 44 92 44C91.196 44 90.4141 44.0786 89.6593 44.2281C92.2982 48.0833 94 53.1564 94 60C94 64.4689 93.2466 68.3114 92 72Z" fill="#FFE3F4" />
+		<path d="M54 130L64 118" stroke="#FF8EC8" stroke-width="8" stroke-linecap="round" />
+		<path d="M106 130L96 118" stroke="#C067FF" stroke-width="8" stroke-linecap="round" />
+		<path d="M80 36L84 44H76L80 36Z" fill="#FFF5FB" />
+		<path d="M72 44H88" stroke="#FFF5FB" stroke-width="4" stroke-linecap="round" />
+	</g>
+</svg>

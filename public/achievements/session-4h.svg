@@ -1,0 +1,34 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="paint0_linear_session" x1="28" y1="24" x2="132" y2="140" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFB36B" />
+			<stop offset="1" stop-color="#FF6B2C" />
+		</linearGradient>
+		<linearGradient id="paint1_linear_session" x1="80" y1="52" x2="80" y2="124" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FFF4EC" />
+			<stop offset="1" stop-color="#FFDACC" />
+		</linearGradient>
+		<linearGradient id="paint2_linear_session" x1="80" y1="72" x2="80" y2="108" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#FF8250" />
+			<stop offset="1" stop-color="#FF4D4D" />
+		</linearGradient>
+	</defs>
+	<rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_session)" />
+	<rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+	<g transform="translate(0,-16)">
+		<circle cx="80" cy="96" r="44" fill="url(#paint1_linear_session)" />
+		<path d="M80 60C57.9086 60 40 77.9086 40 100C40 122.091 57.9086 140 80 140C102.091 140 120 122.091 120 100C120 77.9086 102.091 60 80 60Z" stroke="#FF8C56" stroke-width="6" stroke-linecap="round" />
+		<circle cx="80" cy="100" r="28" fill="#FFF8F4" />
+		<path d="M80 72V52" stroke="#FFD6C6" stroke-width="10" stroke-linecap="round" />
+		<rect x="66" y="44" width="28" height="10" rx="5" fill="#FFE3D5" />
+		<path d="M92 52L104 40" stroke="#FFE3D5" stroke-width="8" stroke-linecap="round" />
+		<path d="M68 52L56 40" stroke="#FFE3D5" stroke-width="8" stroke-linecap="round" />
+		<circle cx="80" cy="100" r="12" fill="url(#paint2_linear_session)" />
+		<path d="M80 84V100L94 108" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M60 100H64" stroke="#FFC3AA" stroke-width="6" stroke-linecap="round" />
+		<path d="M68 118L64 122" stroke="#FFC3AA" stroke-width="6" stroke-linecap="round" />
+		<path d="M96 118L100 122" stroke="#FFC3AA" stroke-width="6" stroke-linecap="round" />
+		<path d="M96 82L100 78" stroke="#FFC3AA" stroke-width="6" stroke-linecap="round" />
+		<path d="M64 82L60 78" stroke="#FFC3AA" stroke-width="6" stroke-linecap="round" />
+	</g>
+</svg>

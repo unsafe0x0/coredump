@@ -1,0 +1,38 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="paint0_linear_night" x1="36" y1="20" x2="124" y2="144" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#27175F" />
+			<stop offset="1" stop-color="#160B34" />
+		</linearGradient>
+		<radialGradient id="paint1_radial_night" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(100 52) rotate(90) scale(28)">
+			<stop stop-color="#FFF3C8" />
+			<stop offset="1" stop-color="#FFE28C" stop-opacity="0" />
+		</radialGradient>
+		<linearGradient id="paint2_linear_night" x1="80" y1="70" x2="80" y2="124" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#3D2F7C" />
+			<stop offset="1" stop-color="#20164E" />
+		</linearGradient>
+	</defs>
+	<rect x="16" y="16" width="128" height="128" rx="32" fill="url(#paint0_linear_night)" />
+	<rect x="16" y="16" width="128" height="128" rx="32" stroke="rgba(255,255,255,0.18)" stroke-width="2" />
+	<g transform="translate(0,7)">
+		<circle cx="100" cy="52" r="24" fill="#FFF1C0" />
+		<circle cx="100" cy="52" r="24" fill="url(#paint1_radial_night)" />
+		<path d="M112 52C112 45.3726 107.627 40 101 40C94.3726 40 90 45.3726 90 52C90 58.6274 94.3726 64 101 64C107.627 64 112 58.6274 112 52Z" fill="#FFE89D" />
+		<path d="M118 116C118 94.9086 101.091 78 80 78C58.9086 78 42 94.9086 42 116" fill="#1F133E" />
+		<path d="M90 96C90 90.4772 85.5228 86 80 86C74.4772 86 70 90.4772 70 96" stroke="#BDA6FF" stroke-width="6" stroke-linecap="round" />
+		<path d="M54 116C54 102.745 64.7452 92 78 92H82C95.2548 92 106 102.745 106 116" fill="url(#paint2_linear_night)" />
+		<circle cx="64" cy="104" r="12" fill="#2E2060" />
+		<circle cx="96" cy="104" r="12" fill="#2E2060" />
+		<circle cx="64" cy="104" r="6" fill="#F5F2FF" />
+		<circle cx="96" cy="104" r="6" fill="#F5F2FF" />
+		<circle cx="68" cy="100" r="2" fill="#BCA8FF" />
+		<circle cx="100" cy="100" r="2" fill="#BCA8FF" />
+		<path d="M70 118C74.4183 122.418 84.4183 122.418 88.8366 118" stroke="#7F6AFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M34 74L40 78" stroke="#49368D" stroke-width="4" stroke-linecap="round" />
+		<path d="M38 92L44 96" stroke="#49368D" stroke-width="4" stroke-linecap="round" />
+		<circle cx="48" cy="60" r="2" fill="#6A53CC" />
+		<circle cx="58" cy="50" r="3" fill="#6A53CC" />
+		<circle cx="38" cy="56" r="2" fill="#6A53CC" />
+	</g>
+</svg>

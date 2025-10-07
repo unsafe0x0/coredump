@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
 import { isSameDay, isSameWeek } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
+import { generateAchievements } from "@/utils/GenerateActivity";
 
 interface RequestBody {
   privateKey: string;
@@ -39,7 +40,7 @@ function getShortLanguageName(lang: string): string {
 function calculateNewStreak(
   currentStreak: number,
   lastUpdated: Date,
-  now: Date,
+  now: Date
 ): number {
   const sameDay = isSameDay(now, lastUpdated);
   if (sameDay) return currentStreak || 0;
@@ -138,7 +139,7 @@ export async function POST(req: Request) {
       const newStreak = calculateNewStreak(
         user.streak,
         user.streakUpdatedAt,
-        now,
+        now
       );
 
       await dbClient.user.update({
@@ -150,6 +151,19 @@ export async function POST(req: Request) {
       });
 
       return NextResponse.json({ message: "Activity created", status: 200 });
+    }
+
+    const newAchievements = generateAchievements(user, allActivities);
+
+    if (newAchievements.length > 0) {
+      await dbClient.user.update({
+        where: { id: user.id },
+        data: {
+          achievements: {
+            push: newAchievements.map((a) => a.id),
+          },
+        },
+      });
     }
 
     const newLast24 = activity.last24HoursDuration + roundedTime;
@@ -169,7 +183,7 @@ export async function POST(req: Request) {
     const newStreak = calculateNewStreak(
       user.streak,
       user.streakUpdatedAt,
-      now,
+      now
     );
 
     await dbClient.user.update({
@@ -185,3 +199,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 }
+ 
