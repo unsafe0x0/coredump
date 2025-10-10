@@ -1,11 +1,14 @@
 import dbClient from "@/prisma/DbClient";
 import { NextResponse } from "next/server";
-import { generateSVG } from "@/utils/GenerateSvg";
+import { generateSvgStatCard } from "@/utils/GenerateSvg";
+import { Format, makeBadge } from "badge-maker";
+import { formatMinutesAsHrMin } from "@/utils/ActivityMetrics";
 
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const username = searchParams.get("username");
+    const type = searchParams.get("type") || "total-time";
 
     if (!username) {
       return NextResponse.json(
@@ -42,13 +45,29 @@ export async function GET(req: Request) {
         (languageStats[lang] || 0) + (activity.totalDuration || 0);
     }
 
-    const svg = generateSVG(totalTime, languageStats);
-    return new Response(svg, {
-      headers: {
-        "Content-Type": "image/svg+xml",
-        "Cache-Control": "s-maxage=3600, stale-while-revalidate",
-      },
-    });
+    if (type === "stats-card") {
+      const svg = generateSvgStatCard(totalTime, languageStats);
+      return new Response(svg, {
+        headers: {
+          "Content-Type": "image/svg+xml",
+          "Cache-Control": "s-maxage=3600, stale-while-revalidate",
+        },
+      });
+    } else if (type === "total-time") {
+      const format: Format = {
+        label: "CoreDump Total Time",
+        message: `${formatMinutesAsHrMin(totalTime)}`,
+        color: "blue",
+        style: "flat",
+      };
+      const svg = makeBadge(format);
+      return new Response(svg, {
+        headers: {
+          "Content-Type": "image/svg+xml",
+          "Cache-Control": "s-maxage=3600, stale-while-revalidate",
+        },
+      });
+    }
   } catch (error) {
     console.error("Error fetching stats:", error);
     return NextResponse.json(
