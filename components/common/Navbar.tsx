@@ -27,7 +27,7 @@ const Navbar = () => {
             <img
               src="/logo.svg"
               alt="CoreDump Logo"
-              className="h-10 w-10 dark:invert"
+              className="h-10 w-10"
             />
             <span>CoreDump</span>
           </Link>

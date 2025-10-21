@@ -17,7 +17,7 @@ export interface StatsGridProps {
   weeklyAverageTime: string | number;
   totalAverageTime: string | number;
   achievementsCount: number;
-  bashPoints: number;
+  dumpPoints: number;
   className?: string;
 }
 
@@ -29,7 +29,7 @@ const StatsGrid: React.FC<StatsGridProps> = ({
   weeklyAverageTime,
   totalAverageTime,
   achievementsCount,
-  bashPoints,
+  dumpPoints,
   className,
 }) => {
   const containerClassName = className
@@ -73,8 +73,8 @@ const StatsGrid: React.FC<StatsGridProps> = ({
       icon: <MdOutlineEmojiEvents />,
     },
     {
-      title: "Bash Points",
-      value: bashPoints || 0,
+      title: "Dump Points",
+      value: dumpPoints || 0,
       icon: <LuWaypoints />,
     },
   ];

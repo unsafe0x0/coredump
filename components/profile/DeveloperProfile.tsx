@@ -119,7 +119,7 @@ const DeveloperProfile = () => {
       streakDays
     );
 
-    const bashPoints = profileData.totalPoints;
+    const dumpPoints = profileData.totalPoints;
 
     return (
       <>
@@ -143,7 +143,7 @@ const DeveloperProfile = () => {
           weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
           totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
           achievementsCount={profileData.achievements.length}
-          bashPoints={bashPoints}
+          dumpPoints={dumpPoints}
         />
 
         <Achievements

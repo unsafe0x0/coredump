@@ -116,7 +116,7 @@ const Dashboard = () => {
       streakDays
     );
 
-    const bashPoints = dashboardData.totalPoints;
+    const dumpPoints = dashboardData.totalPoints;
 
     if (showSettings) {
       return (
@@ -169,7 +169,7 @@ const Dashboard = () => {
           weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
           totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
           achievementsCount={dashboardData.achievements.length}
-          bashPoints={bashPoints}
+          dumpPoints={dumpPoints}
         />
 
         <Achievements achievements={dashboardData.achievements} />

@@ -6,8 +6,8 @@
   --muted: #6e6e6e;
   --card: #f7f7f8;
 
-  --accent: #1d9bf0;
-  --accent-hover: #1a8cd8;
+  --accent: #de7356;
+  --accent-hover: #d66d51;
   --accent-text: #ffffff;
 
   --destructive: #f24822;
@@ -21,13 +21,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 .dark {
-  --background: #1e1e1e;
+  --background: #181818;
   --foreground: #f5f5f5;
   --muted: #a1a1a1;
-  --card: #242424;
+  --card: #222222;
 
-  --accent: #1d9bf0;
-  --accent-hover: #1a8cd8;
+  --accent: #de7356;
+  --accent-hover: #d66d51;
   --accent-text: #ffffff;
 
   --destructive: #f24822;

@@ -1,5 +1,5 @@
 export function generatePrivateKey(): string {
-  const prefix = "coredump";
+  const prefix = "coredump-";
   const chars =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let randomPart = "";
