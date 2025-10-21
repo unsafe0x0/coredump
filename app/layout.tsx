@@ -18,17 +18,74 @@ const bodyFont = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "CoreDump - Track and Compete in Coding Time",
+  title: {
+    default: "CoreDump — Track & Compete in Coding Time",
+    template: "%s | CoreDump",
+  },
+  applicationName: "CoreDump",
   description:
-    "CoreDump is a dynamic leaderboard platform that tracks coding time and languages, helping developers compete and improve their productivity.",
+    "CoreDump tracks your coding time, daily streaks and language usage — compete on global leaderboards and level up your skills with gamified achievements.",
   keywords: [
     "CoreDump",
-    "coding",
-    "time tracking",
-    "leaderboard",
-    "developer",
+    "coding time tracking",
+    "developer leaderboard",
+    "coding streaks",
+    "programming analytics",
     "productivity",
+    "achievements",
+    "developer profile",
   ],
+  authors: [{ name: "UnsafeZero", url: "https://github.com/unsafe0x0" }],
+  creator: "UnsafeZero",
+  publisher: "UnsafeZero",
+  openGraph: {
+    title: "CoreDump — Track & Compete in Coding Time",
+    description:
+      "Track coding time, maintain streaks and compete globally on leaderboards. CoreDump helps developers build consistent habits and showcase progress.",
+    url: "https://coredump.vercel.app/",
+    siteName: "CoreDump",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "CoreDump logo",
+        type: "image/svg+xml",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CoreDump — Track & Compete in Coding Time",
+    description:
+      "Track coding time, maintain streaks and compete globally on leaderboards.",
+    creator: "@unsafezero",
+    images: ["/logo.svg"],
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
+  colorScheme: "light dark",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
