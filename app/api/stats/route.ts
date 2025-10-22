@@ -13,7 +13,7 @@ export async function GET(req: Request) {
     if (!username) {
       return NextResponse.json(
         { error: "Username is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -35,7 +35,7 @@ export async function GET(req: Request) {
 
     const totalTime = user.activities.reduce(
       (acc, activity) => acc + (activity.totalDuration || 0),
-      0
+      0,
     );
 
     const languageStats: Record<string, number> = {};
@@ -72,7 +72,7 @@ export async function GET(req: Request) {
     console.error("Error fetching stats:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

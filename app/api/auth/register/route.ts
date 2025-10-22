@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !password || !gitUsername || !twitterUsername) {
       return NextResponse.json(
         { message: "Please fill all fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -26,17 +26,17 @@ export async function POST(request: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { error: "User already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const githubResponse = await fetch(
-      `https://api.github.com/users/${normalisedGitUsername}`
+      `https://api.github.com/users/${normalisedGitUsername}`,
     );
     if (!githubResponse.ok) {
       return NextResponse.json(
         { message: "GitHub user not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -60,13 +60,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { message: "User registered successfully" },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error in registration:", error);
     return NextResponse.json(
       { error: "Failed to register user" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

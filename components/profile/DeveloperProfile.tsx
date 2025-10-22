@@ -41,7 +41,7 @@ interface DeveloperProfileData {
 }
 
 const fetchDeveloperData = async (
-  username: string
+  username: string,
 ): Promise<DeveloperProfileData> => {
   const response = await fetch(`/api/profile`, {
     method: "POST",
@@ -89,18 +89,18 @@ const DeveloperProfile = () => {
     }
 
     const overallDurationMinutes = calculateTotalDurationMinutes(
-      profileData.activities
+      profileData.activities,
     );
 
     const totalTime = formatMinutesAsHrMin(overallDurationMinutes);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      profileData.activities
+      profileData.activities,
     );
     const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
 
     const sortedActivities = sortActivitiesByTotalDuration(
-      profileData.activities
+      profileData.activities,
     );
 
     const topLanguage = getTopLanguageShortName(sortedActivities);
@@ -112,11 +112,11 @@ const DeveloperProfile = () => {
     const streakDays = Math.max(profileData.streak || 0, 1);
     const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
       overallDurationMinutes,
-      streakDays
+      streakDays,
     );
     const totalAverageMinutes = calculateAverageMinutes(
       overallDurationMinutes,
-      streakDays
+      streakDays,
     );
 
     const dumpPoints = profileData.totalPoints;

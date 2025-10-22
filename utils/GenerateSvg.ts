@@ -3,7 +3,7 @@ import { formatMinutesAsHrMin } from "./ActivityMetrics";
 
 export function generateSvgStatCard(
   totalTime: number,
-  languageStats: Record<string, number>
+  languageStats: Record<string, number>,
 ) {
   const langs = Object.entries(languageStats).sort((a, b) => b[1] - a[1]);
   const padding = 28;
@@ -97,7 +97,7 @@ export function generateSvgStatCard(
     const barX = pillPaddingX + nameWidth + 12;
     const availableForBar = Math.max(
       80,
-      pillWidth - barX - pillPaddingX - timeTextWidth - 12
+      pillWidth - barX - pillPaddingX - timeTextWidth - 12,
     );
     const innerBarWidth = availableForBar;
     const filledWidth = Math.round((percent / 100) * innerBarWidth);
@@ -111,18 +111,18 @@ export function generateSvgStatCard(
 
   <!-- progress bar background (use #282828) and filled portion in language color -->
   <rect x="${barX}" y="${
-      pillHeight / 2 - 5
-    }" width="${innerBarWidth}" height="10" rx="5" fill="#282828" />
+    pillHeight / 2 - 5
+  }" width="${innerBarWidth}" height="10" rx="5" fill="#282828" />
   <rect x="${barX}" y="${
-      pillHeight / 2 - 5
-    }" width="${filledWidth}" height="10" rx="5" fill="${color}" />
+    pillHeight / 2 - 5
+  }" width="${filledWidth}" height="10" rx="5" fill="${color}" />
 
   <!-- percent/time text (pill time) - show time and percent in brackets -->
   <text x="${pillWidth - pillPaddingX}" y="${
-      pillHeight / 2 + 6
-    }" font-size="${fontSize}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="400" text-anchor="end" class="pill-time">${formatMinutesAsHrMin(
-      timeText
-    )} (${percent}%)</text>
+    pillHeight / 2 + 6
+  }" font-size="${fontSize}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="400" text-anchor="end" class="pill-time">${formatMinutesAsHrMin(
+    timeText,
+  )} (${percent}%)</text>
       </g>
     `);
 
@@ -155,8 +155,8 @@ export function generateSvgStatCard(
 
       <!-- Title and totals (non-pill text should be weight 500 and white) -->
       <text x="${padding}" y="${titleY}" font-size="${titleFontSize}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif" font-weight="600">${formatMinutesAsHrMin(
-    totalTime
-  )}</text>
+        totalTime,
+      )}</text>
 
       <!-- Pills -->
       ${pills.join("")}

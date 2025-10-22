@@ -24,11 +24,7 @@ const Navbar = () => {
             href={"/"}
             className="flex items-center text-2xl font-semibold text-foreground font-heading"
           >
-            <img
-              src="/logo.svg"
-              alt="CoreDump Logo"
-              className="h-10 w-10"
-            />
+            <img src="/logo.svg" alt="CoreDump Logo" className="h-10 w-10" />
             <span>CoreDump</span>
           </Link>
           <ul className="hidden lg:flex items-center gap-5 text-foreground">

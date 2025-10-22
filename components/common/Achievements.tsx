@@ -17,13 +17,11 @@ const Achievements: React.FC<AchievementsProps> = ({
 }) => {
   const ACHIEVEMENT_MAP = React.useMemo(
     () => new Map(ACHIEVEMENTS.map((a) => [a.id, a])),
-    []
+    [],
   );
 
   return (
-    <div
-      className={`flex flex-col w-full${className}`}
-    >
+    <div className={`flex flex-col w-full${className}`}>
       <h2 className="text-3xl font-semibold text-foreground mb-5 mt-5 font-heading">
         {title}
       </h2>

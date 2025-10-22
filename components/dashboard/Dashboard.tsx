@@ -85,35 +85,35 @@ const Dashboard = () => {
       );
     }
     const totalDurationMinutes = calculateTotalDurationMinutes(
-      dashboardData.activities
+      dashboardData.activities,
     );
 
-  const totalTime = formatMinutesAsHrMin(totalDurationMinutes);
+    const totalTime = formatMinutesAsHrMin(totalDurationMinutes);
 
     const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      dashboardData.activities
+      dashboardData.activities,
     );
-  const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
+    const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
 
     const sortedActivities = sortActivitiesByTotalDuration(
-      dashboardData.activities
+      dashboardData.activities,
     );
 
     const topLanguage = getTopLanguageShortName(sortedActivities);
 
     const weeklyTopActivities = getTopWeeklyActivities(
-      dashboardData.activities
+      dashboardData.activities,
     );
     const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
 
     const streakDays = Math.max(dashboardData.streak || 0, 1);
     const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
       totalDurationMinutes,
-      streakDays
+      streakDays,
     );
     const totalAverageMinutes = calculateAverageMinutes(
       totalDurationMinutes,
-      streakDays
+      streakDays,
     );
 
     const dumpPoints = dashboardData.totalPoints;

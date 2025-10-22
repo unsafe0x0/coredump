@@ -2,7 +2,7 @@ import { ACHIEVEMENTS, Achievement } from "./Achievements";
 
 export function generateAchievements(
   user: any,
-  activities: any[]
+  activities: any[],
 ): Achievement[] {
   const earned: Achievement[] = [];
   const earnedIds = new Set(user.achievements || []);
@@ -11,14 +11,14 @@ export function generateAchievements(
 
   const totalHours = activities.reduce(
     (sum, a) => sum + (a.totalDuration || 0),
-    0
+    0,
   );
   const uniqueLangs = new Set(activities.map((a) => a.languageName));
   const maxSingleSession = Math.max(
-    ...activities.map((a) => a.totalDuration || 0)
+    ...activities.map((a) => a.totalDuration || 0),
   );
   const maxDailyHours = Math.max(
-    ...activities.map((a) => a.last24HoursDuration || 0)
+    ...activities.map((a) => a.last24HoursDuration || 0),
   );
 
   for (const ach of ACHIEVEMENTS) {

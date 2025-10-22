@@ -6,10 +6,12 @@
 
 A comprehensive coding tracking platform that helps developers monitor their progress, maintain daily streaks, compete on leaderboards, and enhance their programming skills through gamification.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.4.5-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://typescriptlang.org/)
-[![Prisma](https://img.shields.io/badge/Prisma-6.13.0-2D3748?style=for-the-badge&logo=prisma)](https://prisma.io/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-white?style=for-the-badge&logo=typescript)](https://typescriptlang.org/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma)](https://prisma.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-fff?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![NextAuth.js](https://img.shields.io/badge/NextAuth-333333?style=for-the-badge&logo=nextauth.js)](https://next-auth.js.org/)
 
 [Live Demo](https://CoreDump.vercel.app) • [Documentation](https://CoreDump.vercel.app/how-to-use) • [VS Code Extension](https://github.com/unsafe0x0/CoreDump-Extension)
 
@@ -20,49 +22,34 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 ### Core Features
 
 - **Daily Streak Tracking** - Build consistent coding habits with streak monitoring
-- **Global Leaderboards** - Compete with developers worldwide (24h & 7-day rankings)
-- **Multi-Language Support** - Track 25+ programming languages with detailed analytics
+- **Global Leaderboards** - Compete with developers (24h & 7-day rankings)
+- **Multi-Language Support** - Track programming languages with detailed analytics
 - **Real-time Progress** - Live coding time tracking and productivity insights
 - **Developer Profiles** - Comprehensive profiles with coding statistics and achievements
+- **Readme Card** - Showcase your coding stats on GitHub with dynamic readme cards
 
 ### Analytics & Insights
 
 - **Time Distribution** - Visual breakdown of coding time across languages
-- **Progress Visualization** - Interactive charts and progress bars
 - **Language Badges** - Beautiful badges showing your language proficiency
-- **Weekly/Daily Reports** - Detailed coding activity summaries
-
-### Gamification
-
-- **Achievement System** - Earn badges for milestones and accomplishments
-- **Competitive Rankings** - Climb the global developer leaderboard
-- **Streak Rewards** - Special recognition for consistent coding habits
-- **Language Mastery** - Track and showcase expertise in different technologies
+- **Weekly/Daily** - Detailed coding activity summaries
 
 ## Tech Stack
 
 ### Frontend
 
-- **Framework**: Next.js 15.4.5 (App Router)
-- **Language**: TypeScript 5.0
-- **Styling**: TailwindCSS 4.0
-- **State Management**: TanStack Query 5.84.0
-- **Authentication**: NextAuth.js 4.24.11
-- **Icons**: React Icons 5.5.0
+- **Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **State Management**: TanStack Query
+- **Authentication**: NextAuth.js
+- **Icons**: React Icons
 
 ### Backend
 
-- **Database**: PostgreSQL with Prisma ORM 6.13.0
+- **Database**: PostgreSQL with Prisma ORM
 - **API**: Next.js API Routes
-- **Caching**: LRU Cache 11.1.0
-- **Authentication**: JWT + OAuth (Google)
-
-### Development
-
-- **Build Tool**: Turbopack (Next.js)
-- **Type Safety**: TypeScript with strict mode
-- **Code Quality**: ESLint
-- **Database Management**: Prisma Studio
+- **Authentication**: JWT + NextAuth (Google)
 
 ## Quick Start
 
@@ -78,7 +65,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 
    ```bash
    git clone https://github.com/unsafe0x0/CoreDump.git
-   cd CoreDump/client
+   cd CoreDump
    ```
 
 2. **Install dependencies**
@@ -140,7 +127,7 @@ client/
 │   ├── leaderboard/       # Leaderboard pages
 │   └── profile/           # User profile pages
 ├── components/            # React components
-│   ├── ui/                # Reusable UI components
+│   ├── common/            # Common UI components
 │   ├── auth/              # Authentication components
 │   ├── dashboard/         # Dashboard components
 │   ├── leaderboard/       # Leaderboard components
@@ -152,43 +139,7 @@ client/
 └── public/                # Static assets
 ```
 
-## Key Components
-
-### Leaderboard System
-
-- **Real-time Rankings**: Live updates of developer standings
-- **Time-based Filtering**: Switch between 24-hour and 7-day views
-- **Language Analytics**: See top languages for each developer
-- **Streak Tracking**: Monitor coding consistency
-
-### Developer Profiles
-
-- **Personal Statistics**: Total time, streak, languages count
-- **Language Distribution**: Visual breakdown of coding time
-- **Progress Tracking**: Historical data and trends
-- **Social Integration**: GitHub and Twitter links
-
-### Analytics Dashboard
-
-- **Time Tracking**: Detailed coding session analytics
-- **Language Insights**: Usage patterns across technologies
-- **Progress Visualization**: Charts and progress indicators
-- **Goal Setting**: Personal targets and achievements
-
-## API Endpoints
-
-```typescript
-GET  /api/leaderboard      # Get leaderboard data
-POST /api/profile          # Get user profile data
-POST /api/update           # Update coding activity
-GET  /api/dashboard        # Get dashboard analytics
-POST /api/auth/register    # User registration
-GET  /api/activity         # Get user activity data
-```
-
 ## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)

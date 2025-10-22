@@ -90,7 +90,7 @@ const FAQ = () => {
                 <h3 className="text-base font-medium text-foreground font-heading pr-4">
                   {item.question}
                 </h3>
-                <div className="flex-shrink-0 text-foreground/80">
+                <div className="flex text-foreground/80">
                   {openItems.includes(item.id) ? (
                     <FaChevronUp size={20} />
                   ) : (

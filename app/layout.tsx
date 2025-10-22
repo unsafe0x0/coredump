@@ -18,6 +18,7 @@ const bodyFont = Public_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://coredump.vercel.app/"),
   title: {
     default: "CoreDump — Track & Compete in Coding Time",
     template: "%s | CoreDump",
@@ -69,11 +70,6 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
-  ],
-  colorScheme: "light dark",
   robots: {
     index: true,
     follow: true,

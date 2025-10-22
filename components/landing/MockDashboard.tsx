@@ -22,7 +22,7 @@ const MockDashboard = () => {
 
   const totalDurationMinutes = mockLanguages.reduce(
     (sum, l) => sum + (typeof l.duration === "number" ? l.duration : 0),
-    0
+    0,
   );
 
   return (
@@ -65,7 +65,7 @@ const MockDashboard = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
         <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
-          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex">
             <FaFireAlt />
           </span>
           <div className="flex flex-col justify-center items-start">
@@ -77,7 +77,7 @@ const MockDashboard = () => {
         </div>
 
         <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
-          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex">
             <GiClockwork />
           </span>
           <div className="flex flex-col justify-center items-start">
@@ -89,7 +89,7 @@ const MockDashboard = () => {
         </div>
 
         <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
-          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex">
             <RiCodeSSlashLine />
           </span>
           <div className="flex flex-col justify-center items-start">
@@ -101,7 +101,7 @@ const MockDashboard = () => {
         </div>
 
         <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
-          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex-shrink-0">
+          <span className="p-2 bg-accent rounded-md text-accent-text text-lg flex">
             <TbTrendingUp />
           </span>
           <div className="flex flex-col justify-center items-start">
@@ -172,7 +172,7 @@ const MockDashboard = () => {
                       ] || "/icons/txt.svg"
                     }
                     alt={lang.displayName}
-                    className="w-5 h-5 flex-shrink-0"
+                    className="w-5 h-5 flex"
                   />
                   <span className="text-foreground text-sm font-medium truncate">
                     {lang.displayName}

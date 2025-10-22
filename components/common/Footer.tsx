@@ -14,11 +14,7 @@ const Footer = () => {
         <div className="flex flex-col max-w-7xl w-full p-5 gap-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center text-2xl font-semibold text-foreground font-heading">
-              <img
-                src="/logo.svg"
-                alt="CoreDump Logo"
-                className="h-10 w-10"
-              />
+              <img src="/logo.svg" alt="CoreDump Logo" className="h-10 w-10" />
               <span>CoreDump</span>
             </div>
             <p className="text-foreground/80 text-sm font-normal">

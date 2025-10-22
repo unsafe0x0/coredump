@@ -41,7 +41,7 @@ function getShortLanguageName(lang: string): string {
 function calculateNewStreak(
   currentStreak: number,
   lastUpdated: Date,
-  now: Date
+  now: Date,
 ): number {
   const sameDay = isSameDay(now, lastUpdated);
   if (sameDay) return currentStreak || 0;
@@ -156,14 +156,14 @@ export async function POST(req: Request) {
       const newAchievements = generateAchievements(user, activitiesAfter);
       const totalMinutes = activitiesAfter.reduce(
         (sum, a) => sum + (a.totalDuration || 0),
-        0
+        0,
       );
       const computedPoints = Math.floor(totalMinutes / 10);
 
       const newStreak = calculateNewStreak(
         user.streak,
         user.streakUpdatedAt,
-        now
+        now,
       );
 
       await dbClient.user.update({
@@ -198,7 +198,7 @@ export async function POST(req: Request) {
     const newStreak = calculateNewStreak(
       user.streak,
       user.streakUpdatedAt,
-      now
+      now,
     );
 
     const activitiesAfter = (await dbClient.activity.findMany({
@@ -208,7 +208,7 @@ export async function POST(req: Request) {
     const newAchievements = generateAchievements(user, activitiesAfter);
     const totalMinutes = activitiesAfter.reduce(
       (sum, a) => sum + (a.totalDuration || 0),
-      0
+      0,
     );
     const computedPoints = Math.floor(totalMinutes / 10);
 
