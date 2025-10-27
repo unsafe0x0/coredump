@@ -31,6 +31,7 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
           width={18}
           height={18}
           className="object-contain flex"
+          unoptimized
         />
         <span className="text-foreground font-normal">
           {formatMinutesAsHrMin(duration)}

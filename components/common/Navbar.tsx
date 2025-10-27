@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
-import { SiCodeblocks } from "react-icons/si";
 import { RiMenuLine } from "react-icons/ri";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
 import ToggleTheme from "./ToggleTheme";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +24,13 @@ const Navbar = () => {
             href={"/"}
             className="flex items-center text-2xl font-semibold text-foreground font-heading"
           >
-            <img src="/logo.svg" alt="CoreDump Logo" className="h-10 w-10" />
+            <Image
+              src="/logo.svg"
+              alt="CoreDump Logo"
+              className="h-10 w-10"
+              width={40}
+              height={40}
+            />
             <span>CoreDump</span>
           </Link>
           <ul className="hidden lg:flex items-center gap-5 text-foreground">
@@ -57,7 +63,7 @@ const Navbar = () => {
             <ToggleTheme />
             {session ? (
               <Link href="/dashboard" className="hidden lg:block">
-                <img
+                <Image
                   src={session.user?.image ?? "/file.svg"}
                   alt={
                     session.user?.name
@@ -65,6 +71,9 @@ const Navbar = () => {
                       : "profile"
                   }
                   className="w-10 h-10 rounded-full object-cover"
+                  width={40}
+                  height={40}
+                  unoptimized
                 />
               </Link>
             ) : (
@@ -116,7 +125,7 @@ const Navbar = () => {
             </li>
             {session ? (
               <Link href="/dashboard">
-                <img
+                <Image
                   src={session.user?.image ?? "/file.svg"}
                   alt={
                     session.user?.name
@@ -124,6 +133,9 @@ const Navbar = () => {
                       : "profile"
                   }
                   className="w-10 h-10 rounded-full object-cover"
+                  width={40}
+                  height={40}
+                  unoptimized
                 />
               </Link>
             ) : (

@@ -6,8 +6,8 @@ import { MdOutlineDescription } from "react-icons/md";
 
 const PublicStats: React.FC = () => {
   const username = "yourusername";
-  const statsEndpoint = `${window.location.origin}/api/stats?username=${username}`;
-  const publicStatsEndpoint = `${window.location.origin}/api/public-stats?username=${username}`;
+  const statsEndpoint = `https://coredump.vercel.app/api/stats?username=${username}`;
+  const publicStatsEndpoint = `https://coredump.vercel.app/api/public-stats?username=${username}`;
 
   const endpoints = [
     {

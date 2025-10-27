@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +57,14 @@ const Login = () => {
             variant="secondary"
             className="w-full"
           >
-            <img src="/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
+            <Image
+              src="/google.svg"
+              alt="Google Logo"
+              className="w-5 h-5 mr-2"
+              width={20}
+              height={20}
+              unoptimized
+            />
             Login with Google
           </Button>
           <div className="flex items-center">

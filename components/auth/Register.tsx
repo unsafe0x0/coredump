@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -72,7 +73,14 @@ const Register = () => {
             variant="secondary"
             className="w-full"
           >
-            <img src="/google.svg" alt="Google Logo" className="w-5 h-5 mr-2" />
+            <Image
+              src="/google.svg"
+              alt="Google Logo"
+              className="w-5 h-5 mr-2"
+              width={20}
+              height={20}
+              unoptimized
+            />
             Register with Google
           </Button>
           <div className="flex items-center">

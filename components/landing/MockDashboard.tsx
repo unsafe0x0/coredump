@@ -37,10 +37,12 @@ const MockDashboard = () => {
       <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card border border-border mb-4">
         <div className="flex flex-row justify-start items-start gap-4 mt-2">
           <div className="w-16 h-16 rounded-md flex items-center justify-center">
-            <img
+            <Image
               src="https://avatars.githubusercontent.com/u/165533860?v=4"
               alt="Unsafezero"
               className="rounded-md object-cover w-full h-full"
+              width={64}
+              height={64}
             />
           </div>
           <div className="flex flex-col justify-start items-start gap-2">
@@ -130,12 +132,13 @@ const MockDashboard = () => {
                 <div
                   className={`flex items-center justify-center gap-1 px-2 py-1 border rounded-md text-sm font-normal whitespace-nowrap min-w-[70px] text-foreground ${colorClass}`}
                 >
-                  <img
+                  <Image
                     src={icon}
                     alt={lang.displayName}
                     width={18}
                     height={18}
                     className="w-4 h-4"
+                    unoptimized
                   />
                   <span className="text-foreground">
                     {Math.round(lang.duration)}m
@@ -165,7 +168,7 @@ const MockDashboard = () => {
                 className="flex items-center justify-between w-full"
               >
                 <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <img
+                  <Image
                     src={
                       languageIconsImage[
                         languageKey as keyof typeof languageIconsImage
@@ -173,6 +176,9 @@ const MockDashboard = () => {
                     }
                     alt={lang.displayName}
                     className="w-5 h-5 flex"
+                    width={20}
+                    height={20}
+                    unoptimized
                   />
                   <span className="text-foreground text-sm font-medium truncate">
                     {lang.displayName}

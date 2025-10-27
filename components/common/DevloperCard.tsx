@@ -25,6 +25,7 @@ const DeveloperCard: React.FC<DeveloperCardProps> = ({
         width={46}
         height={46}
         className="rounded-full object-cover"
+        unoptimized
       />
       <div className="flex flex-col justify-start items-start gap-0.5">
         <h2 className="text-base font-medium font-heading text-foreground">
