@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
-import { isSameDay, isSameWeek } from "date-fns";
+import { isSameDay } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { generateAchievements } from "@/utils/GenerateAchievements";
 
@@ -102,33 +102,6 @@ export async function POST(req: Request) {
     }
 
     const now = new Date();
-
-    const allActivities = (await dbClient.activity.findMany({
-      where: {
-        userId: user.id,
-      },
-    })) as Activity[];
-
-    const latestUpdate = allActivities.reduce((latest, activity) => {
-      return activity.lastUpdated > latest ? activity.lastUpdated : latest;
-    }, new Date(0));
-
-    const isNewDay = !isSameDay(now, latestUpdate);
-    const isNewWeek = !isSameWeek(now, latestUpdate, { weekStartsOn: 1 });
-
-    if (isNewDay) {
-      await dbClient.activity.updateMany({
-        where: { userId: user.id },
-        data: { last24HoursDuration: 0, lastUpdated: now },
-      });
-    }
-
-    if (isNewWeek) {
-      await dbClient.activity.updateMany({
-        where: { userId: user.id },
-        data: { last7DaysDuration: 0, lastUpdated: now },
-      });
-    }
 
     const activity = (await dbClient.activity.findFirst({
       where: {

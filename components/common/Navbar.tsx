@@ -38,6 +38,14 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                href="/docs"
+                className="text-base font-normal text-foreground hover:text-accent"
+              >
+                Docs
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/leaderboard"
                 className="text-base font-normal text-foreground hover:text-accent"
               >
@@ -88,6 +96,14 @@ const Navbar = () => {
                 className="text-base font-normal text-foreground hover:text-accent"
               >
                 How To Use
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/docs"
+                className="text-base font-normal text-foreground hover:text-accent"
+              >
+                Docs
               </Link>
             </li>
             <li>

@@ -13,49 +13,37 @@ const faqData: FAQItem[] = [
     id: 1,
     question: "What is CoreDump?",
     answer:
-      "CoreDump is a comprehensive coding tracking platform that helps developers monitor their progress, maintain daily streaks, compete on leaderboards, and enhance their programming skills through gamification.",
+      "CoreDump is a comprehensive coding tracking platform that helps developers monitor their progress, maintain daily streaks, compete on leaderboards.",
   },
   {
     id: 2,
     question: "How does the daily streak feature work?",
     answer:
-      "The daily streak tracks your consistent coding activity. Each day you code, your streak increases. Missing a day will reset your streak to zero. This feature helps build consistent coding habits and maintain momentum in your development journey.",
+      "The daily streak tracks your consistent coding activity. Each day you code, your streak increases. Missing a day will reset your streak to zero.",
   },
   {
     id: 3,
     question: "Can I track multiple programming languages?",
     answer:
-      "Yes! CoreDump supports tracking across all major programming languages including JavaScript, Python, Java, C++, React, and many more. You can see detailed analytics for each language you use.",
+      "Yes! CoreDump supports tracking across all major programming languages including JavaScript, Python, Java, C++, React, and many more.",
   },
   {
     id: 4,
     question: "How do leaderboards work?",
     answer:
-      "Leaderboards rank users based on various metrics like coding streaks, total coding time, and achievements earned. You can compete with developers worldwide and see how you stack up against the global community.",
+      "Leaderboards rank users based on coding time. You can compete with developers.",
   },
   {
     id: 5,
-    question: "Is CoreDump free to use?",
+    question: "How to show coding time on my portfolio or README?",
     answer:
-      "Yes, CoreDump offers a comprehensive free tier with access to core features including streak tracking, basic analytics, and leaderboards. Premium features may be available for advanced users.",
+      "You can use the CoreDump API to fetch your coding statistics and display them on your portfolio or README. Simply make a GET request to the public stats endpoint with your GitHub username to retrieve your coding time data.",
   },
   {
     id: 6,
     question: "How do I install the VS Code extension?",
     answer:
-      "You can install the CoreDump VS Code extension directly from the VS Code marketplace or from our GitHub repository. The extension automatically tracks your coding activity and syncs with your CoreDump account.",
-  },
-  {
-    id: 7,
-    question: "What kind of achievements can I earn?",
-    answer:
-      "You can earn various achievements including streak milestones, language mastery badges, coding time goals, and special event rewards. Achievements help motivate consistent coding and skill development.",
-  },
-  {
-    id: 8,
-    question: "How is my coding data kept secure?",
-    answer:
-      "We prioritize your privacy and data security. All coding metrics are anonymized and encrypted. We only track coding patterns and statistics, never your actual code content.",
+      "You can install the CoreDump VS Code extension directly from the VS Code marketplace.",
   },
 ];
 

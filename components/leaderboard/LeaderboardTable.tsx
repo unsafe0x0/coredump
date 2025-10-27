@@ -4,6 +4,7 @@ import LanguageBadge from "../common/LanguageBadge";
 import { languageIconsImage, languageColors } from "@/utils/LanguageData";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { IoFlame } from "react-icons/io5";
+import { RiMedal2Fill } from "react-icons/ri";
 
 interface Activity {
   languageName: string;
@@ -181,17 +182,25 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold mx-auto ${
                       index === 0
-                        ? "bg-yellow-500/20 border-2 border-yellow-500 text-yellow-400 shadow-lg shadow-yellow-500/20"
+                        ? "bg-yellow-500/20 border-2 border-yellow-500 text-yellow-400"
                         : index === 1
-                          ? "bg-neutral-400/20 border-2 border-neutral-400 text-foreground/80 shadow-lg shadow-neutral-400/20"
+                          ? "bg-neutral-400/20 border-2 border-neutral-400 text-foreground/80"
                           : index === 2
-                            ? "bg-orange-500/20 border-2 border-orange-500 text-orange-400 shadow-lg shadow-orange-500/20"
+                            ? "bg-orange-500/20 border-2 border-orange-500 text-orange-400"
                             : "bg-[#282828]/30 border-2 border-neutral-500 text-foreground/80"
                     }`}
                   >
                     {index < 3 ? (
                       <span className="text-lg">
-                        {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                        <RiMedal2Fill
+                          className={
+                            index === 0
+                              ? "text-yellow-400 text-xl"
+                              : index === 1
+                                ? "text-neutral-400 text-xl"
+                                : "text-orange-400 text-xl"
+                          }
+                        />
                       </span>
                     ) : (
                       index + 1

@@ -13,7 +13,7 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![NextAuth.js](https://img.shields.io/badge/NextAuth-333333?style=for-the-badge&logo=nextauth.js)](https://next-auth.js.org/)
 
-[Live Demo](https://CoreDump.vercel.app) • [Documentation](https://CoreDump.vercel.app/how-to-use) • [VS Code Extension](https://github.com/unsafe0x0/CoreDump-Extension)
+[Live Demo](https://CoreDump.vercel.app) • [Documentation](https://CoreDump.vercel.app/how-to-use) • [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump)
 
 </div>
 
@@ -27,12 +27,58 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 - **Real-time Progress** - Live coding time tracking and productivity insights
 - **Developer Profiles** - Comprehensive profiles with coding statistics and achievements
 - **Readme Card** - Showcase your coding stats on GitHub with dynamic readme cards
+- **Time Display** - Showcase your coding time in portfolio
 
 ### Analytics & Insights
 
 - **Time Distribution** - Visual breakdown of coding time across languages
 - **Language Badges** - Beautiful badges showing your language proficiency
 - **Weekly/Daily** - Detailed coding activity summaries
+
+## Public APIs
+
+CoreDump provides public APIs to access coding statistics programmatically or display them in README files.
+
+### README Stats API
+
+Generate SVG badges for your GitHub README:
+
+```
+GET /api/stats?username={username}&type={type}
+```
+
+**Parameters:**
+
+- `username` (required): GitHub username
+- `type`: `stats-card` (default) or `total-time`
+
+**Example:**
+
+```
+![CoreDump Stats](https://coredump.vercel.app/api/stats?username=yourusername&type=stats-card)
+```
+
+### Public Stats API
+
+Access coding data in JSON format:
+
+```
+GET /api/public-stats?username={username}
+```
+
+**Parameters:**
+
+- `username` (required): GitHub username
+
+**Response:**
+
+```json
+{
+  "username": "yourusername",
+  "weekTotal": "7h 30m",
+  "todayTotal": "2h 15m"
+}
+```
 
 ## Tech Stack
 
@@ -43,7 +89,6 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 - **Styling**: TailwindCSS
 - **State Management**: TanStack Query
 - **Authentication**: NextAuth.js
-- **Icons**: React Icons
 
 ### Backend
 
@@ -97,6 +142,9 @@ A comprehensive coding tracking platform that helps developers monitor their pro
    # OAuth (Google)
    GOOGLE_CLIENT_ID="your-google-client-id"
    GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+   # Reset Key
+   RESET_KEY="your-reset-key"
    ```
 
 4. **Database Setup**
@@ -110,33 +158,48 @@ A comprehensive coding tracking platform that helps developers monitor their pro
 5. **Start Development Server**
 
    ```bash
-   npm run dev
+   bun run dev
    ```
 
 6. **Install VS Code Extension**
    - Download from [GitHub](https://github.com/unsafe0x0/CoreDump-Extension)
-   - Or search "CoreDump" in VS Code marketplace
+   - Or search "CoreDump" in VS Code marketplace [here](https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump)
 
 ## Project Structure
 
 ```
-client/
+coredump/
 ├── app/                    # Next.js App Router
 │   ├── (auth)/            # Authentication routes
 │   ├── api/               # API endpoints
-│   ├── leaderboard/       # Leaderboard pages
-│   └── profile/           # User profile pages
+│   │   ├── activity/      # Activity tracking
+│   │   ├── auth/          # Authentication
+│   │   ├── dashboard/     # Dashboard data
+│   │   ├── leaderboard/   # Leaderboard data
+│   │   ├── profile/       # Profile data
+│   │   ├── public-stats/  # Public statistics API
+│   │   ├── reset-duration/# Duration reset API
+│   │   └── stats/         # README stats API
+│   ├── dashboard/         # Dashboard page
+│   ├── developer/         # Developer profiles
+│   ├── docs/              # Documentation pages
+│   ├── how-to-use/        # How-to-use guide
+│   ├── leaderboard/       # Leaderboard page
+│   └── page.tsx           # Home page
 ├── components/            # React components
-│   ├── common/            # Common UI components
 │   ├── auth/              # Authentication components
+│   ├── common/            # Shared UI components
 │   ├── dashboard/         # Dashboard components
+│   ├── docs/              # Documentation components
+│   ├── how-to-use/        # How-to-use components
+│   ├── landing/           # Landing page components
 │   ├── leaderboard/       # Leaderboard components
-│   ├── profile/           # Profile components
-│   └── landing/           # Landing page components
-├── prisma/                # Database schema & client
-├── utils/                 # Utility functions
-├── types/                 # TypeScript type definitions
-└── public/                # Static assets
+│   └── profile/           # Profile components
+├── context/               # React context providers
+├── prisma/                # Database schema & migrations
+├── public/                # Static assets
+├── types/                 # TypeScript definitions
+└── utils/                 # Utility functions
 ```
 
 ## Contributing

@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  FaFire,
-  FaChartLine,
-  FaCode,
-  FaBullseye,
-  FaMedal,
-} from "react-icons/fa";
+import { FaFire, FaChartLine, FaCode, FaMedal } from "react-icons/fa";
+import { RiRouteFill } from "react-icons/ri";
 import { MdLeaderboard } from "react-icons/md";
 
 const data = [
@@ -38,10 +33,10 @@ const data = [
   },
   {
     id: 5,
-    title: "Goal Setting",
+    title: "Public Stats",
     description:
-      "Set personalized coding goals and track your journey towards achieving them",
-    icon: <FaBullseye size={24} />,
+      "Share your coding time in your portfolio or README via API routes",
+    icon: <RiRouteFill size={24} />,
   },
   {
     id: 6,
