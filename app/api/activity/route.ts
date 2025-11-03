@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
-import { isSameDay } from "date-fns";
+import { isSameDay, subDays } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { generateAchievements } from "@/utils/GenerateAchievements";
 
@@ -8,25 +8,6 @@ interface RequestBody {
   privateKey: string;
   languageName: string;
   timeSpent: number;
-}
-
-interface Activity {
-  id: string;
-  userId: string;
-  languageName: string;
-  shortLanguageName: string;
-  totalDuration: number;
-  last24HoursDuration: number;
-  last7DaysDuration: number;
-  lastUpdated: Date;
-}
-
-interface User {
-  id: string;
-  name: string;
-  privateKey: string;
-  streak: number;
-  streakUpdatedAt: Date;
 }
 
 const programmingLanguages = new Set(Object.keys(languageShortNames));
@@ -39,7 +20,7 @@ function getShortLanguageName(lang: string): string {
 }
 
 function calculateNewStreak(
-  currentStreak: number,
+  currentStreak: number | null | undefined,
   lastUpdated: Date,
   now: Date,
 ): number {
@@ -54,6 +35,12 @@ function calculateNewStreak(
   }
 
   return 1;
+}
+
+function getLocalMidnight(date: Date): Date {
+  const localMidnight = new Date(date);
+  localMidnight.setHours(0, 0, 0, 0);
+  return localMidnight;
 }
 
 export async function POST(req: Request) {
@@ -80,7 +67,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Invalid time spent", status: 400 });
     }
 
-    const user = (await dbClient.user.findUnique({
+    const user = await dbClient.user.findUnique({
       where: { privateKey },
       select: {
         id: true,
@@ -90,12 +77,7 @@ export async function POST(req: Request) {
         streak: true,
         streakUpdatedAt: true,
       },
-    })) as
-      | (User & {
-          achievements: string[];
-          totalPoints: number;
-        })
-      | null;
+    });
 
     if (!user) {
       return NextResponse.json({ message: "User not found", status: 404 });
@@ -103,12 +85,12 @@ export async function POST(req: Request) {
 
     const now = new Date();
 
-    const activity = (await dbClient.activity.findFirst({
+    const activity = await dbClient.activity.findFirst({
       where: {
         userId: user.id,
         languageName: normalizedLang,
       },
-    })) as Activity | null;
+    });
 
     if (!activity) {
       await dbClient.activity.create({
@@ -122,61 +104,23 @@ export async function POST(req: Request) {
           lastUpdated: now,
         },
       });
-      const activitiesAfter = (await dbClient.activity.findMany({
-        where: { userId: user.id },
-      })) as Activity[];
-
-      const newAchievements = generateAchievements(user, activitiesAfter);
-      const totalMinutes = activitiesAfter.reduce(
-        (sum, a) => sum + (a.totalDuration || 0),
-        0,
-      );
-      const computedPoints = Math.floor(totalMinutes / 10);
-
-      const newStreak = calculateNewStreak(
-        user.streak,
-        user.streakUpdatedAt,
-        now,
-      );
-
-      await dbClient.user.update({
-        where: { id: user.id },
+    } else {
+      await dbClient.activity.update({
+        where: { id: activity.id },
         data: {
-          streak: newStreak,
-          streakUpdatedAt: now,
-          totalPoints: computedPoints,
-          ...(newAchievements.length > 0
-            ? { achievements: { push: newAchievements.map((a) => a.id) } }
-            : {}),
+          totalDuration: (activity.totalDuration || 0) + roundedTime,
+          last24HoursDuration:
+            (activity.last24HoursDuration || 0) + roundedTime,
+          last7DaysDuration: (activity.last7DaysDuration || 0) + roundedTime,
+          lastUpdated: now,
+          shortLanguageName: shortLang,
         },
       });
-
-      return NextResponse.json({ message: "Activity created", status: 200 });
     }
 
-    const newLast24 = activity.last24HoursDuration + roundedTime;
-    const newLast7 = activity.last7DaysDuration + roundedTime;
-
-    await dbClient.activity.update({
-      where: { id: activity.id },
-      data: {
-        totalDuration: activity.totalDuration + roundedTime,
-        last24HoursDuration: newLast24,
-        last7DaysDuration: newLast7,
-        lastUpdated: now,
-        shortLanguageName: shortLang,
-      },
-    });
-
-    const newStreak = calculateNewStreak(
-      user.streak,
-      user.streakUpdatedAt,
-      now,
-    );
-
-    const activitiesAfter = (await dbClient.activity.findMany({
+    const activitiesAfter = await dbClient.activity.findMany({
       where: { userId: user.id },
-    })) as Activity[];
+    });
 
     const newAchievements = generateAchievements(user, activitiesAfter);
     const totalMinutes = activitiesAfter.reduce(
@@ -184,6 +128,11 @@ export async function POST(req: Request) {
       0,
     );
     const computedPoints = Math.floor(totalMinutes / 10);
+    const newStreak = calculateNewStreak(
+      user.streak,
+      user.streakUpdatedAt,
+      now,
+    );
 
     await dbClient.user.update({
       where: { id: user.id },
@@ -192,16 +141,101 @@ export async function POST(req: Request) {
         streakUpdatedAt: now,
         totalPoints: computedPoints,
         ...(newAchievements.length > 0
-          ? { achievements: { push: newAchievements.map((a) => a.id) } }
+          ? { achievements: { push: newAchievements.map((a: any) => a.id) } }
           : {}),
       },
     });
 
+    const today = getLocalMidnight(now);
+    const dayName = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ][today.getDay()] as
+      | "SUNDAY"
+      | "MONDAY"
+      | "TUESDAY"
+      | "WEDNESDAY"
+      | "THURSDAY"
+      | "FRIDAY"
+      | "SATURDAY";
+
+    await dbClient.dailyActivity.upsert({
+      where: {
+        userId_date: {
+          userId: user.id,
+          date: today,
+        },
+      },
+      update: {
+        duration: { increment: roundedTime },
+      },
+      create: {
+        userId: user.id,
+        weekDay: dayName,
+        date: today,
+        duration: roundedTime,
+      },
+    });
+
+    const weekStartDate = subDays(today, 6);
+    const weekRecords = await dbClient.dailyActivity.findMany({
+      where: {
+        userId: user.id,
+        date: { gte: weekStartDate, lte: today },
+      },
+      select: { duration: true },
+    });
+
+    const totalWeekMinutes = weekRecords.reduce(
+      (sum, r) => sum + r.duration,
+      0,
+    );
+
+    const weekStartDay = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ][weekStartDate.getDay()] as
+      | "SUNDAY"
+      | "MONDAY"
+      | "TUESDAY"
+      | "WEDNESDAY"
+      | "THURSDAY"
+      | "FRIDAY"
+      | "SATURDAY";
+
+    await dbClient.weeklyActivity.upsert({
+      where: {
+        userId_weekStartDay: {
+          userId: user.id,
+          weekStartDay,
+        },
+      },
+      update: {
+        totalDuration: totalWeekMinutes,
+      },
+      create: {
+        userId: user.id,
+        weekStartDay,
+        totalDuration: totalWeekMinutes,
+      },
+    });
+
     return NextResponse.json({
-      message: `Activity updated ${user.name} ${normalizedLang}: +${roundedTime}m`,
+      message: `Activity updated for ${user.name} (${normalizedLang}): +${roundedTime}m`,
       status: 200,
     });
   } catch (err) {
+    console.error("Error updating activity:", err);
     return NextResponse.json({ message: "Internal server error", status: 500 });
   }
 }

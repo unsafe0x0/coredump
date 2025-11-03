@@ -8,6 +8,7 @@ interface UpdateBody {
   name?: string;
   gitUsername?: string;
   twitterUsername?: string;
+  website?: string;
   password?: string;
 }
 
@@ -19,14 +20,7 @@ export async function PUT(req: NextRequest) {
     }
 
     const body: UpdateBody = await req.json();
-    const { name, gitUsername, twitterUsername, password } = body;
-
-    if (!name && !gitUsername && !twitterUsername) {
-      return NextResponse.json(
-        { message: "No fields provided for update" },
-        { status: 400 },
-      );
-    }
+    const { name, gitUsername, twitterUsername, website, password } = body;
 
     const updates: any = {};
     if (name) updates.name = name;
@@ -45,6 +39,10 @@ export async function PUT(req: NextRequest) {
       const githubData = await githubProfile.json();
       updates.gitUsername = githubUsername;
       updates.profileImage = githubData.avatar_url;
+    }
+
+    if (website) {
+      updates.website = website;
     }
 
     if (twitterUsername) {

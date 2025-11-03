@@ -2,19 +2,20 @@
 
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { FaCog } from "react-icons/fa";
+import { MdOutlineSettings } from "react-icons/md";
 import { MdHomeFilled } from "react-icons/md";
+import Link from "next/link";
 import ProfileHeader from "../common/ProfileHeader";
 import LanguageSection from "../common/LanguageSection";
 import PrivateKeySection from "../common/PrivateKeySection";
+import Chart from "../common/Chart";
 import WeekStats from "../common/WeekStats";
 import StatsGrid from "../common/StatsGrid";
 import Achievements from "../common/Achievements";
 import Settings from "./Settings";
-import Link from "next/link";
+import ToggleTheme from "../common/ToggleTheme";
 import {
   calculateAverageMinutes,
-  calculateLast7DaysDurationMinutes,
   calculateTotalDurationMinutes,
   formatMinutesAsHrMin,
   getTopLanguageShortName,
@@ -23,7 +24,6 @@ import {
   sortActivitiesByTotalDuration,
   sumWeeklyDurations,
 } from "@/utils/ActivityMetrics";
-import ToggleTheme from "../common/ToggleTheme";
 
 interface LanguageActivity {
   languageName: string;
@@ -33,16 +33,32 @@ interface LanguageActivity {
   last24HoursDuration?: number;
 }
 
+interface DailyActivity {
+  weekDay: number;
+  date: string;
+  duration: number;
+}
+
+interface WeeklyActivity {
+  weekStartDay: string;
+  totalDuration: number;
+}
+
 interface DashboardData {
+  id: string;
   name: string;
+  email: string;
   gitUsername: string;
   twitterUsername: string;
+  website?: string;
   profileImage: string;
-  streak: number;
   privateKey: string;
-  activities: LanguageActivity[];
-  achievements: string[];
+  streak: number;
   totalPoints: number;
+  achievements: string[];
+  activities: LanguageActivity[];
+  dailyActivity: DailyActivity[];
+  weeklyActivity: WeeklyActivity[];
 }
 
 const fetchDashboardData = async (): Promise<DashboardData> => {
@@ -64,71 +80,69 @@ const Dashboard = () => {
     queryFn: fetchDashboardData,
   });
 
-  const renderContent = () => {
-    if (isLoading) {
-      return (
-        <div className="flex justify-center items-center w-full min-h-screen py-20">
-          <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-border border-solid border-l-transparent" />
-        </div>
-      );
-    }
-
-    if (error || !dashboardData) {
-      return (
-        <div className="flex justify-center items-center w-full min-h-screen">
-          <div className="text-center p-8 bg-card border border-border rounded-md">
-            <p className="text-foreground/80 text-lg font-semibold">
-              {error ? `Error: ${error.message}` : "No dashboard data found"}
-            </p>
-          </div>
-        </div>
-      );
-    }
-    const totalDurationMinutes = calculateTotalDurationMinutes(
-      dashboardData.activities,
-    );
-
-    const totalTime = formatMinutesAsHrMin(totalDurationMinutes);
-
-    const thisWeekMinutes = calculateLast7DaysDurationMinutes(
-      dashboardData.activities,
-    );
-    const thisWeekTotalTime = formatMinutesAsHrMin(thisWeekMinutes);
-
-    const sortedActivities = sortActivitiesByTotalDuration(
-      dashboardData.activities,
-    );
-
-    const topLanguage = getTopLanguageShortName(sortedActivities);
-
-    const weeklyTopActivities = getTopWeeklyActivities(
-      dashboardData.activities,
-    );
-    const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
-
-    const streakDays = Math.max(dashboardData.streak || 0, 1);
-    const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
-      totalDurationMinutes,
-      streakDays,
-    );
-    const totalAverageMinutes = calculateAverageMinutes(
-      totalDurationMinutes,
-      streakDays,
-    );
-
-    const dumpPoints = dashboardData.totalPoints;
-
-    if (showSettings) {
-      return (
-        <Settings
-          onBack={() => setShowSettings(false)}
-          userData={dashboardData}
-        />
-      );
-    }
-
+  if (isLoading) {
     return (
-      <>
+      <div className="flex justify-center items-center w-full min-h-screen py-20">
+        <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-border border-solid border-l-transparent" />
+      </div>
+    );
+  }
+
+  if (error || !dashboardData) {
+    return (
+      <div className="flex justify-center items-center w-full min-h-screen">
+        <div className="text-center p-8 bg-card border border-border rounded-md">
+          <p className="text-foreground/80 text-lg font-semibold">
+            {error
+              ? `Error: ${(error as Error).message}`
+              : "No dashboard data found"}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (showSettings) {
+    return (
+      <Settings
+        onBack={() => setShowSettings(false)}
+        userData={dashboardData}
+      />
+    );
+  }
+
+  const totalDurationMinutes = calculateTotalDurationMinutes(
+    dashboardData.activities,
+  );
+  const totalTime = formatMinutesAsHrMin(totalDurationMinutes);
+  const sortedActivities = sortActivitiesByTotalDuration(
+    dashboardData.activities,
+  );
+  const topLanguage = getTopLanguageShortName(sortedActivities);
+  const weeklyTopActivities = getTopWeeklyActivities(dashboardData.activities);
+  const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
+  const streakDays = Math.max(dashboardData.streak, 1);
+  const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
+    totalDurationMinutes,
+    streakDays,
+  );
+  const totalAverageMinutes = calculateAverageMinutes(
+    totalDurationMinutes,
+    streakDays,
+  );
+  const dumpPoints = dashboardData.totalPoints;
+
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dailyMap = Object.fromEntries(
+    dashboardData.dailyActivity.map((d) => [d.weekDay, d.duration]),
+  );
+  const timeData = daysOfWeek.map((_, i) =>
+    formatMinutesAsHrMin(dailyMap[i] ?? 0),
+  );
+
+  return (
+    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-background">
+      <div className="flex flex-col justify-start items-start max-w-7xl w-full px-3">
         <div className="flex justify-between items-center w-full mb-5">
           <h2 className="text-3xl font-semibold text-foreground/80 text-left font-heading">
             Welcome back,{" "}
@@ -137,16 +151,16 @@ const Dashboard = () => {
           <div className="flex items-center gap-3 justify-end">
             <Link
               href={"/"}
-              className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
+              className="text-foreground/80 hover:text-foreground"
             >
-              <MdHomeFilled className="text-xl" />
+              <MdHomeFilled size={22} />
             </Link>
             <ToggleTheme />
             <button
               onClick={() => setShowSettings(true)}
-              className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-foreground hover:bg-card/80"
+              className="text-foreground/80 hover:text-foreground"
             >
-              <FaCog className="text-xl" />
+              <MdOutlineSettings size={22} />
             </button>
           </div>
         </div>
@@ -156,10 +170,14 @@ const Dashboard = () => {
           gitUsername={dashboardData.gitUsername}
           twitterUsername={dashboardData.twitterUsername}
           profileImage={dashboardData.profileImage}
-          thisWeekTotalTime={thisWeekTotalTime}
+          website={dashboardData.website}
         />
 
         <PrivateKeySection privateKey={dashboardData.privateKey} />
+
+        <div className="flex flex-col justify-start items-start w-full py-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
+          <Chart days={daysOfWeek} timeData={timeData} />
+        </div>
 
         <StatsGrid
           streak={dashboardData.streak}
@@ -178,18 +196,11 @@ const Dashboard = () => {
           activities={weeklyTopActivities}
           totalDurationMinutes={weeklyDurationMinutes}
         />
+
         <LanguageSection
           activities={sortedActivities}
           totalDurationMinutes={totalDurationMinutes}
         />
-      </>
-    );
-  };
-
-  return (
-    <section className="flex justify-center items-start w-full min-h-screen py-10 bg-background relative">
-      <div className="flex flex-col justify-start items-start max-w-7xl w-full px-3 relative z-10">
-        {renderContent()}
       </div>
     </section>
   );

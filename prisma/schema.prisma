@@ -15,20 +15,23 @@ model User {
   email           String   @unique
   gitUsername     String   @unique
   twitterUsername String   @unique
+  website         String?
   profileImage    String
   password        String?
   privateKey      String   @unique
   role            String   @default("USER")
   streak          Int?     @default(0)
+  maxStreak       Int?     @default(0)
   achievements    String[] @default([])
   totalPoints     Int?     @default(0)
-
   streakUpdatedAt DateTime @default(now())
   pingTime        DateTime @default(now())
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  activities Activity[]
+  activities     Activity[]
+  dailyActivity  DailyActivity[]
+  weeklyActivity WeeklyActivity[]
 }
 
 model Activity {
@@ -44,5 +47,40 @@ model Activity {
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
+}
+
+enum WeekDay {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+
+model DailyActivity {
+  id       String   @id @default(cuid()) @map("_id")
+  userId   String
+  weekDay  WeekDay
+  date     DateTime
+  duration Float    @default(0)
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId, weekDay])
+}
+
+model WeeklyActivity {
+  id            String  @id @default(cuid()) @map("_id")
+  userId        String
+  weekStartDay  WeekDay
+  totalDuration Float   @default(0)
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekStartDay])
   @@index([userId])
 }

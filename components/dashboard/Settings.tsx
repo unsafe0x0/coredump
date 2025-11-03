@@ -14,6 +14,7 @@ interface SettingsProps {
     name: string;
     gitUsername: string;
     twitterUsername: string;
+    website?: string;
     profileImage: string;
     privateKey: string;
   };
@@ -26,6 +27,7 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
     name: userData.name,
     gitUsername: userData.gitUsername,
     twitterUsername: userData.twitterUsername || "",
+    website: userData.website || "",
     password: "",
   });
 
@@ -63,8 +65,8 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex items-center gap-4 mb-5">
+    <div className="flex flex-col justify-start items-start max-w-7xl w-full px-3 py-10">
+      <div className="flex items-center gap-4 mb-5 w-full">
         <button
           onClick={onBack}
           className="p-3 bg-card border border-border rounded-md text-foreground/80 hover:text-accent hover:bg-card/80"
@@ -76,7 +78,7 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
         </h2>
       </div>
 
-      <div className="bg-card border border-border rounded-md p-5 backdrop-blur-sm">
+      <div className="bg-card border border-border rounded-md p-5 backdrop-blur-sm w-full">
         <h3 className="text-xl font-semibold text-foreground mb-4 font-heading">
           Profile Information
         </h3>
@@ -103,6 +105,13 @@ const Settings: React.FC<SettingsProps> = ({ onBack, userData }) => {
               handleInputChange("twitterUsername", e.target.value)
             }
             placeholder="Enter your Twitter username"
+          />
+          <Input
+            label="Website (Optional)"
+            type="text"
+            value={formData.website}
+            onChange={(e) => handleInputChange("website", e.target.value)}
+            placeholder="Enter your website URL"
           />
           <Input
             label="Password"

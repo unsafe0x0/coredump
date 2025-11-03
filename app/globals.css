@@ -82,3 +82,8 @@ body::-webkit-scrollbar {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #5a5a5a;
 }
+
+/* Remove click/focus outline from Recharts charts */
+.recharts-wrapper .recharts-surface:focus {
+  outline: none !important;
+}

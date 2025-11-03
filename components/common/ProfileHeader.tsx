@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { BsGlobe } from "react-icons/bs";
 
 interface ProfileHeaderProps {
   name: string;
   gitUsername: string;
   twitterUsername?: string;
   profileImage: string;
-  thisWeekTotalTime: string;
-  joinedDate?: string;
+  website?: string;
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
@@ -18,8 +18,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   gitUsername,
   twitterUsername,
   profileImage,
-  thisWeekTotalTime,
-  joinedDate,
+  website,
 }) => (
   <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
     <div className="flex flex-row justify-start items-start gap-5 mt-2">
@@ -54,17 +53,15 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             </Link>
           )}
         </div>
-        <p className="text-foreground/80 text-base font-medium">
-          Crushed <span className="text-foreground">{thisWeekTotalTime}</span>{" "}
-          this week
-        </p>
-        {joinedDate && (
-          <p className="text-foreground/80 text-sm">
-            Joined on{" "}
-            <span className="text-foreground/80">
-              {new Date(joinedDate).toLocaleDateString()}
-            </span>
-          </p>
+        {website && (
+          <Link
+            href={website.startsWith("http") ? website : `https://${website}`}
+            target="_blank"
+            className="hover:underline flex items-center gap-2 text-foreground/80 hover:text-accent text-base font-medium"
+          >
+            <BsGlobe />
+            {website}
+          </Link>
         )}
       </div>
     </div>
