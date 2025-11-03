@@ -22,7 +22,7 @@ function getShortLanguageName(lang: string): string {
 function calculateNewStreak(
   currentStreak: number | null | undefined,
   lastUpdated: Date,
-  now: Date,
+  now: Date
 ): number {
   const sameDay = isSameDay(now, lastUpdated);
   if (sameDay) return currentStreak || 0;
@@ -37,10 +37,10 @@ function calculateNewStreak(
   return 1;
 }
 
-function getLocalMidnight(date: Date): Date {
-  const localMidnight = new Date(date);
-  localMidnight.setHours(0, 0, 0, 0);
-  return localMidnight;
+function getUTC(date: Date): Date {
+  const utcDate = new Date(date);
+  utcDate.setUTCHours(0, 0, 0, 0);
+  return utcDate;
 }
 
 export async function POST(req: Request) {
@@ -125,13 +125,13 @@ export async function POST(req: Request) {
     const newAchievements = generateAchievements(user, activitiesAfter);
     const totalMinutes = activitiesAfter.reduce(
       (sum, a) => sum + (a.totalDuration || 0),
-      0,
+      0
     );
     const computedPoints = Math.floor(totalMinutes / 10);
     const newStreak = calculateNewStreak(
       user.streak,
       user.streakUpdatedAt,
-      now,
+      now
     );
 
     await dbClient.user.update({
@@ -146,7 +146,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const today = getLocalMidnight(now);
+    const today = getUTC(now);
     const dayName = [
       "SUNDAY",
       "MONDAY",
@@ -193,7 +193,7 @@ export async function POST(req: Request) {
 
     const totalWeekMinutes = weekRecords.reduce(
       (sum, r) => sum + r.duration,
-      0,
+      0
     );
 
     const weekStartDay = [
