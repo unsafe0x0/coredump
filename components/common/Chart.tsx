@@ -18,7 +18,7 @@ interface ChartProps {
   timeData: string[];
 }
 
-const dayLabels = [
+const fullDayNames = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -28,30 +28,54 @@ const dayLabels = [
   "Saturday",
 ];
 
+const shortDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const parseDurationToMinutes = (raw: string) => {
+  const hourMatch = raw.match(/(\d+)h/);
+  const minMatch = raw.match(/(\d+)m/);
+  const hours = hourMatch ? parseInt(hourMatch[1], 10) : 0;
+  const minutes = minMatch ? parseInt(minMatch[1], 10) : 0;
+  return hours * 60 + minutes;
+};
+
+const getDisplayName = (day: string) => {
+  if (/^\d+$/.test(day)) {
+    const idx = Number(day);
+    return fullDayNames[idx] ?? day;
+  }
+  const shortIdx = shortDayNames.indexOf(day);
+  if (shortIdx !== -1) return fullDayNames[shortIdx];
+  const fullIdx = fullDayNames.indexOf(day);
+  if (fullIdx !== -1) return fullDayNames[fullIdx];
+  return day;
+};
+
 const BarTimeChart = ({ days, timeData }: ChartProps) => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
   const chartData = useMemo(() => {
-    return days.map((day, index) => {
-      const raw = timeData[index] || "0h 0m";
+    const maxMap = new Map<string, number>();
+    days.forEach((day, i) => {
+      const raw = timeData[i] ?? "0h 0m";
+      const minutes = parseDurationToMinutes(raw);
+      const name = getDisplayName(day);
+      const prev = maxMap.get(name) ?? 0;
+      maxMap.set(name, Math.max(prev, minutes));
+    });
 
-      const hourMatch = raw.match(/(\d+)h/);
-      const minMatch = raw.match(/(\d+)m/);
-      const hours = hourMatch ? parseInt(hourMatch[1], 10) : 0;
-      const minutes = minMatch ? parseInt(minMatch[1], 10) : 0;
-      const totalMinutes = hours * 60 + minutes;
-
+    return days.map((day, i) => {
+      const name = getDisplayName(day);
       return {
-        name: dayLabels[parseInt(day)] || day,
-        time: totalMinutes,
-        display: raw,
+        name,
+        time: maxMap.get(name) ?? 0,
+        display: timeData[i] ?? "0h 0m",
       };
     });
   }, [days, timeData]);
 
   const maxTime = Math.max(...chartData.map((d) => d.time), 0);
-  const paddedMax = maxTime > 0 ? Math.ceil(maxTime * 2) : 60;
+  const paddedMax = Math.max(60, Math.ceil(maxTime * 1.25));
 
   const bgColor = isDark ? "#181818" : "#ffffff";
   const gridColor = isDark ? "#3a3a3a" : "#e9e9e9";
@@ -84,7 +108,7 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
             }}
           />
           <Tooltip
-            formatter={(_, __, { payload }) => payload?.display || "0h 0m"}
+            formatter={(_, __, { payload }) => payload?.display ?? "0h 0m"}
             contentStyle={{
               backgroundColor: bgColor,
               border: `1px solid ${accentColor}`,
