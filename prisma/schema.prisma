@@ -29,9 +29,12 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  activities     Activity[]
-  dailyActivity  DailyActivity[]
-  weeklyActivity WeeklyActivity[]
+  activities      Activity[]
+  dailyActivity   DailyActivity[]
+  weeklyActivity  WeeklyActivity[]
+  monthlyActivity MonthlyActivity[]
+
+  @@index([privateKey])
 }
 
 model Activity {
@@ -39,14 +42,16 @@ model Activity {
   userId              String
   languageName        String
   shortLanguageName   String   @default("NULL")
-  totalDuration       Float?
-  last24HoursDuration Float?
-  last7DaysDuration   Float?
+  totalDuration       Float?   @default(0)
+  last24HoursDuration Float?   @default(0)
+  last7DaysDuration   Float?   @default(0)
+  last30DaysDuration  Float?   @default(0)
   lastUpdated         DateTime @default(now())
   createdAt           DateTime @default(now())
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, languageName])
   @@index([userId])
 }
 
@@ -60,27 +65,62 @@ enum WeekDay {
   SATURDAY
 }
 
+enum Month {
+  JANUARY
+  FEBRUARY
+  MARCH
+  APRIL
+  MAY
+  JUNE
+  JULY
+  AUGUST
+  SEPTEMBER
+  OCTOBER
+  NOVEMBER
+  DECEMBER
+}
+
 model DailyActivity {
-  id       String   @id @default(cuid()) @map("_id")
-  userId   String
-  weekDay  WeekDay
-  date     DateTime
-  duration Float    @default(0)
+  id        String    @id @default(cuid()) @map("_id")
+  userId    String
+  weekDay   WeekDay
+  date      DateTime
+  duration  Float     @default(0)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, date])
   @@index([userId, weekDay])
+  @@index([userId, date])
 }
 
 model WeeklyActivity {
-  id            String  @id @default(cuid()) @map("_id")
+  id            String    @id @default(cuid()) @map("_id")
   userId        String
   weekStartDay  WeekDay
-  totalDuration Float   @default(0)
+  totalDuration Float     @default(0)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, weekStartDay])
   @@index([userId])
+}
+
+model MonthlyActivity {
+  id            String    @id @default(cuid()) @map("_id")
+  userId        String
+  month         Month
+  year          Int
+  totalDuration Float     @default(0)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month, year])
+  @@index([userId, year, month])
 }

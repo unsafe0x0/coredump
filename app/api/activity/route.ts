@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
-import { isSameDay, subDays } from "date-fns";
+import {
+  isSameDay,
+  isSameWeek,
+  isSameMonth,
+  getMonth,
+  getYear,
+} from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { generateAchievements } from "@/utils/GenerateAchievements";
+import type { WeekDay, Month } from "@prisma/client";
 
 interface RequestBody {
   privateKey: string;
@@ -24,17 +31,10 @@ function calculateNewStreak(
   lastUpdated: Date,
   now: Date
 ): number {
-  const sameDay = isSameDay(now, lastUpdated);
-  if (sameDay) return currentStreak || 0;
-
+  if (isSameDay(now, lastUpdated)) return currentStreak || 0;
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);
-
-  if (isSameDay(yesterday, lastUpdated)) {
-    return (currentStreak || 0) + 1;
-  }
-
-  return 1;
+  return isSameDay(yesterday, lastUpdated) ? (currentStreak || 0) + 1 : 1;
 }
 
 function getUTC(date: Date): Date {
@@ -62,10 +62,8 @@ export async function POST(req: Request) {
 
     const shortLang = getShortLanguageName(normalizedLang);
     const roundedTime = Number(timeSpent.toFixed(2));
-
-    if (roundedTime <= 0) {
+    if (roundedTime <= 0)
       return NextResponse.json({ message: "Invalid time spent", status: 400 });
-    }
 
     const user = await dbClient.user.findUnique({
       where: { privateKey },
@@ -79,155 +77,172 @@ export async function POST(req: Request) {
       },
     });
 
-    if (!user) {
+    if (!user)
       return NextResponse.json({ message: "User not found", status: 404 });
-    }
 
     const now = new Date();
+    const today = getUTC(now);
 
-    const activity = await dbClient.activity.findFirst({
-      where: {
-        userId: user.id,
-        languageName: normalizedLang,
-      },
-    });
+    const dayNames = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+    ] as const;
+    const dayName = dayNames[today.getUTCDay()] as WeekDay;
 
-    if (!activity) {
-      await dbClient.activity.create({
-        data: {
+    const monthNames = [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER",
+    ] as const;
+    const monthEnum = monthNames[getMonth(today)] as Month;
+    const year = getYear(today);
+
+    await dbClient.$transaction(async (tx) => {
+      await tx.activity.upsert({
+        where: {
+          userId_languageName: {
+            userId: user.id,
+            languageName: normalizedLang,
+          },
+        },
+        update: {
+          totalDuration: { increment: roundedTime },
+          last24HoursDuration: { increment: roundedTime },
+          last7DaysDuration: { increment: roundedTime },
+          last30DaysDuration: { increment: roundedTime },
+          shortLanguageName: shortLang,
+          lastUpdated: now,
+        },
+        create: {
           userId: user.id,
           languageName: normalizedLang,
           shortLanguageName: shortLang,
           totalDuration: roundedTime,
           last24HoursDuration: roundedTime,
           last7DaysDuration: roundedTime,
+          last30DaysDuration: roundedTime,
           lastUpdated: now,
         },
       });
-    } else {
-      await dbClient.activity.update({
-        where: { id: activity.id },
-        data: {
-          totalDuration: (activity.totalDuration || 0) + roundedTime,
-          last24HoursDuration:
-            (activity.last24HoursDuration || 0) + roundedTime,
-          last7DaysDuration: (activity.last7DaysDuration || 0) + roundedTime,
-          lastUpdated: now,
-          shortLanguageName: shortLang,
-        },
-      });
-    }
 
-    const activitiesAfter = await dbClient.activity.findMany({
-      where: { userId: user.id },
-    });
-
-    const newAchievements = generateAchievements(user, activitiesAfter);
-    const totalMinutes = activitiesAfter.reduce(
-      (sum, a) => sum + (a.totalDuration || 0),
-      0
-    );
-    const computedPoints = Math.floor(totalMinutes / 10);
-    const newStreak = calculateNewStreak(
-      user.streak,
-      user.streakUpdatedAt,
-      now
-    );
-
-    await dbClient.user.update({
-      where: { id: user.id },
-      data: {
-        streak: newStreak,
-        streakUpdatedAt: now,
-        totalPoints: computedPoints,
-        ...(newAchievements.length > 0
-          ? { achievements: { push: newAchievements.map((a: any) => a.id) } }
-          : {}),
-      },
-    });
-
-    const today = getUTC(now);
-    const dayName = [
-      "SUNDAY",
-      "MONDAY",
-      "TUESDAY",
-      "WEDNESDAY",
-      "THURSDAY",
-      "FRIDAY",
-      "SATURDAY",
-    ][today.getDay()] as
-      | "SUNDAY"
-      | "MONDAY"
-      | "TUESDAY"
-      | "WEDNESDAY"
-      | "THURSDAY"
-      | "FRIDAY"
-      | "SATURDAY";
-
-    await dbClient.dailyActivity.upsert({
-      where: {
-        userId_date: {
+      await tx.dailyActivity.upsert({
+        where: { userId_date: { userId: user.id, date: today } },
+        update: { duration: { increment: roundedTime } },
+        create: {
           userId: user.id,
+          weekDay: dayName,
           date: today,
+          duration: roundedTime,
         },
-      },
-      update: {
-        duration: { increment: roundedTime },
-      },
-      create: {
-        userId: user.id,
-        weekDay: dayName,
-        date: today,
-        duration: roundedTime,
-      },
-    });
+      });
 
-    const weekStartDate = subDays(today, 6);
-    const weekRecords = await dbClient.dailyActivity.findMany({
-      where: {
-        userId: user.id,
-        date: { gte: weekStartDate, lte: today },
-      },
-      select: { duration: true },
-    });
+      const latestWeek = await tx.weeklyActivity.findFirst({
+        where: { userId: user.id },
+        orderBy: { updatedAt: "desc" },
+      });
 
-    const totalWeekMinutes = weekRecords.reduce(
-      (sum, r) => sum + r.duration,
-      0
-    );
+      const sameWeek =
+        latestWeek &&
+        isSameWeek(now, latestWeek.updatedAt ?? new Date(0), {
+          weekStartsOn: 1,
+        });
 
-    const weekStartDay = [
-      "SUNDAY",
-      "MONDAY",
-      "TUESDAY",
-      "WEDNESDAY",
-      "THURSDAY",
-      "FRIDAY",
-      "SATURDAY",
-    ][weekStartDate.getDay()] as
-      | "SUNDAY"
-      | "MONDAY"
-      | "TUESDAY"
-      | "WEDNESDAY"
-      | "THURSDAY"
-      | "FRIDAY"
-      | "SATURDAY";
+      if (latestWeek && sameWeek) {
+        await tx.weeklyActivity.update({
+          where: { id: latestWeek.id },
+          data: { totalDuration: { increment: roundedTime } },
+        });
+      } else {
+        await tx.weeklyActivity.upsert({
+          where: {
+            userId_weekStartDay: {
+              userId: user.id,
+              weekStartDay: "MONDAY",
+            },
+          },
+          update: { totalDuration: roundedTime },
+          create: {
+            userId: user.id,
+            weekStartDay: "MONDAY",
+            totalDuration: roundedTime,
+          },
+        });
+      }
 
-    await dbClient.weeklyActivity.upsert({
-      where: {
-        userId_weekStartDay: {
-          userId: user.id,
-          weekStartDay,
+      const latestMonth = await tx.monthlyActivity.findFirst({
+        where: { userId: user.id },
+        orderBy: { updatedAt: "desc" },
+      });
+
+      const sameMonth =
+        latestMonth && isSameMonth(now, latestMonth.updatedAt ?? new Date(0));
+
+      if (latestMonth && sameMonth) {
+        await tx.monthlyActivity.update({
+          where: { id: latestMonth.id },
+          data: { totalDuration: { increment: roundedTime } },
+        });
+      } else {
+        await tx.monthlyActivity.upsert({
+          where: {
+            userId_month_year: {
+              userId: user.id,
+              month: monthEnum,
+              year,
+            },
+          },
+          update: { totalDuration: roundedTime },
+          create: {
+            userId: user.id,
+            month: monthEnum,
+            year,
+            totalDuration: roundedTime,
+          },
+        });
+      }
+
+      const activitiesAfter = await tx.activity.findMany({
+        where: { userId: user.id },
+      });
+
+      const newAchievements = generateAchievements(user, activitiesAfter);
+      const totalMinutes = activitiesAfter.reduce(
+        (sum, a) => sum + (a.totalDuration || 0),
+        0
+      );
+
+      const computedPoints = Math.floor(totalMinutes / 10);
+      const newStreak = calculateNewStreak(
+        user.streak,
+        user.streakUpdatedAt,
+        now
+      );
+
+      await tx.user.update({
+        where: { id: user.id },
+        data: {
+          streak: newStreak,
+          streakUpdatedAt: now,
+          totalPoints: computedPoints,
+          ...(newAchievements.length > 0
+            ? { achievements: { push: newAchievements.map((a: any) => a.id) } }
+            : {}),
         },
-      },
-      update: {
-        totalDuration: totalWeekMinutes,
-      },
-      create: {
-        userId: user.id,
-        weekStartDay,
-        totalDuration: totalWeekMinutes,
-      },
+      });
     });
 
     return NextResponse.json({

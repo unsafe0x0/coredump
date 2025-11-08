@@ -19,16 +19,16 @@ interface ChartProps {
 }
 
 const fullDayNames = [
-  "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
+  "Sunday",
 ];
 
-const shortDayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const shortDayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 const parseDurationToMinutes = (raw: string) => {
   const hourMatch = raw.match(/(\d+)h/);
@@ -40,13 +40,16 @@ const parseDurationToMinutes = (raw: string) => {
 
 const getDisplayName = (day: string) => {
   if (/^\d+$/.test(day)) {
-    const idx = Number(day);
+    const idx = (Number(day) + 6) % 7;
     return fullDayNames[idx] ?? day;
   }
+
   const shortIdx = shortDayNames.indexOf(day);
   if (shortIdx !== -1) return fullDayNames[shortIdx];
+
   const fullIdx = fullDayNames.indexOf(day);
   if (fullIdx !== -1) return fullDayNames[fullIdx];
+
   return day;
 };
 
@@ -56,6 +59,7 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
 
   const chartData = useMemo(() => {
     const maxMap = new Map<string, number>();
+
     days.forEach((day, i) => {
       const raw = timeData[i] ?? "0h 0m";
       const minutes = parseDurationToMinutes(raw);
@@ -64,14 +68,12 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
       maxMap.set(name, Math.max(prev, minutes));
     });
 
-    return days.map((day, i) => {
-      const name = getDisplayName(day);
-      return {
-        name,
-        time: maxMap.get(name) ?? 0,
-        display: timeData[i] ?? "0h 0m",
-      };
-    });
+    return fullDayNames.map((name) => ({
+      name,
+      time: maxMap.get(name) ?? 0,
+      display:
+        timeData[days.findIndex((d) => getDisplayName(d) === name)] ?? "0h 0m",
+    }));
   }, [days, timeData]);
 
   const maxTime = Math.max(...chartData.map((d) => d.time), 0);
