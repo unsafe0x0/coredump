@@ -99,14 +99,14 @@ model DailyActivity {
 model WeeklyActivity {
   id            String    @id @default(cuid()) @map("_id")
   userId        String
-  weekStartDay  WeekDay
+  weekDay       WeekDay?
   totalDuration Float     @default(0)
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @updatedAt
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, weekStartDay])
+  @@unique([userId, weekDay])
   @@index([userId])
 }
 

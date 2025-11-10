@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
-import {
-  isSameDay,
-  isSameWeek,
-  isSameMonth,
-  getMonth,
-  getYear,
-} from "date-fns";
+import { isSameDay, getMonth, getYear, subDays } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { generateAchievements } from "@/utils/GenerateAchievements";
 import type { WeekDay, Month } from "@prisma/client";
@@ -26,6 +20,12 @@ function getShortLanguageName(lang: string): string {
   );
 }
 
+function getUTC(date: Date): Date {
+  const utcDate = new Date(date);
+  utcDate.setUTCHours(0, 0, 0, 0);
+  return utcDate;
+}
+
 function calculateNewStreak(
   currentStreak: number | null | undefined,
   lastUpdated: Date,
@@ -35,12 +35,6 @@ function calculateNewStreak(
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);
   return isSameDay(yesterday, lastUpdated) ? (currentStreak || 0) + 1 : 1;
-}
-
-function getUTC(date: Date): Date {
-  const utcDate = new Date(date);
-  utcDate.setUTCHours(0, 0, 0, 0);
-  return utcDate;
 }
 
 export async function POST(req: Request) {
@@ -150,70 +144,83 @@ export async function POST(req: Request) {
         },
       });
 
-      const latestWeek = await tx.weeklyActivity.findFirst({
-        where: { userId: user.id },
-        orderBy: { updatedAt: "desc" },
+      const todayTotal = await tx.dailyActivity.aggregate({
+        _sum: { duration: true },
+        where: { userId: user.id, weekDay: dayName },
       });
 
-      const sameWeek =
-        latestWeek &&
-        isSameWeek(now, latestWeek.updatedAt ?? new Date(0), {
-          weekStartsOn: 1,
-        });
+      const totalToday = todayTotal._sum.duration || 0;
 
-      if (latestWeek && sameWeek) {
-        await tx.weeklyActivity.update({
-          where: { id: latestWeek.id },
-          data: { totalDuration: { increment: roundedTime } },
-        });
-      } else {
-        await tx.weeklyActivity.upsert({
-          where: {
-            userId_weekStartDay: {
-              userId: user.id,
-              weekStartDay: "MONDAY",
-            },
-          },
-          update: { totalDuration: roundedTime },
-          create: {
+      await tx.weeklyActivity.upsert({
+        where: {
+          userId_weekDay: {
             userId: user.id,
-            weekStartDay: "MONDAY",
-            totalDuration: roundedTime,
+            weekDay: dayName,
           },
-        });
-      }
-
-      const latestMonth = await tx.monthlyActivity.findFirst({
-        where: { userId: user.id },
-        orderBy: { updatedAt: "desc" },
+        },
+        update: { totalDuration: totalToday },
+        create: {
+          userId: user.id,
+          weekDay: dayName,
+          totalDuration: totalToday,
+        },
       });
 
-      const sameMonth =
-        latestMonth && isSameMonth(now, latestMonth.updatedAt ?? new Date(0));
+      const sevenDaysAgo = getUTC(subDays(today, 6));
+      const last7Days = await tx.dailyActivity.aggregate({
+        _sum: { duration: true },
+        where: {
+          userId: user.id,
+          date: { gte: sevenDaysAgo, lte: today },
+        },
+      });
 
-      if (latestMonth && sameMonth) {
-        await tx.monthlyActivity.update({
-          where: { id: latestMonth.id },
-          data: { totalDuration: { increment: roundedTime } },
-        });
-      } else {
-        await tx.monthlyActivity.upsert({
-          where: {
-            userId_month_year: {
-              userId: user.id,
-              month: monthEnum,
-              year,
-            },
+      const totalWeekDuration = last7Days._sum.duration || 0;
+
+      await tx.weeklyActivity.upsert({
+        where: {
+          userId_weekDay: {
+            userId: user.id,
+            weekDay: "MONDAY",
           },
-          update: { totalDuration: roundedTime },
-          create: {
+        },
+        update: { totalDuration: totalWeekDuration },
+        create: {
+          userId: user.id,
+          weekDay: "MONDAY",
+          totalDuration: totalWeekDuration,
+        },
+      });
+
+      const monthData = await tx.dailyActivity.aggregate({
+        _sum: { duration: true },
+        where: {
+          userId: user.id,
+          date: {
+            gte: new Date(Date.UTC(year, getMonth(today), 1)),
+            lte: today,
+          },
+        },
+      });
+
+      const totalMonthDuration = monthData._sum.duration || 0;
+
+      await tx.monthlyActivity.upsert({
+        where: {
+          userId_month_year: {
             userId: user.id,
             month: monthEnum,
             year,
-            totalDuration: roundedTime,
           },
-        });
-      }
+        },
+        update: { totalDuration: totalMonthDuration },
+        create: {
+          userId: user.id,
+          month: monthEnum,
+          year,
+          totalDuration: totalMonthDuration,
+        },
+      });
 
       const activitiesAfter = await tx.activity.findMany({
         where: { userId: user.id },
