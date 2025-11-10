@@ -29,7 +29,7 @@ function getUTC(date: Date): Date {
 function calculateNewStreak(
   currentStreak: number | null | undefined,
   lastUpdated: Date,
-  now: Date
+  now: Date,
 ): number {
   if (isSameDay(now, lastUpdated)) return currentStreak || 0;
   const yesterday = new Date(now);
@@ -229,14 +229,14 @@ export async function POST(req: Request) {
       const newAchievements = generateAchievements(user, activitiesAfter);
       const totalMinutes = activitiesAfter.reduce(
         (sum, a) => sum + (a.totalDuration || 0),
-        0
+        0,
       );
 
       const computedPoints = Math.floor(totalMinutes / 10);
       const newStreak = calculateNewStreak(
         user.streak,
         user.streakUpdatedAt,
-        now
+        now,
       );
 
       await tx.user.update({

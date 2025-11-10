@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     console.error("RESET_KEY not set in environment");
     return NextResponse.json(
       { error: "Server misconfiguration" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -64,7 +64,7 @@ export async function GET(req: Request) {
     console.error("Reset error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -11,10 +11,8 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const id = session.user.id;
-
     const user = await dbClient.user.findUnique({
-      where: { id },
+      where: { id: session.user.id },
       select: {
         id: true,
         name: true,
@@ -24,10 +22,13 @@ export async function GET(req: NextRequest) {
         website: true,
         profileImage: true,
         privateKey: true,
+        role: true,
         streak: true,
+        maxStreak: true,
         totalPoints: true,
-        createdAt: true,
         achievements: true,
+        createdAt: true,
+        updatedAt: true,
         activities: {
           select: {
             languageName: true,
@@ -35,6 +36,7 @@ export async function GET(req: NextRequest) {
             totalDuration: true,
             last24HoursDuration: true,
             last7DaysDuration: true,
+            last30DaysDuration: true,
           },
         },
         dailyActivity: {
@@ -46,7 +48,14 @@ export async function GET(req: NextRequest) {
         },
         weeklyActivity: {
           select: {
-            weekStartDay: true,
+            weekDay: true,
+            totalDuration: true,
+          },
+        },
+        monthlyActivity: {
+          select: {
+            month: true,
+            year: true,
             totalDuration: true,
           },
         },
@@ -67,37 +76,53 @@ export async function GET(req: NextRequest) {
       SATURDAY: 6,
     };
 
+    const monthMap: Record<string, number> = {
+      JANUARY: 0,
+      FEBRUARY: 1,
+      MARCH: 2,
+      APRIL: 3,
+      MAY: 4,
+      JUNE: 5,
+      JULY: 6,
+      AUGUST: 7,
+      SEPTEMBER: 8,
+      OCTOBER: 9,
+      NOVEMBER: 10,
+      DECEMBER: 11,
+    };
+
     const normalizedUser = {
       ...user,
       streak: user.streak ?? 0,
+      maxStreak: user.maxStreak ?? 0,
       totalPoints: user.totalPoints ?? 0,
       achievements: user.achievements ?? [],
-      activities: (user.activities || []).map((a) => ({
+      activities: user.activities.map((a) => ({
         languageName: a.languageName ?? "Unknown",
-        shortLanguageName: a.shortLanguageName ?? "",
+        shortLanguageName: a.shortLanguageName ?? "NULL",
         totalDuration: a.totalDuration ?? 0,
         last24HoursDuration: a.last24HoursDuration ?? 0,
         last7DaysDuration: a.last7DaysDuration ?? 0,
+        last30DaysDuration: a.last30DaysDuration ?? 0,
       })),
-      dailyActivity: (user.dailyActivity || []).map((d) => ({
-        weekDay: weekDayMap[d.weekDay as keyof typeof weekDayMap] ?? 0,
-        date:
-          d.date instanceof Date
-            ? d.date.toISOString()
-            : new Date(d.date).toISOString(),
+      dailyActivity: user.dailyActivity.map((d) => ({
+        weekDay: weekDayMap[d.weekDay],
+        date: d.date.toISOString(),
         duration: d.duration ?? 0,
       })),
-      weeklyActivity: (user.weeklyActivity || []).map((w) => ({
-        weekStartDay: w.weekStartDay ?? "",
+      weeklyActivity: user.weeklyActivity.map((w) => ({
+        weekDay: weekDayMap[w.weekDay ?? "SUNDAY"],
         totalDuration: w.totalDuration ?? 0,
+      })),
+      monthlyActivity: user.monthlyActivity.map((m) => ({
+        month: monthMap[m.month],
+        year: m.year,
+        totalDuration: m.totalDuration ?? 0,
       })),
     };
 
     return NextResponse.json(
-      {
-        message: "Dashboard data fetched successfully",
-        data: normalizedUser,
-      },
+      { message: "Dashboard data fetched successfully", data: normalizedUser },
       { status: 200 },
     );
   } catch (error) {

@@ -12,7 +12,7 @@ const getTomorrowMidnightUTC = (reference: Date): Date => {
 
 const getUpcomingWeekStartUTC = (
   reference: Date,
-  weekStartsOn: number
+  weekStartsOn: number,
 ): Date => {
   const target = new Date(reference);
   target.setUTCHours(0, 0, 0, 0);
@@ -33,7 +33,7 @@ const getUpcomingWeekStartUTC = (
 
 const getTargetResetDateUTC = (
   mode: LeaderboardRange,
-  reference: Date
+  reference: Date,
 ): Date => {
   if (mode === "24Hours") {
     return getTomorrowMidnightUTC(reference);
@@ -43,7 +43,7 @@ const getTargetResetDateUTC = (
 
 export const getRemainingTimeLabel = (
   mode: LeaderboardRange,
-  now = new Date()
+  now = new Date(),
 ): string => {
   const target = getTargetResetDateUTC(mode, now);
   const diffSeconds = Math.floor((target.getTime() - now.getTime()) / 1000);
@@ -57,6 +57,6 @@ export const getRemainingTimeLabel = (
   const seconds = diffSeconds % 60;
 
   return `${padToTwoDigits(hours)}:${padToTwoDigits(minutes)}:${padToTwoDigits(
-    seconds
+    seconds,
   )}`;
 };
