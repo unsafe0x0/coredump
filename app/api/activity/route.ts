@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbClient from "@/prisma/DbClient";
-import { isSameDay, getMonth, getYear, subDays } from "date-fns";
+import { isSameDay, getMonth, getYear } from "date-fns";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { generateAchievements } from "@/utils/GenerateAchievements";
 import type { WeekDay, Month } from "@prisma/client";
@@ -67,6 +67,7 @@ export async function POST(req: Request) {
         achievements: true,
         totalPoints: true,
         streak: true,
+        maxStreak: true,
         streakUpdatedAt: true,
       },
     });
@@ -144,54 +145,6 @@ export async function POST(req: Request) {
         },
       });
 
-      const todayTotal = await tx.dailyActivity.aggregate({
-        _sum: { duration: true },
-        where: { userId: user.id, weekDay: dayName },
-      });
-
-      const totalToday = todayTotal._sum.duration || 0;
-
-      await tx.weeklyActivity.upsert({
-        where: {
-          userId_weekDay: {
-            userId: user.id,
-            weekDay: dayName,
-          },
-        },
-        update: { totalDuration: totalToday },
-        create: {
-          userId: user.id,
-          weekDay: dayName,
-          totalDuration: totalToday,
-        },
-      });
-
-      const sevenDaysAgo = getUTC(subDays(today, 6));
-      const last7Days = await tx.dailyActivity.aggregate({
-        _sum: { duration: true },
-        where: {
-          userId: user.id,
-          date: { gte: sevenDaysAgo, lte: today },
-        },
-      });
-
-      const totalWeekDuration = last7Days._sum.duration || 0;
-
-      await tx.weeklyActivity.upsert({
-        where: {
-          userId_weekDay: {
-            userId: user.id,
-            weekDay: "MONDAY",
-          },
-        },
-        update: { totalDuration: totalWeekDuration },
-        create: {
-          userId: user.id,
-          weekDay: "MONDAY",
-          totalDuration: totalWeekDuration,
-        },
-      });
-
       const monthData = await tx.dailyActivity.aggregate({
         _sum: { duration: true },
         where: {
@@ -238,11 +191,13 @@ export async function POST(req: Request) {
         user.streakUpdatedAt,
         now,
       );
+      const updatedMaxStreak = Math.max(newStreak, user.maxStreak ?? 0);
 
       await tx.user.update({
         where: { id: user.id },
         data: {
           streak: newStreak,
+          maxStreak: updatedMaxStreak,
           streakUpdatedAt: now,
           totalPoints: computedPoints,
           ...(newAchievements.length > 0

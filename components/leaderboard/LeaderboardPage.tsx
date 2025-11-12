@@ -65,7 +65,7 @@ const LeaderboardPage = () => {
             }`}
             onClick={() => setActiveButton("24Hours")}
           >
-            24 Hours
+            Today
           </button>
           <button
             className={`px-3 py-1 rounded-md text-base font-normal border border-border cursor-pointer ${
@@ -75,7 +75,7 @@ const LeaderboardPage = () => {
             }`}
             onClick={() => setActiveButton("7Days")}
           >
-            7 Days
+            This Week
           </button>
         </div>
         <LeaderboardHeader
@@ -86,8 +86,8 @@ const LeaderboardPage = () => {
         <div className="flex justify-start items-start w-full bg-background backdrop-blur-sm px-5 py-2 rounded-md">
           <h2 className="text-2xl font-semibold text-foreground font-heading">
             {activeButton === "24Hours"
-              ? "Leaderboard for Last 24 Hours"
-              : "Leaderboard for Last 7 Days"}
+              ? "Today's Leaderboard"
+              : "This Week's Leaderboard"}
           </h2>
         </div>
         <LeaderboardTable

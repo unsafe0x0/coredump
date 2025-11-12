@@ -9,29 +9,27 @@ datasource db {
 }
 
 model User {
-  id              String   @id @default(cuid()) @map("_id")
-  googleId        String?  @unique
+  id              String            @id @default(cuid()) @map("_id")
   name            String
-  email           String   @unique
-  gitUsername     String   @unique
-  twitterUsername String   @unique
-  website         String?
+  email           String            @unique
+  gitUsername     String            @unique
+  twitterUsername String            @unique
   profileImage    String
   password        String?
-  privateKey      String   @unique
-  role            String   @default("USER")
-  streak          Int?     @default(0)
-  maxStreak       Int?     @default(0)
-  achievements    String[] @default([])
-  totalPoints     Int?     @default(0)
-  streakUpdatedAt DateTime @default(now())
-  pingTime        DateTime @default(now())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
+  privateKey      String            @unique
+  role            String            @default("USER")
+  streak          Int?              @default(0)
+  achievements    String[]          @default([])
+  streakUpdatedAt DateTime          @default(now())
+  pingTime        DateTime          @default(now())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  googleId        String?           @unique
+  totalPoints     Int?              @default(0)
+  maxStreak       Int?              @default(0)
+  website         String?
   activities      Activity[]
   dailyActivity   DailyActivity[]
-  weeklyActivity  WeeklyActivity[]
   monthlyActivity MonthlyActivity[]
 
   @@index([privateKey])
@@ -45,14 +43,42 @@ model Activity {
   totalDuration       Float?   @default(0)
   last24HoursDuration Float?   @default(0)
   last7DaysDuration   Float?   @default(0)
-  last30DaysDuration  Float?   @default(0)
   lastUpdated         DateTime @default(now())
   createdAt           DateTime @default(now())
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  last30DaysDuration  Float?   @default(0)
+  User                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, languageName])
   @@index([userId])
+}
+
+model DailyActivity {
+  id        String    @id @default(cuid()) @map("_id")
+  userId    String
+  weekDay   WeekDay
+  date      DateTime
+  duration  Float     @default(0)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  User      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId, weekDay])
+  @@index([userId, date])
+}
+
+model MonthlyActivity {
+  id            String    @id @default(cuid()) @map("_id")
+  userId        String
+  month         Month
+  year          Int
+  totalDuration Float     @default(0)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+  User          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month, year])
+  @@index([userId, year, month])
 }
 
 enum WeekDay {
@@ -78,49 +104,4 @@ enum Month {
   OCTOBER
   NOVEMBER
   DECEMBER
-}
-
-model DailyActivity {
-  id        String    @id @default(cuid()) @map("_id")
-  userId    String
-  weekDay   WeekDay
-  date      DateTime
-  duration  Float     @default(0)
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, date])
-  @@index([userId, weekDay])
-  @@index([userId, date])
-}
-
-model WeeklyActivity {
-  id            String    @id @default(cuid()) @map("_id")
-  userId        String
-  weekDay       WeekDay?
-  totalDuration Float     @default(0)
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @updatedAt
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, weekDay])
-  @@index([userId])
-}
-
-model MonthlyActivity {
-  id            String    @id @default(cuid()) @map("_id")
-  userId        String
-  month         Month
-  year          Int
-  totalDuration Float     @default(0)
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @updatedAt
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, month, year])
-  @@index([userId, year, month])
 }

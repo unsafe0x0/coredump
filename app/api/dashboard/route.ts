@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import dbClient from "@/prisma/DbClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
+import { startOfWeek, endOfWeek, addDays } from "date-fns";
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,6 +11,10 @@ export async function GET(req: NextRequest) {
     if (!session?.user?.id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
+
+    const today = new Date();
+    const start = startOfWeek(today, { weekStartsOn: 1 });
+    const end = endOfWeek(today, { weekStartsOn: 1 });
 
     const user = await dbClient.user.findUnique({
       where: { id: session.user.id },
@@ -40,16 +45,16 @@ export async function GET(req: NextRequest) {
           },
         },
         dailyActivity: {
+          where: {
+            date: {
+              gte: start,
+              lte: end,
+            },
+          },
           select: {
             weekDay: true,
             date: true,
             duration: true,
-          },
-        },
-        weeklyActivity: {
-          select: {
-            weekDay: true,
-            totalDuration: true,
           },
         },
         monthlyActivity: {
@@ -66,16 +71,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const weekDayMap: Record<string, number> = {
-      SUNDAY: 0,
-      MONDAY: 1,
-      TUESDAY: 2,
-      WEDNESDAY: 3,
-      THURSDAY: 4,
-      FRIDAY: 5,
-      SATURDAY: 6,
-    };
-
     const monthMap: Record<string, number> = {
       JANUARY: 0,
       FEBRUARY: 1,
@@ -91,6 +86,18 @@ export async function GET(req: NextRequest) {
       DECEMBER: 11,
     };
 
+    const fullWeek = Array.from({ length: 7 }).map((_, i) => {
+      const date = addDays(start, i);
+      const existing = user.dailyActivity.find(
+        (d) => new Date(d.date).toDateString() === date.toDateString(),
+      );
+      return {
+        weekDay: date.getDay(),
+        date: date.toISOString(),
+        duration: existing?.duration ?? 0,
+      };
+    });
+
     const normalizedUser = {
       ...user,
       streak: user.streak ?? 0,
@@ -105,15 +112,7 @@ export async function GET(req: NextRequest) {
         last7DaysDuration: a.last7DaysDuration ?? 0,
         last30DaysDuration: a.last30DaysDuration ?? 0,
       })),
-      dailyActivity: user.dailyActivity.map((d) => ({
-        weekDay: weekDayMap[d.weekDay],
-        date: d.date.toISOString(),
-        duration: d.duration ?? 0,
-      })),
-      weeklyActivity: user.weeklyActivity.map((w) => ({
-        weekDay: weekDayMap[w.weekDay ?? "SUNDAY"],
-        totalDuration: w.totalDuration ?? 0,
-      })),
+      dailyActivity: fullWeek,
       monthlyActivity: user.monthlyActivity.map((m) => ({
         month: monthMap[m.month],
         year: m.year,

@@ -1,13 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
 import { LRUCache } from "lru-cache";
 import dbClient from "@/prisma/DbClient";
+import { startOfWeek, endOfWeek, addDays } from "date-fns";
 
 interface PublicUserData {
   name: string;
   gitUsername: string;
-  twitterUsername: string;
+  twitterUsername: string | null;
   website: string | null;
-  profileImage: string;
+  profileImage: string | null;
   streak: number;
   maxStreak: number;
   totalPoints: number;
@@ -25,10 +26,6 @@ interface PublicUserData {
     date: string;
     duration: number;
   }[];
-  weeklyActivity: {
-    weekDay: number;
-    totalDuration: number;
-  }[];
   monthlyActivity: {
     month: number;
     year: number;
@@ -38,7 +35,7 @@ interface PublicUserData {
 
 const cache = new LRUCache<string, PublicUserData>({
   max: 100,
-  ttl: 1000 * 60 * 10, // 10 minutes
+  ttl: 1000 * 60 * 5,
 });
 
 export async function GET(req: NextRequest) {
@@ -55,13 +52,16 @@ export async function GET(req: NextRequest) {
 
     const cacheKey = username.toLowerCase();
     const cached = cache.get(cacheKey);
-
     if (cached) {
       return NextResponse.json(
         { message: "Fetched from cache", data: cached },
         { status: 200 },
       );
     }
+
+    const today = new Date();
+    const start = startOfWeek(today, { weekStartsOn: 1 });
+    const end = endOfWeek(today, { weekStartsOn: 1 });
 
     const user = await dbClient.user.findUnique({
       where: { gitUsername: username },
@@ -86,16 +86,16 @@ export async function GET(req: NextRequest) {
           },
         },
         dailyActivity: {
+          where: {
+            date: {
+              gte: start,
+              lte: end,
+            },
+          },
           select: {
             weekDay: true,
             date: true,
             duration: true,
-          },
-        },
-        weeklyActivity: {
-          select: {
-            weekDay: true,
-            totalDuration: true,
           },
         },
         monthlyActivity: {
@@ -112,16 +112,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const weekDayMap: Record<string, number> = {
-      SUNDAY: 0,
-      MONDAY: 1,
-      TUESDAY: 2,
-      WEDNESDAY: 3,
-      THURSDAY: 4,
-      FRIDAY: 5,
-      SATURDAY: 6,
-    };
-
     const monthMap: Record<string, number> = {
       JANUARY: 0,
       FEBRUARY: 1,
@@ -137,12 +127,24 @@ export async function GET(req: NextRequest) {
       DECEMBER: 11,
     };
 
+    const fullWeek = Array.from({ length: 7 }).map((_, i) => {
+      const date = addDays(start, i);
+      const existing = user.dailyActivity.find(
+        (d) => new Date(d.date).toDateString() === date.toDateString(),
+      );
+      return {
+        weekDay: date.getDay(),
+        date: date.toISOString(),
+        duration: existing?.duration ?? 0,
+      };
+    });
+
     const normalized: PublicUserData = {
       name: user.name ?? "",
       gitUsername: user.gitUsername ?? "",
-      twitterUsername: user.twitterUsername ?? "",
+      twitterUsername: user.twitterUsername ?? null,
       website: user.website ?? null,
-      profileImage: user.profileImage ?? "",
+      profileImage: user.profileImage ?? null,
       streak: user.streak ?? 0,
       maxStreak: user.maxStreak ?? 0,
       totalPoints: user.totalPoints ?? 0,
@@ -155,15 +157,7 @@ export async function GET(req: NextRequest) {
         last7DaysDuration: a.last7DaysDuration ?? 0,
         last30DaysDuration: a.last30DaysDuration ?? 0,
       })),
-      dailyActivity: user.dailyActivity.map((d) => ({
-        weekDay: weekDayMap[d.weekDay],
-        date: d.date.toISOString(),
-        duration: d.duration ?? 0,
-      })),
-      weeklyActivity: user.weeklyActivity.map((w) => ({
-        weekDay: weekDayMap[w.weekDay ?? "SUNDAY"],
-        totalDuration: w.totalDuration ?? 0,
-      })),
+      dailyActivity: fullWeek,
       monthlyActivity: user.monthlyActivity.map((m) => ({
         month: monthMap[m.month],
         year: m.year,
@@ -174,11 +168,11 @@ export async function GET(req: NextRequest) {
     cache.set(cacheKey, normalized);
 
     return NextResponse.json(
-      { message: "User data fetched successfully", data: normalized },
+      { message: "User profile data fetched successfully", data: normalized },
       { status: 200 },
     );
   } catch (error) {
-    console.error("Error fetching user details:", error);
+    console.error("Error fetching user profile:", error);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 },
