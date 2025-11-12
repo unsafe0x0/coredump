@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcryptjs from "bcryptjs";
 import { generatePrivateKey } from "@/utils/GeneratePrivateKey";
+import generateRandomUsername from "@/utils/RandomUsername";
 import dbClient from "@/prisma/DbClient";
 
 export const authOptions: NextAuthOptions = {
@@ -23,7 +24,7 @@ export const authOptions: NextAuthOptions = {
 
         const isPasswordValid = await bcryptjs.compare(
           credentials.password,
-          user.password as string,
+          user.password as string
         );
 
         if (!isPasswordValid) throw new Error("Invalid password");
@@ -54,6 +55,9 @@ export const authOptions: NextAuthOptions = {
 
         if (!dbUser) {
           const privateKey = generatePrivateKey();
+          const baseForHandle = user.name || user.email || "dev";
+          const gitUsername = generateRandomUsername(baseForHandle);
+          const twitterUsername = generateRandomUsername(baseForHandle + "tw");
 
           await dbClient.user.create({
             data: {
@@ -62,8 +66,8 @@ export const authOptions: NextAuthOptions = {
               profileImage:
                 user.image ||
                 "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-              gitUsername: "unknown",
-              twitterUsername: "unknown",
+              gitUsername,
+              twitterUsername,
               privateKey,
               googleId,
             },
