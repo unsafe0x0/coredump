@@ -9,7 +9,6 @@ import ProfileHeader from "../common/ProfileHeader";
 import LanguageSection from "../common/LanguageSection";
 import PrivateKeySection from "../common/PrivateKeySection";
 import Chart from "../common/Chart";
-import WeekStats from "../common/WeekStats";
 import StatsGrid from "../common/StatsGrid";
 import Achievements from "../common/Achievements";
 import Settings from "./Settings";
@@ -91,7 +90,7 @@ const Dashboard = () => {
   if (error || !dashboardData) {
     return (
       <div className="flex justify-center items-center w-full min-h-screen">
-        <div className="text-center p-8 bg-card border border-border rounded-md">
+        <div className="text-center p-8 bg-card border border-border rounded-lg">
           <p className="text-foreground/80 text-lg font-semibold">
             {error
               ? `Error: ${(error as Error).message}`
@@ -119,8 +118,6 @@ const Dashboard = () => {
     dashboardData.activities,
   );
   const topLanguage = getTopLanguageShortName(sortedActivities);
-  const weeklyTopActivities = getTopWeeklyActivities(dashboardData.activities);
-  const weeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
   const streakDays = Math.max(dashboardData.streak, 1);
   const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
     totalDurationMinutes,
@@ -175,7 +172,7 @@ const Dashboard = () => {
 
         <PrivateKeySection privateKey={dashboardData.privateKey} />
 
-        <div className="flex flex-col justify-start items-start w-full py-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
+        <div className="flex flex-col justify-start items-start w-full py-5 rounded-lg bg-card border border-border backdrop-blur-sm mb-5">
           <Chart days={daysOfWeek} timeData={timeData} />
         </div>
 
@@ -191,11 +188,6 @@ const Dashboard = () => {
         />
 
         <Achievements achievements={dashboardData.achievements} />
-
-        <WeekStats
-          activities={weeklyTopActivities}
-          totalDurationMinutes={weeklyDurationMinutes}
-        />
 
         <LanguageSection
           activities={sortedActivities}

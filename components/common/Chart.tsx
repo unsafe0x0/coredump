@@ -83,7 +83,7 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
   const gridColor = isDark ? "#3a3a3a" : "#e9e9e9";
   const textColor = isDark ? "#f5f5f5" : "#1b1b1b";
   const mutedColor = isDark ? "#a1a1a1" : "#6e6e6e";
-  const accentColor = "#de7356";
+  const accentColor = "#ffb02e";
 
   return (
     <div className="w-full h-[300px]">

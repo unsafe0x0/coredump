@@ -140,14 +140,14 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
 
   if (!leaderboardData || leaderboardData.length === 0) {
     return (
-      <div className="flex justify-center items-center w-full bg-background backdrop-blur-sm p-8 rounded-md">
+      <div className="flex justify-center items-center w-full bg-background backdrop-blur-sm p-8 rounded-lg">
         <p className="text-foreground/80 text-base font-semibold">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto w-full rounded-md custom-scrollbar">
+    <div className="overflow-x-auto w-full rounded-lg custom-scrollbar">
       <table className="w-full border-collapse text-left min-w-[1000px]">
         <thead className="bg-background">
           <tr className="border-b border-border">
@@ -161,7 +161,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
               Streak
             </th>
             <th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-32 whitespace-nowrap">
-              {activeButton === "24Hours" ? "Time (24h)" : "Time (7d)"}
+              {activeButton === "24Hours" ? "Time" : "Time"}
             </th>
             <th className="text-left text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 whitespace-nowrap">
               All Languages

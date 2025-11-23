@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Public_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/context/QueryProvider";
 import AuthProvider from "@/context/AuthProvider";
 import ToastProvider from "@/context/ToastProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
-const headingFont = Inter({
-  variable: "--font-heading",
-  subsets: ["latin"],
-});
-
-const bodyFont = Public_Sans({
-  weight: ["400", "500", "600"],
+const bodyFont = Inter({
+  weight: ["500", "600", "700"],
   variable: "--font-body",
   subsets: ["latin"],
 });
@@ -92,9 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
-      <body
-        className={`${headingFont.variable} ${bodyFont.variable} antialiased`}
-      >
+      <body className={bodyFont.className}>
         <AuthProvider>
           <QueryProvider>
             <ThemeProvider>

@@ -24,14 +24,14 @@ const Hero = () => {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button forwardRoute="/leaderboard" variant="primary">
             Leaderboard
-            <MdLeaderboard className="inline-block text-lg ml-2" />
+            <MdLeaderboard className="inline-block text-lg" />
           </Button>
           <Button
             forwardRoute="https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
             variant="secondary"
           >
             Extension
-            <VscVscode className="inline-block text-lg ml-2" />
+            <VscVscode className="inline-block text-lg" />
           </Button>
         </div>
         <div className="w-full mt-8">

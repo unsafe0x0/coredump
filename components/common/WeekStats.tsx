@@ -25,7 +25,7 @@ const WeekStats: React.FC<WeekStatsProps> = ({
         This Week's Stats
       </h2>
       {sorted.length === 0 ? (
-        <div className="w-full text-center py-10 rounded-md bg-card/60">
+        <div className="w-full text-center py-10 rounded-lg bg-card/60">
           <p className="text-foreground/80 text-base font-medium">
             No coding activity recorded this week yet.
           </p>
@@ -42,7 +42,7 @@ const WeekStats: React.FC<WeekStatsProps> = ({
             return (
               <div
                 key={index}
-                className="flex flex-col justify-start items-start gap-3 w-full bg-card border border-border p-3 rounded-md"
+                className="flex flex-col justify-start items-start gap-3 w-full bg-card border border-border p-3 rounded-lg"
               >
                 <div className="flex flex-row justify-between items-center w-full">
                   <div className="flex items-center gap-3">

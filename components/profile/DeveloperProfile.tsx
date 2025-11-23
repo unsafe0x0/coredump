@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import ProfileHeader from "../common/ProfileHeader";
 import LanguageSection from "../common/LanguageSection";
-import WeekStats from "../common/WeekStats";
 import StatsGrid from "../common/StatsGrid";
 import Achievements from "../common/Achievements";
 import Chart from "../common/Chart";
@@ -80,7 +79,7 @@ const DeveloperProfile = () => {
   if (error || !profileData) {
     return (
       <div className="flex justify-center items-center w-full min-h-screen">
-        <div className="text-center p-8 bg-card border border-border rounded-md">
+        <div className="text-center p-8 bg-card border border-border rounded-lg">
           <p className="text-foreground/80 text-lg font-semibold">
             {error
               ? `Error: ${(error as Error).message}`
@@ -99,8 +98,6 @@ const DeveloperProfile = () => {
     profileData.activities,
   );
   const topLanguage = getTopLanguageShortName(sortedActivities);
-  const weeklyTopActivities = getTopWeeklyActivities(profileData.activities);
-  const topWeeklyDurationMinutes = sumWeeklyDurations(weeklyTopActivities);
   const streakDays = Math.max(profileData.streak, 1);
   const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
     overallDurationMinutes,
@@ -135,7 +132,7 @@ const DeveloperProfile = () => {
           website={profileData.website}
         />
 
-        <div className="flex flex-col justify-start items-start w-full py-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
+        <div className="flex flex-col justify-start items-start w-full py-5 rounded-lg bg-card border border-border backdrop-blur-sm mb-5">
           <Chart days={daysOfWeek} timeData={timeData} />
         </div>
 
@@ -153,10 +150,6 @@ const DeveloperProfile = () => {
         <Achievements
           achievements={profileData.achievements}
           className="mt-6 w-full"
-        />
-        <WeekStats
-          activities={weeklyTopActivities}
-          totalDurationMinutes={topWeeklyDurationMinutes}
         />
         <LanguageSection
           activities={sortedActivities}

@@ -20,14 +20,14 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   profileImage,
   website,
 }) => (
-  <div className="flex flex-col justify-start items-start w-full p-5 rounded-md bg-card border border-border backdrop-blur-sm mb-5">
+  <div className="flex flex-col justify-start items-start w-full p-5 rounded-lg bg-card border border-border backdrop-blur-sm mb-5">
     <div className="flex flex-row justify-start items-start gap-5 mt-2">
       <Image
         src={profileImage || "/default-avatar.png"}
         alt={gitUsername}
         width={100}
         height={100}
-        className="w-24 h-24 rounded-md object-cover"
+        className="w-24 h-24 rounded-lg object-cover"
       />
       <div className="flex flex-col justify-start items-start gap-2">
         <p className="text-foreground text-2xl font-semibold font-heading">

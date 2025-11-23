@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
 
         const isPasswordValid = await bcryptjs.compare(
           credentials.password,
-          user.password as string
+          user.password as string,
         );
 
         if (!isPasswordValid) throw new Error("Invalid password");

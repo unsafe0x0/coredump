@@ -26,21 +26,21 @@ const MockDashboard = () => {
   );
 
   return (
-    <div className="w-full max-w-7xl bg-background rounded-md border-4 border-border p-6">
+    <div className="w-full max-w-7xl bg-background rounded-lg border-4 border-border p-6">
       <div className="flex justify-between items-center mb-6">
         <div></div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-card border border-border rounded-md"></div>
-          <div className="w-8 h-8 bg-card border border-border rounded-md"></div>
+          <div className="w-8 h-8 bg-card border border-border rounded-lg"></div>
+          <div className="w-8 h-8 bg-card border border-border rounded-lg"></div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card border border-border mb-4">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-lg bg-card border border-border mb-4">
         <div className="flex flex-row justify-start items-start gap-4 mt-2">
-          <div className="w-16 h-16 rounded-md flex items-center justify-center">
+          <div className="w-16 h-16 rounded-lg flex items-center justify-center">
             <Image
               src="https://avatars.githubusercontent.com/u/165533860?v=4"
               alt="Unsafezero"
-              className="rounded-md object-cover w-full h-full"
+              className="rounded-lg object-cover w-full h-full"
               width={64}
               height={64}
             />
@@ -66,7 +66,7 @@ const MockDashboard = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-lg p-3 gap-3">
           <span className="p-2 bg-accent rounded text-accent-text text-lg flex">
             <FaFireAlt />
           </span>
@@ -78,7 +78,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-lg p-3 gap-3">
           <span className="p-2 bg-accent rounded text-accent-text text-lg flex">
             <GiClockwork />
           </span>
@@ -90,7 +90,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-lg p-3 gap-3">
           <span className="p-2 bg-accent rounded text-accent-text text-lg flex">
             <RiCodeSSlashLine />
           </span>
@@ -102,7 +102,7 @@ const MockDashboard = () => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center bg-card border border-border rounded-md p-3 gap-3">
+        <div className="flex justify-start items-center bg-card border border-border rounded-lg p-3 gap-3">
           <span className="p-2 bg-accent rounded text-accent-text text-lg flex">
             <TbTrendingUp />
           </span>
@@ -114,7 +114,7 @@ const MockDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-start items-start w-full p-4 rounded-md bg-card border border-border">
+      <div className="flex flex-col justify-start items-start w-full p-4 rounded-lg bg-card border border-border">
         <h3 className="text-xl font-semibold text-foreground mb-3 font-heading">
           Languages
         </h3>
@@ -130,7 +130,7 @@ const MockDashboard = () => {
             return (
               <div key={index} className="relative z-50">
                 <div
-                  className={`flex items-center justify-center gap-1 px-2 py-1 border rounded-md text-sm font-normal whitespace-nowrap min-w-[70px] text-foreground ${colorClass}`}
+                  className={`flex items-center justify-center gap-1 px-2 py-1 border rounded-lg text-sm font-normal whitespace-nowrap min-w-[70px] text-foreground ${colorClass}`}
                 >
                   <Image
                     src={icon}

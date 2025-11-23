@@ -39,7 +39,7 @@ const Achievements: React.FC<AchievementsProps> = ({
             return (
               <div
                 key={`${id}-${index}`}
-                className="relative flex flex-col gap-3 p-4 rounded-md bg-card border border-border"
+                className="relative flex flex-col gap-3 p-4 rounded-lg bg-card border border-border"
               >
                 <div className="flex items-center gap-3">
                   <Image

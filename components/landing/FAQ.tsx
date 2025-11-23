@@ -69,7 +69,7 @@ const FAQ = () => {
           {faqData.map((item) => (
             <div
               key={item.id}
-              className="mb-4 bg-card border border-border rounded-md overflow-hidden"
+              className="mb-4 bg-card border border-border rounded-lg overflow-hidden"
             >
               <button
                 onClick={() => toggleItem(item.id)}

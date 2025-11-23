@@ -57,9 +57,9 @@ const Features = () => {
           {data.map((feature) => (
             <div
               key={feature.id}
-              className="flex flex-col items-start justify-start p-5 bg-card border border-border rounded-md gap-2"
+              className="flex flex-col items-start justify-start p-5 bg-card border border-border hover:border-accent rounded-xl gap-2"
             >
-              <div className="p-2 bg-accent rounded-md text-accent-text">
+              <div className="p-2 bg-accent rounded-lg text-accent-text">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold text-foreground font-heading mb-2">

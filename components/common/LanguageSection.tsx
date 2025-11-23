@@ -67,7 +67,7 @@ const LanguageSection: React.FC<LanguageSectionProps> = ({
           return (
             <div
               key={index}
-              className="flex flex-col justify-start items-start gap-3 w-full bg-card border border-border p-3 rounded-md"
+              className="flex flex-col justify-start items-start gap-3 w-full bg-card border border-border p-3 rounded-lg"
             >
               <div className="flex flex-row justify-between items-center w-full">
                 <div className="flex items-center gap-3">

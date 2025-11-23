@@ -56,9 +56,9 @@ const LeaderboardPage = () => {
   return (
     <section className="flex justify-center items-start w-full min-h-screen py-20 relative">
       <div className="flex flex-col justify-start items-center w-full max-w-7xl px-3 gap-5 relative z-10">
-        <div className="flex justify-end items-center self-end p-0.5 bg-background backdrop-blur-sm rounded-md">
+        <div className="flex justify-end items-center self-end p-0.5 bg-background backdrop-blur-sm rounded-lg">
           <button
-            className={`px-3 py-1 rounded-md text-base font-normal border border-border cursor-pointer ${
+            className={`px-3 py-1 rounded-lg text-base font-normal border border-border cursor-pointer ${
               activeButton === "24Hours"
                 ? "bg-accent text-accent-text"
                 : "bg-card text-foreground hover:bg-accent hover:text-accent-text"
@@ -68,7 +68,7 @@ const LeaderboardPage = () => {
             Today
           </button>
           <button
-            className={`px-3 py-1 rounded-md text-base font-normal border border-border cursor-pointer ${
+            className={`px-3 py-1 rounded-lg text-base font-normal border border-border cursor-pointer ${
               activeButton === "7Days"
                 ? "bg-accent text-accent-text"
                 : "bg-card text-foreground hover:bg-accent hover:text-accent-text"
@@ -83,7 +83,7 @@ const LeaderboardPage = () => {
           leaderboardLength={sortedData.length}
           leaderboardTopper={sortedData[0] || null}
         />
-        <div className="flex justify-start items-start w-full bg-background backdrop-blur-sm px-5 py-2 rounded-md">
+        <div className="flex justify-start items-start w-full bg-background backdrop-blur-sm px-5 py-2 rounded-lg">
           <h2 className="text-2xl font-semibold text-foreground font-heading">
             {activeButton === "24Hours"
               ? "Today's Leaderboard"
