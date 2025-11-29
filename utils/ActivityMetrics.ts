@@ -11,6 +11,12 @@ export interface WeeklyActivitySummary {
   duration: number;
 }
 
+export interface MonthlyActivity {
+  month: number;
+  year: number;
+  totalDuration: number;
+}
+
 const getDurationValue = <
   T extends ActivityMetricsBase,
   K extends keyof ActivityMetricsBase,
@@ -54,12 +60,10 @@ export const formatMinutesAsHrMin = (minutes: number): string => {
   return `${h}h ${m}m`;
 };
 
-export const calculateWeeklyAverageMinutes = (
-  totalMinutes: number,
-  streakDays: number,
+export const calculateWeeklyAverageMinutes = <T extends ActivityMetricsBase>(
+  activities: T[] = [],
 ): number => {
-  const weeksTracked = Math.max(Math.ceil(Math.max(streakDays, 0) / 7), 1);
-  return calculateAverageMinutes(totalMinutes, weeksTracked);
+  return calculateLast7DaysDurationMinutes(activities);
 };
 
 export const sortActivitiesByTotalDuration = <T extends ActivityMetricsBase>(
@@ -87,3 +91,17 @@ export const getTopWeeklyActivities = <T extends ActivityMetricsBase>(
 export const sumWeeklyDurations = (
   activities: WeeklyActivitySummary[] = [],
 ): number => activities.reduce((sum, activity) => sum + activity.duration, 0);
+
+export const calculateThisMonthDuration = (
+  monthlyActivity: MonthlyActivity[] = [],
+): number => {
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  const thisMonth = monthlyActivity.find(
+    (m) => m.month === currentMonth && m.year === currentYear,
+  );
+
+  return thisMonth?.totalDuration ?? 0;
+};

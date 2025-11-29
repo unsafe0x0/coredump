@@ -13,15 +13,13 @@ import StatsGrid from "../common/StatsGrid";
 import Achievements from "../common/Achievements";
 import Settings from "./Settings";
 import ToggleTheme from "../common/ToggleTheme";
+import Loader from "../common/Loader";
 import {
-  calculateAverageMinutes,
   calculateTotalDurationMinutes,
   formatMinutesAsHrMin,
   getTopLanguageShortName,
-  getTopWeeklyActivities,
-  calculateWeeklyAverageMinutes,
   sortActivitiesByTotalDuration,
-  sumWeeklyDurations,
+  calculateThisMonthDuration,
 } from "@/utils/ActivityMetrics";
 
 interface LanguageActivity {
@@ -43,6 +41,12 @@ interface WeeklyActivity {
   totalDuration: number;
 }
 
+interface MonthlyActivity {
+  month: number;
+  year: number;
+  totalDuration: number;
+}
+
 interface DashboardData {
   id: string;
   name: string;
@@ -53,11 +57,13 @@ interface DashboardData {
   profileImage: string;
   privateKey: string;
   streak: number;
+  maxStreak: number;
   totalPoints: number;
   achievements: string[];
   activities: LanguageActivity[];
   dailyActivity: DailyActivity[];
   weeklyActivity: WeeklyActivity[];
+  monthlyActivity: MonthlyActivity[];
 }
 
 const fetchDashboardData = async (): Promise<DashboardData> => {
@@ -82,7 +88,7 @@ const Dashboard = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-full min-h-screen py-20">
-        <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-border border-solid border-l-transparent" />
+        <Loader />
       </div>
     );
   }
@@ -118,14 +124,8 @@ const Dashboard = () => {
     dashboardData.activities,
   );
   const topLanguage = getTopLanguageShortName(sortedActivities);
-  const streakDays = Math.max(dashboardData.streak, 1);
-  const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
-    totalDurationMinutes,
-    streakDays,
-  );
-  const totalAverageMinutes = calculateAverageMinutes(
-    totalDurationMinutes,
-    streakDays,
+  const thisMonthMinutes = calculateThisMonthDuration(
+    dashboardData.monthlyActivity,
   );
   const dumpPoints = dashboardData.totalPoints;
 
@@ -178,11 +178,11 @@ const Dashboard = () => {
 
         <StatsGrid
           streak={dashboardData.streak}
+          maxStreak={dashboardData.maxStreak}
           totalTime={totalTime}
           languageCount={dashboardData.activities.length}
           topLanguage={topLanguage}
-          weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
-          totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
+          weeklyAverageTime={formatMinutesAsHrMin(thisMonthMinutes)}
           achievementsCount={dashboardData.achievements.length}
           dumpPoints={dumpPoints}
         />

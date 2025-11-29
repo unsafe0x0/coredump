@@ -1,6 +1,7 @@
 import React from "react";
 import DeveloperCard from "../common/DevloperCard";
 import LanguageBadge from "../common/LanguageBadge";
+import Loader from "../common/Loader";
 import { languageIconsImage, languageColors } from "@/utils/LanguageData";
 import languageShortNames from "@/utils/LanguageShortNames";
 import { IoFlame } from "react-icons/io5";
@@ -141,7 +142,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   if (!leaderboardData || leaderboardData.length === 0) {
     return (
       <div className="flex justify-center items-center w-full bg-background backdrop-blur-sm p-8 rounded-lg">
-        <p className="text-foreground/80 text-base font-semibold">Loading...</p>
+        <Loader />
       </div>
     );
   }

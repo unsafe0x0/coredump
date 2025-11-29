@@ -8,15 +8,13 @@ import LanguageSection from "../common/LanguageSection";
 import StatsGrid from "../common/StatsGrid";
 import Achievements from "../common/Achievements";
 import Chart from "../common/Chart";
+import Loader from "../common/Loader";
 import {
-  calculateAverageMinutes,
   calculateTotalDurationMinutes,
   formatMinutesAsHrMin,
   getTopLanguageShortName,
-  getTopWeeklyActivities,
-  calculateWeeklyAverageMinutes,
+  calculateThisMonthDuration,
   sortActivitiesByTotalDuration,
-  sumWeeklyDurations,
 } from "@/utils/ActivityMetrics";
 
 interface LanguageActivity {
@@ -33,17 +31,25 @@ interface DailyActivity {
   duration: number;
 }
 
+interface MonthlyActivity {
+  month: number;
+  year: number;
+  totalDuration: number;
+}
+
 interface DeveloperProfileData {
   name: string;
   gitUsername: string;
   twitterUsername: string;
   profileImage: string;
   streak: number;
+  maxStreak: number;
   website: string;
   totalPoints: number;
   activities: LanguageActivity[];
   achievements: string[];
   dailyActivity: DailyActivity[];
+  monthlyActivity: MonthlyActivity[];
 }
 
 const fetchDeveloperData = async (
@@ -71,7 +77,7 @@ const DeveloperProfile = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-full min-h-screen py-20">
-        <div className="relative animate-spin w-12 h-12 rounded-full border-t-2 border-border border-solid border-l-transparent" />
+        <Loader />
       </div>
     );
   }
@@ -98,14 +104,8 @@ const DeveloperProfile = () => {
     profileData.activities,
   );
   const topLanguage = getTopLanguageShortName(sortedActivities);
-  const streakDays = Math.max(profileData.streak, 1);
-  const weeklyAverageMinutes = calculateWeeklyAverageMinutes(
-    overallDurationMinutes,
-    streakDays,
-  );
-  const totalAverageMinutes = calculateAverageMinutes(
-    overallDurationMinutes,
-    streakDays,
+  const thisMonthMinutes = calculateThisMonthDuration(
+    profileData.monthlyActivity,
   );
   const dumpPoints = profileData.totalPoints;
 
@@ -138,11 +138,11 @@ const DeveloperProfile = () => {
 
         <StatsGrid
           streak={profileData.streak}
+          maxStreak={profileData.maxStreak}
           totalTime={totalTime}
           languageCount={profileData.activities.length}
           topLanguage={topLanguage}
-          weeklyAverageTime={formatMinutesAsHrMin(weeklyAverageMinutes)}
-          totalAverageTime={formatMinutesAsHrMin(totalAverageMinutes)}
+          weeklyAverageTime={formatMinutesAsHrMin(thisMonthMinutes)}
           achievementsCount={profileData.achievements.length}
           dumpPoints={dumpPoints}
         />

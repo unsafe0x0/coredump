@@ -11,11 +11,11 @@ import StatCard from "./StatCard";
 
 export interface StatsGridProps {
   streak: number;
-  totalTime: string | number;
+  maxStreak: number;
   languageCount: number;
   topLanguage: string;
   weeklyAverageTime: string | number;
-  totalAverageTime: string | number;
+  totalTime: string | number;
   achievementsCount: number;
   dumpPoints: number;
   className?: string;
@@ -23,11 +23,11 @@ export interface StatsGridProps {
 
 const StatsGrid: React.FC<StatsGridProps> = ({
   streak,
-  totalTime,
+  maxStreak,
   languageCount,
   topLanguage,
   weeklyAverageTime,
-  totalAverageTime,
+  totalTime,
   achievementsCount,
   dumpPoints,
   className,
@@ -43,8 +43,8 @@ const StatsGrid: React.FC<StatsGridProps> = ({
       icon: <FaFireAlt />,
     },
     {
-      title: "Total Time",
-      value: totalTime,
+      title: "Max Streak",
+      value: maxStreak,
       icon: <GiClockwork />,
     },
     {
@@ -58,13 +58,13 @@ const StatsGrid: React.FC<StatsGridProps> = ({
       icon: <SiCodeclimate />,
     },
     {
-      title: "Weekly Avg Time",
+      title: "This Month",
       value: weeklyAverageTime,
       icon: <LuCalendarRange />,
     },
     {
-      title: "Total Avg Time",
-      value: totalAverageTime,
+      title: "Total Time",
+      value: totalTime,
       icon: <TbTrendingUp />,
     },
     {
