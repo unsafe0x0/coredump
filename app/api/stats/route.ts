@@ -1,78 +1,87 @@
-import dbClient from "@/prisma/DbClient";
 import { NextResponse } from "next/server";
-import { generateSvgStatCard } from "@/utils/GenerateSvg";
-import { Format, makeBadge } from "badge-maker";
+import dbClient from "@/prisma/DbClient";
 import { formatMinutesAsHrMin } from "@/utils/ActivityMetrics";
 
 export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const username = searchParams.get("username");
+
+  if (!username) {
+    return NextResponse.json(
+      { error: "Username is required" },
+      {
+        status: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      },
+    );
+  }
+
   try {
-    const { searchParams } = new URL(req.url);
-    const username = searchParams.get("username");
-    const type = searchParams.get("type") || "total-time";
-
-    if (!username) {
-      return NextResponse.json(
-        { error: "Username is required" },
-        { status: 400 },
-      );
-    }
-
     const user = await dbClient.user.findUnique({
-      where: { gitUsername: String(username) },
+      where: { gitUsername: username },
       select: {
         activities: {
           select: {
-            languageName: true,
-            totalDuration: true,
+            last7DaysDuration: true,
+            last24HoursDuration: true,
           },
         },
       },
     });
 
     if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "User not found" },
+        {
+          status: 404,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Allow-Headers": "Content-Type",
+          },
+        },
+      );
     }
 
-    const totalTime = user.activities.reduce(
-      (acc, activity) => acc + (activity.totalDuration || 0),
+    const weekTotal = user.activities.reduce(
+      (sum, activity) => sum + (activity.last7DaysDuration || 0),
+      0,
+    );
+    const todayTotal = user.activities.reduce(
+      (sum, activity) => sum + (activity.last24HoursDuration || 0),
       0,
     );
 
-    const languageStats: Record<string, number> = {};
-    for (const activity of user.activities) {
-      const lang = activity.languageName || "Unknown";
-      languageStats[lang] =
-        (languageStats[lang] || 0) + (activity.totalDuration || 0);
-    }
-
-    if (type === "stats-card") {
-      const svg = generateSvgStatCard(totalTime, languageStats);
-      return new Response(svg, {
+    return NextResponse.json(
+      {
+        username,
+        weekTotal: formatMinutesAsHrMin(weekTotal),
+        todayTotal: formatMinutesAsHrMin(todayTotal),
+      },
+      {
         headers: {
-          "Content-Type": "image/svg+xml",
-          "Cache-Control": "s-maxage=3600, stale-while-revalidate",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET",
+          "Access-Control-Allow-Headers": "Content-Type",
         },
-      });
-    } else if (type === "total-time") {
-      const format: Format = {
-        label: "CoreDump Total Time",
-        message: `${formatMinutesAsHrMin(totalTime)}`,
-        color: "blue",
-        style: "flat",
-      };
-      const svg = makeBadge(format);
-      return new Response(svg, {
-        headers: {
-          "Content-Type": "image/svg+xml",
-          "Cache-Control": "s-maxage=3600, stale-while-revalidate",
-        },
-      });
-    }
+      },
+    );
   } catch (error) {
-    console.error("Error fetching stats:", error);
+    console.error("Error fetching public stats:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 },
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      },
     );
   }
 }

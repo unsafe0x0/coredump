@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/context/QueryProvider";
 import AuthProvider from "@/context/AuthProvider";
 import ToastProvider from "@/context/ToastProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
-const bodyFont = Inter({
+const bodyFont = Geist({
   weight: ["500", "600", "700"],
   variable: "--font-body",
   subsets: ["latin"],
@@ -15,7 +15,7 @@ const bodyFont = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://coredump.vercel.app/"),
   title: {
-    default: "CoreDump — Track & Compete in Coding Time",
+    default: "CoreDump - Track & Compete in Coding Time",
     template: "%s | CoreDump",
   },
   applicationName: "CoreDump",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   creator: "UnsafeZero",
   publisher: "UnsafeZero",
   openGraph: {
-    title: "CoreDump — Track & Compete in Coding Time",
+    title: "CoreDump - Track & Compete in Coding Time",
     description:
       "Track coding time, maintain streaks and compete globally on leaderboards. CoreDump helps developers build consistent habits and showcase progress.",
     url: "https://coredump.vercel.app/",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CoreDump — Track & Compete in Coding Time",
+    title: "CoreDump - Track & Compete in Coding Time",
     description:
       "Track coding time, maintain streaks and compete globally on leaderboards.",
     creator: "@unsafezero",

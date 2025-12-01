@@ -1,26 +1,17 @@
 "use client";
 
 import React from "react";
-import { RiRouteFill } from "react-icons/ri";
 import { MdOutlineDescription } from "react-icons/md";
 
 const PublicStats: React.FC = () => {
   const username = "yourusername";
   const statsEndpoint = `https://coredump.vercel.app/api/stats?username=${username}`;
-  const publicStatsEndpoint = `https://coredump.vercel.app/api/public-stats?username=${username}`;
 
   const endpoints = [
     {
-      title: "README Stats API",
-      description: "SVG badges for your GitHub README",
-      url: `${statsEndpoint}&type=stats-card`,
-      params: "username, type (stats-card/total-time)",
-      icon: <RiRouteFill />,
-    },
-    {
       title: "Public Stats API",
       description: "JSON data for programmatic access",
-      url: publicStatsEndpoint,
+      url: statsEndpoint,
       params: "username",
       icon: <MdOutlineDescription />,
     },
