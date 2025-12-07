@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "@tanstack/react-query": "^5.90.12",
+    "@vercel/analytics": "^1.6.1",
     "badge-maker": "^5.0.2",
     "bcryptjs": "^3.0.3",
     "date-fns": "^4.1.0",

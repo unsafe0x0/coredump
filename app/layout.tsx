@@ -5,6 +5,7 @@ import QueryProvider from "@/context/QueryProvider";
 import AuthProvider from "@/context/AuthProvider";
 import ToastProvider from "@/context/ToastProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const bodyFont = Geist({
   weight: ["500", "600", "700"],
@@ -92,6 +93,7 @@ export default function RootLayout({
           <QueryProvider>
             <ThemeProvider>
               {children}
+              <Analytics />
               <ToastProvider />
             </ThemeProvider>
           </QueryProvider>
