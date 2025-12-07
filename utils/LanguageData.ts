@@ -30,6 +30,7 @@ const languageIconsImage = {
   powershell: "/icons/powershell.svg",
   sql: "/icons/mysql.svg",
   prisma: "/icons/prisma.svg",
+  zig: "/icons/zig.svg",
 };
 
 const languageColors = {

@@ -36,6 +36,7 @@ const languageShortNames = {
   assemblyscript: "ASM",
   ejs: "EJS",
   prisma: "PRISMA",
+  zig: "ZIG",
 };
 
 export default languageShortNames;
