@@ -1,277 +1,277 @@
-import React from "react";
+import type React from "react";
+import { IoFlame } from "react-icons/io5";
+import { RiMedal2Fill } from "react-icons/ri";
+import { languageColors, languageIconsImage } from "@/utils/LanguageData";
+import languageShortNames from "@/utils/LanguageShortNames";
 import DeveloperCard from "../common/DevloperCard";
 import LanguageBadge from "../common/LanguageBadge";
 import Loader from "../common/Loader";
-import { languageIconsImage, languageColors } from "@/utils/LanguageData";
-import languageShortNames from "@/utils/LanguageShortNames";
-import { IoFlame } from "react-icons/io5";
-import { RiMedal2Fill } from "react-icons/ri";
 
 interface Activity {
-  languageName: string;
-  shortLanguageName: string;
-  totalDuration: number;
-  last24HoursDuration: number;
-  last7DaysDuration: number;
+	languageName: string;
+	shortLanguageName: string;
+	totalDuration: number;
+	last24HoursDuration: number;
+	last7DaysDuration: number;
 }
 
 interface User {
-  name: string;
-  profileImage: string;
-  gitUsername: string;
-  twitterUsername: string;
-  streak: number;
-  activities: Activity[];
+	name: string;
+	profileImage: string;
+	gitUsername: string;
+	twitterUsername: string;
+	streak: number;
+	activities: Activity[];
 }
 
 interface LeaderboardTableProps {
-  leaderboardData: User[];
-  activeButton: string;
+	leaderboardData: User[];
+	activeButton: string;
 }
 
 const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
-  leaderboardData,
-  activeButton,
+	leaderboardData,
+	activeButton,
 }) => {
-  const getLanguageColor = (
-    languageName: string,
-    shortLanguageName: string,
-  ) => {
-    const fullNameKey = languageName.toLowerCase().replace(/\s+/g, "");
-    if (languageColors[fullNameKey as keyof typeof languageColors]) {
-      return languageColors[fullNameKey as keyof typeof languageColors];
-    }
+	const getLanguageColor = (
+		languageName: string,
+		shortLanguageName: string,
+	) => {
+		const fullNameKey = languageName.toLowerCase().replace(/\s+/g, "");
+		if (languageColors[fullNameKey as keyof typeof languageColors]) {
+			return languageColors[fullNameKey as keyof typeof languageColors];
+		}
 
-    const shortNameKey = Object.keys(languageShortNames).find(
-      (key) =>
-        languageShortNames[
-          key as keyof typeof languageShortNames
-        ].toLowerCase() === shortLanguageName.toLowerCase(),
-    );
-    if (
-      shortNameKey &&
-      languageColors[shortNameKey as keyof typeof languageColors]
-    ) {
-      return languageColors[shortNameKey as keyof typeof languageColors];
-    }
+		const shortNameKey = Object.keys(languageShortNames).find(
+			(key) =>
+				languageShortNames[
+					key as keyof typeof languageShortNames
+				].toLowerCase() === shortLanguageName.toLowerCase(),
+		);
+		if (
+			shortNameKey &&
+			languageColors[shortNameKey as keyof typeof languageColors]
+		) {
+			return languageColors[shortNameKey as keyof typeof languageColors];
+		}
 
-    return languageColors.plaintext;
-  };
+		return languageColors.plaintext;
+	};
 
-  const getLanguageIcon = (languageName: string, shortLanguageName: string) => {
-    const fullNameKey = languageName.toLowerCase().replace(/\s+/g, "");
-    if (languageIconsImage[fullNameKey as keyof typeof languageIconsImage]) {
-      return languageIconsImage[fullNameKey as keyof typeof languageIconsImage];
-    }
+	const getLanguageIcon = (languageName: string, shortLanguageName: string) => {
+		const fullNameKey = languageName.toLowerCase().replace(/\s+/g, "");
+		if (languageIconsImage[fullNameKey as keyof typeof languageIconsImage]) {
+			return languageIconsImage[fullNameKey as keyof typeof languageIconsImage];
+		}
 
-    const shortNameKey = Object.keys(languageShortNames).find(
-      (key) =>
-        languageShortNames[
-          key as keyof typeof languageShortNames
-        ].toLowerCase() === shortLanguageName.toLowerCase(),
-    );
-    if (
-      shortNameKey &&
-      languageIconsImage[shortNameKey as keyof typeof languageIconsImage]
-    ) {
-      return languageIconsImage[
-        shortNameKey as keyof typeof languageIconsImage
-      ];
-    }
+		const shortNameKey = Object.keys(languageShortNames).find(
+			(key) =>
+				languageShortNames[
+					key as keyof typeof languageShortNames
+				].toLowerCase() === shortLanguageName.toLowerCase(),
+		);
+		if (
+			shortNameKey &&
+			languageIconsImage[shortNameKey as keyof typeof languageIconsImage]
+		) {
+			return languageIconsImage[
+				shortNameKey as keyof typeof languageIconsImage
+			];
+		}
 
-    return "/icons/txt.svg";
-  };
+		return "/icons/txt.svg";
+	};
 
-  const formatTimeDetailed = (minutes: number) => {
-    const roundedMinutes = Math.round(minutes);
-    const hours = Math.floor(roundedMinutes / 60);
-    const mins = roundedMinutes % 60;
+	const formatTimeDetailed = (minutes: number) => {
+		const roundedMinutes = Math.round(minutes);
+		const hours = Math.floor(roundedMinutes / 60);
+		const mins = roundedMinutes % 60;
 
-    if (hours === 0 && mins === 0) {
-      return "0m";
-    }
+		if (hours === 0 && mins === 0) {
+			return "0m";
+		}
 
-    if (hours > 24) {
-      const days = Math.floor(hours / 24);
-      const remainingHours = hours % 24;
-      if (remainingHours === 0) {
-        return `${days}d`;
-      }
-      return `${days}d ${remainingHours}h`;
-    }
+		if (hours > 24) {
+			const days = Math.floor(hours / 24);
+			const remainingHours = hours % 24;
+			if (remainingHours === 0) {
+				return `${days}d`;
+			}
+			return `${days}d ${remainingHours}h`;
+		}
 
-    if (hours > 0) {
-      if (mins === 0) {
-        return `${hours}h`;
-      }
-      return `${hours}h ${mins}m`;
-    }
-    return `${mins}m`;
-  };
+		if (hours > 0) {
+			if (mins === 0) {
+				return `${hours}h`;
+			}
+			return `${hours}h ${mins}m`;
+		}
+		return `${mins}m`;
+	};
 
-  const getTotalTime = (activities: Activity[]) => {
-    return (
-      activities?.reduce((sum, activity) => {
-        return (
-          sum +
-          (activeButton === "7Days"
-            ? activity.last7DaysDuration
-            : activity.last24HoursDuration)
-        );
-      }, 0) || 0
-    );
-  };
+	const getTotalTime = (activities: Activity[]) => {
+		return (
+			activities?.reduce((sum, activity) => {
+				return (
+					sum +
+					(activeButton === "7Days"
+						? activity.last7DaysDuration
+						: activity.last24HoursDuration)
+				);
+			}, 0) || 0
+		);
+	};
 
-  const getTopLanguages = (activities: Activity[]) => {
-    if (!activities) return [];
+	const getTopLanguages = (activities: Activity[]) => {
+		if (!activities) return [];
 
-    const languagesWithTime = activities
-      .map((activity) => ({
-        ...activity,
-        duration:
-          activeButton === "7Days"
-            ? activity.last7DaysDuration
-            : activity.last24HoursDuration,
-      }))
-      .filter((activity) => activity.duration > 0)
-      .sort((a, b) => b.duration - a.duration);
+		const languagesWithTime = activities
+			.map((activity) => ({
+				...activity,
+				duration:
+					activeButton === "7Days"
+						? activity.last7DaysDuration
+						: activity.last24HoursDuration,
+			}))
+			.filter((activity) => activity.duration > 0)
+			.sort((a, b) => b.duration - a.duration);
 
-    return languagesWithTime;
-  };
+		return languagesWithTime;
+	};
 
-  if (!leaderboardData || leaderboardData.length === 0) {
-    return (
-      <div className="flex justify-center items-center w-full bg-background backdrop-blur-sm p-8 rounded-lg">
-        <Loader />
-      </div>
-    );
-  }
+	if (!leaderboardData || leaderboardData.length === 0) {
+		return (
+			<div className="flex justify-center items-center w-full bg-background backdrop-blur-sm p-8 rounded-lg">
+				<Loader />
+			</div>
+		);
+	}
 
-  return (
-    <div className="overflow-x-auto w-full rounded-lg custom-scrollbar">
-      <table className="w-full border-collapse text-left min-w-[1000px]">
-        <thead className="bg-background">
-          <tr className="border-b border-border">
-            <th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-20 whitespace-nowrap">
-              Rank
-            </th>
-            <th className="text-left text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-64 whitespace-nowrap">
-              Developer
-            </th>
-            <th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-24 whitespace-nowrap">
-              Streak
-            </th>
-            <th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-32 whitespace-nowrap">
-              {activeButton === "24Hours" ? "Time" : "Time"}
-            </th>
-            <th className="text-left text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 whitespace-nowrap">
-              All Languages
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-background backdrop-blur-2xl">
-          {leaderboardData.map((user, index) => {
-            const totalTime = getTotalTime(user.activities);
-            const topLanguages = getTopLanguages(user.activities);
+	return (
+		<div className="overflow-x-auto w-full rounded-lg custom-scrollbar">
+			<table className="w-full border-collapse text-left min-w-[1000px]">
+				<thead className="bg-background">
+					<tr className="border-b border-border">
+						<th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-20 whitespace-nowrap">
+							Rank
+						</th>
+						<th className="text-left text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-64 whitespace-nowrap">
+							Developer
+						</th>
+						<th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-24 whitespace-nowrap">
+							Streak
+						</th>
+						<th className="text-center text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 w-32 whitespace-nowrap">
+							{activeButton === "24Hours" ? "Time" : "Time"}
+						</th>
+						<th className="text-left text-base font-semibold font-heading text-foreground/80 tracking-wider px-8 py-4 whitespace-nowrap">
+							All Languages
+						</th>
+					</tr>
+				</thead>
+				<tbody className="bg-background backdrop-blur-2xl">
+					{leaderboardData.map((user, index) => {
+						const totalTime = getTotalTime(user.activities);
+						const topLanguages = getTopLanguages(user.activities);
 
-            return (
-              <tr
-                key={user.gitUsername}
-                className="border-b border-border hover:bg-card transition-colors"
-              >
-                <td className="px-8 py-5 text-center w-20 whitespace-nowrap">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold mx-auto ${
-                      index === 0
-                        ? "bg-yellow-500/20 border-2 border-yellow-500 text-yellow-400"
-                        : index === 1
-                          ? "bg-neutral-400/20 border-2 border-neutral-400 text-foreground/80"
-                          : index === 2
-                            ? "bg-orange-500/20 border-2 border-orange-500 text-orange-400"
-                            : "bg-[#282828]/30 border-2 border-neutral-500 text-foreground/80"
-                    }`}
-                  >
-                    {index < 3 ? (
-                      <span className="text-lg">
-                        <RiMedal2Fill
-                          className={
-                            index === 0
-                              ? "text-yellow-400 text-xl"
-                              : index === 1
-                                ? "text-neutral-400 text-xl"
-                                : "text-orange-400 text-xl"
-                          }
-                        />
-                      </span>
-                    ) : (
-                      index + 1
-                    )}
-                  </div>
-                </td>
-                <td className="px-8 py-5 w-64 whitespace-nowrap">
-                  <DeveloperCard
-                    name={user.name}
-                    profileImage={user.profileImage}
-                    gitUsername={user.gitUsername}
-                  />
-                </td>
-                <td className="px-8 py-5 text-center w-24 whitespace-nowrap">
-                  <div className="flex flex-col items-center gap-1">
-                    <div className="flex items-center gap-1">
-                      <span className="text-lg font-semibold text-orange-400">
-                        {user.streak}
-                      </span>
-                      <IoFlame className="text-orange-500 text-lg" />
-                    </div>
-                    <span className="text-xs font-semibold text-foreground/80">
-                      days
-                    </span>
-                  </div>
-                </td>
-                <td className="px-8 py-5 text-center w-32 whitespace-nowrap">
-                  <div className="flex flex-col items-center justify-center">
-                    <span className="text-xl font-semibold text-foreground">
-                      {formatTimeDetailed(totalTime)}
-                    </span>
-                    {totalTime > 0 && (
-                      <span className="text-xs font-semibold text-foreground/80 mt-1">
-                        ({Math.round(totalTime)} min)
-                      </span>
-                    )}
-                  </div>
-                </td>
-                <td className="px-8 py-5 whitespace-nowrap">
-                  <div className="flex flex-row gap-2">
-                    {topLanguages.length > 0 ? (
-                      topLanguages.map((activity, langIndex) => (
-                        <LanguageBadge
-                          key={`${user.gitUsername}-${activity.languageName}-${langIndex}`}
-                          lang={activity.languageName}
-                          icon={getLanguageIcon(
-                            activity.languageName,
-                            activity.shortLanguageName,
-                          )}
-                          duration={Math.round(activity.duration)}
-                          color={getLanguageColor(
-                            activity.languageName,
-                            activity.shortLanguageName,
-                          )}
-                        />
-                      ))
-                    ) : (
-                      <span className="text-neutral-500 text-sm font-semibold italic">
-                        No activity
-                      </span>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
+						return (
+							<tr
+								key={user.gitUsername}
+								className="border-b border-border hover:bg-card transition-colors"
+							>
+								<td className="px-8 py-5 text-center w-20 whitespace-nowrap">
+									<div
+										className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold mx-auto ${
+											index === 0
+												? "bg-yellow-500/20 border-2 border-yellow-500 text-yellow-400"
+												: index === 1
+													? "bg-neutral-400/20 border-2 border-neutral-400 text-foreground/80"
+													: index === 2
+														? "bg-orange-500/20 border-2 border-orange-500 text-orange-400"
+														: "bg-[#282828]/30 border-2 border-neutral-500 text-foreground/80"
+										}`}
+									>
+										{index < 3 ? (
+											<span className="text-lg">
+												<RiMedal2Fill
+													className={
+														index === 0
+															? "text-yellow-400 text-xl"
+															: index === 1
+																? "text-neutral-400 text-xl"
+																: "text-orange-400 text-xl"
+													}
+												/>
+											</span>
+										) : (
+											index + 1
+										)}
+									</div>
+								</td>
+								<td className="px-8 py-5 w-64 whitespace-nowrap">
+									<DeveloperCard
+										name={user.name}
+										profileImage={user.profileImage}
+										gitUsername={user.gitUsername}
+									/>
+								</td>
+								<td className="px-8 py-5 text-center w-24 whitespace-nowrap">
+									<div className="flex flex-col items-center gap-1">
+										<div className="flex items-center gap-1">
+											<span className="text-lg font-semibold text-orange-400">
+												{user.streak}
+											</span>
+											<IoFlame className="text-orange-500 text-lg" />
+										</div>
+										<span className="text-xs font-semibold text-foreground/80">
+											days
+										</span>
+									</div>
+								</td>
+								<td className="px-8 py-5 text-center w-32 whitespace-nowrap">
+									<div className="flex flex-col items-center justify-center">
+										<span className="text-xl font-semibold text-foreground">
+											{formatTimeDetailed(totalTime)}
+										</span>
+										{totalTime > 0 && (
+											<span className="text-xs font-semibold text-foreground/80 mt-1">
+												({Math.round(totalTime)} min)
+											</span>
+										)}
+									</div>
+								</td>
+								<td className="px-8 py-5 whitespace-nowrap">
+									<div className="flex flex-row gap-2">
+										{topLanguages.length > 0 ? (
+											topLanguages.map((activity, langIndex) => (
+												<LanguageBadge
+													key={`${user.gitUsername}-${activity.languageName}-${langIndex}`}
+													lang={activity.languageName}
+													icon={getLanguageIcon(
+														activity.languageName,
+														activity.shortLanguageName,
+													)}
+													duration={Math.round(activity.duration)}
+													color={getLanguageColor(
+														activity.languageName,
+														activity.shortLanguageName,
+													)}
+												/>
+											))
+										) : (
+											<span className="text-neutral-500 text-sm font-semibold italic">
+												No activity
+											</span>
+										)}
+									</div>
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</div>
+	);
 };
 
 export default LeaderboardTable;
