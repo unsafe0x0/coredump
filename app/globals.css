@@ -1,88 +1,96 @@
 @import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #1b1b1b;
-	--muted: #6e6e6e;
-	--card: #fafafa;
+  --background: #ffffff;
+  --foreground: #1b1b1b;
+  --muted: #6e6e6e;
+  --card: #fafafa;
 
-	--accent: #ffb02e;
-	--accent-hover: #e79c27;
-	--accent-text: #ffffff;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-text: #ffffff;
+  --accent-subtle: #ecfdf5;
 
-	--destructive: #f24822;
-	--destructive-hover: #d93d1a;
+  /* Destructive */
+  --destructive: #ef4444;
+  --destructive-hover: #dc2626;
+  --destructive-subtle: #fee2e2;
 
-	--border: #eaeaea;
+  --border: #e5e7eb;
 
-	--font-body: var(--font-body);
+  --font-body: var(--font-body);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-	--background: #1a1a1a;
-	--foreground: #f5f5f5;
-	--muted: #d4d4d4;
-	--card: #222222;
+  --background: #1a1a1a;
+  --foreground: #f5f5f5;
+  --muted: #a1a1aa;
+  --card: #222222;
 
-	--accent: #ffb02e;
-	--accent-hover: #e79c27;
-	--accent-text: #ffffff;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-text: #ffffff;
+  --accent-subtle: #fff7ed;
 
-	--destructive: #f24822;
-	--destructive-hover: #d93d1a;
+  /* Destructive */
+  --destructive: #f87171;
+  --destructive-hover: #ef4444;
+  --destructive-subtle: #2c1515;
 
-	--border: #303030;
+  --border: #303030;
 }
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--color-muted: var(--muted);
-	--color-card: var(--card);
-	--color-accent: var(--accent);
-	--color-accent-hover: var(--accent-hover);
-	--color-accent-text: var(--accent-text);
-	--color-destructive: var(--destructive);
-	--color-destructive-hover: var(--destructive-hover);
-	--color-border: var(--border);
-	--font-body: var(--font-body);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-border: var(--border);
+  --font-body: var(--font-body);
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: var(--font-body);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
 
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 body::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .custom-scrollbar {
-	scrollbar-width: thin;
-	scrollbar-color: #4a4a4a transparent;
-	overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4a4a4a transparent;
+  overflow: auto;
 }
 .custom-scrollbar::-webkit-scrollbar {
-	height: 6px;
-	width: 6px;
+  height: 6px;
+  width: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-	background: transparent;
+  background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-	background: #4a4a4a;
-	border-radius: 3px;
+  background: #4a4a4a;
+  border-radius: 3px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-	background: #5a5a5a;
+  background: #5a5a5a;
 }
 
 /* Remove click/focus outline from Recharts charts */
 .recharts-wrapper .recharts-surface:focus {
-	outline: none;
+  outline: none;
 }

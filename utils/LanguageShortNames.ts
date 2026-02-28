@@ -37,6 +37,7 @@ const languageShortNames = {
 	ejs: "EJS",
 	prisma: "PRISMA",
 	zig: "ZIG",
+	rpgle: "RPGLE",
 };
 
 export default languageShortNames;

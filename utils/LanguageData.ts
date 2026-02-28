@@ -31,6 +31,7 @@ const languageIconsImage = {
 	sql: "/icons/mysql.svg",
 	prisma: "/icons/prisma.svg",
 	zig: "/icons/zig.svg",
+	rpgle: "/icons/rpgle.svg",
 };
 
 const languageColors = {
@@ -65,6 +66,7 @@ const languageColors = {
 	powershell: "bg-blue-500/30 border-blue-500",
 	sql: "bg-emerald-500/30 border-emerald-500",
 	prisma: "bg-teal-500/30 border-teal-500",
+	rpgle: "bg-purple-500/30 border-purple-500",
 };
 
 const languageProgressBgColor = {
@@ -99,6 +101,7 @@ const languageProgressBgColor = {
 	powershell: "bg-blue-500",
 	sql: "bg-emerald-500",
 	prisma: "bg-teal-500",
+	rpgle: "bg-purple-500",
 };
 
 export { languageIconsImage, languageColors, languageProgressBgColor };
