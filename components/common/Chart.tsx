@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useMemo } from "react";
 import {
   Bar,
@@ -54,9 +53,6 @@ const getDisplayName = (day: string) => {
 };
 
 const BarTimeChart = ({ days, timeData }: ChartProps) => {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   const chartData = useMemo(() => {
     const maxMap = new Map<string, number>();
 
@@ -79,12 +75,13 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
   const maxTime = Math.max(...chartData.map((d) => d.time), 0);
   const paddedMax = Math.max(60, Math.ceil(maxTime * 1.25));
 
-  const bgColor = isDark ? "#181818" : "#ffffff";
-  const gridColor = isDark ? "#3a3a3a" : "#e9e9e9";
-  const textColor = isDark ? "#f5f5f5" : "#1b1b1b";
-  const mutedColor = isDark ? "#a1a1a1" : "#6e6e6e";
-  const accentColor = "#10b981";
-  const accentSubtle = isDark ? "#022c22" : "#ecfdf5";
+  const bgColor = "var(--background)";
+  const gridColor = "var(--border)";
+  const textColor = "var(--foreground)";
+  const mutedColor = "var(--muted)";
+  const accentColor = "var(--accent)";
+  const accentColorWithOpacity =
+    "color-mix(in oklch, var(--accent) 12%, transparent)";
 
   return (
     <div className="w-full h-[300px]">
@@ -125,7 +122,7 @@ const BarTimeChart = ({ days, timeData }: ChartProps) => {
             itemStyle={{
               color: textColor,
             }}
-            cursor={{ fill: accentSubtle }}
+            cursor={{ fill: accentColorWithOpacity }}
           />
           <Bar
             dataKey="time"

@@ -1,45 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1b1b1b;
-  --muted: #6e6e6e;
-  --card: #fafafa;
+  --background: oklch(0.9818 0.0054 95.0986);
+  --foreground: oklch(0.3438 0.0269 95.7226);
+  --muted: oklch(0.6059 0.0075 97.4233);
+  --card: oklch(0.9818 0.0054 95.0986);
 
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --accent-text: #ffffff;
-  --accent-subtle: #ecfdf5;
+  --accent: oklch(0.6171 0.1375 39.0427);
+  --accent-hover: oklch(0.5583 0.1276 42.9956);
+  --accent-text: oklch(1 0 0);
+  --accent-subtle: oklch(0.9245 0.0138 92.9892);
 
   /* Destructive */
-  --destructive: #ef4444;
-  --destructive-hover: #dc2626;
-  --destructive-subtle: #fee2e2;
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --destructive-hover: oklch(0.5368 0.2078 25.3313);
+  --destructive-subtle: oklch(0.9245 0.0138 92.9892);
 
-  --border: #e5e7eb;
+  --border: oklch(0.8847 0.0069 97.3627);
+  --accent-light: oklch(0.7631 0.1054 163.4);
+  --accent-lightest: oklch(0.9245 0.0382 155.7);
+  --chart-1: oklch(0.6171 0.1375 39.0427);
+  --chart-2: oklch(0.5583 0.1276 42.9956);
+  --chart-3: oklch(0.7631 0.1054 163.4);
+  --chart-4: oklch(0.9245 0.0382 155.7);
+  --chart-5: oklch(0.6724 0.1308 38.7559);
 
   --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-  --background: #1a1a1a;
-  --foreground: #f5f5f5;
-  --muted: #a1a1aa;
-  --card: #222222;
+  --background: oklch(0.2679 0.0036 106.6427);
+  --foreground: oklch(0.8074 0.0142 93.0137);
+  --muted: oklch(0.7713 0.0169 99.0657);
+  --card: oklch(0.2679 0.0036 106.6427);
 
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --accent-text: #ffffff;
-  --accent-subtle: #fff7ed;
+  --accent: oklch(0.6724 0.1308 38.7559);
+  --accent-hover: oklch(0.6171 0.1375 39.0427);
+  --accent-text: oklch(1 0 0);
+  --accent-subtle: oklch(0.213 0.0078 95.4245);
 
   /* Destructive */
-  --destructive: #f87171;
-  --destructive-hover: #ef4444;
-  --destructive-subtle: #2c1515;
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --destructive-hover: oklch(0.5368 0.2078 25.3313);
+  --destructive-subtle: oklch(0.2213 0.0038 106.707);
 
-  --border: #303030;
+  --border: oklch(0.3618 0.0101 106.8928);
+  --accent-light: oklch(0.7631 0.1054 163.4);
+  --accent-lightest: oklch(0.9245 0.0382 155.7);
+  --chart-1: oklch(0.6171 0.1375 39.0427);
+  --chart-2: oklch(0.5583 0.1276 42.9956);
+  --chart-3: oklch(0.7631 0.1054 163.4);
+  --chart-4: oklch(0.9245 0.0382 155.7);
+  --chart-5: oklch(0.6724 0.1308 38.7559);
 }
 
 @theme inline {
@@ -58,13 +73,54 @@
   --font-body: var(--font-body);
 }
 
+html,
 body {
   background: var(--background);
+  background-image: none;
   color: var(--foreground);
   font-family: var(--font-body);
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease both;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease both;
 }
 body::-webkit-scrollbar {
   display: none;

@@ -1,73 +1,73 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FaDiscord, FaGithub } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { VscVscode } from "react-icons/vsc";
+import { Code, DiscordLogo, GithubLogo, XLogo } from "@phosphor-icons/react";
 
 const Footer = () => {
-	const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
-	return (
-		<footer className="w-full bg-background border-t border-border">
-			<div className="flex items-center justify-center w-full">
-				<div className="flex flex-col max-w-7xl w-full p-5 gap-8">
-					<div className="flex flex-col md:flex-row items-center justify-between gap-4">
-						<div className="flex items-center text-2xl font-semibold text-foreground font-heading">
-							<Image
-								src="/logo.svg"
-								alt="CoreDump Logo"
-								className="h-10 w-10"
-								width={40}
-								height={40}
-							/>
-							<span>CoreDump</span>
-						</div>
-						<p className="text-foreground/80 text-sm font-normal">
-							© {currentYear} CoreDump. All rights reserved.
-						</p>
-						<div className="flex items-center gap-4">
-							<Link
-								href="https://github.com/unsafe0x0"
-								className="text-foreground/80 hover:text-accent"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="GitHub"
-							>
-								<FaGithub size={20} />
-							</Link>
-							<Link
-								href="https://twitter.com/unsafezero"
-								className="text-foreground/80 hover:text-accent"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Twitter"
-							>
-								<FaSquareXTwitter size={20} />
-							</Link>
-							<Link
-								href="https://discord.gg/unsafezero"
-								className="text-foreground/80 hover:text-accent"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="Discord"
-							>
-								<FaDiscord size={20} />
-							</Link>
-							<Link
-								href="https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
-								className="text-foreground/80 hover:text-accent"
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label="VS Code Extension"
-							>
-								<VscVscode size={20} />
-							</Link>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	);
+  return (
+    <footer className="w-full bg-background border-t border-border">
+      <div className="flex items-center justify-center w-full">
+        <div className="flex flex-col max-w-7xl w-full p-5 gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center text-2xl font-semibold text-foreground font-heading">
+              <Image
+                src="/logo.svg"
+                alt="CoreDump Logo"
+                className="h-10 w-10"
+                width={40}
+                height={40}
+              />
+              <span>CoreDump</span>
+            </div>
+            <p className="text-foreground/80 text-sm font-normal">
+              © {currentYear} CoreDump. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <Link
+                href="https://github.com/unsafe0x0"
+                className="text-foreground/80 hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <GithubLogo size={20} />
+              </Link>
+              <Link
+                href="https://twitter.com/unsafezero"
+                className="text-foreground/80 hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
+                <XLogo size={20} />
+              </Link>
+              <Link
+                href="https://discord.gg/unsafezero"
+                className="text-foreground/80 hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+              >
+                <DiscordLogo size={20} />
+              </Link>
+              <Link
+                href="https://marketplace.visualstudio.com/items?itemName=Unsafezero.coredump"
+                className="text-foreground/80 hover:text-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="VS Code Extension"
+              >
+                <Code size={20} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

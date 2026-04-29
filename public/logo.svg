@@ -1,52 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="1em"
-     height="1em"
-     viewBox="0 0 512 512"
-     fill="none">
-
-  <!-- Chip body -->
-  <rect x="148" y="148" width="216" height="216" rx="20" fill="#10b981"/>
-
-  <!-- Inner die / core -->
-  <rect x="190" y="190" width="132" height="132" rx="10" fill="#059669"/>
-
-  <!-- Circuit grid lines on die -->
-  <line x1="190" y1="228" x2="322" y2="228" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-  <line x1="190" y1="256" x2="322" y2="256" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-  <line x1="190" y1="284" x2="322" y2="284" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-  <line x1="228" y1="190" x2="228" y2="322" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-  <line x1="256" y1="190" x2="256" y2="322" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-  <line x1="284" y1="190" x2="284" y2="322" stroke="#6ee7b7" stroke-width="2.5" stroke-opacity="0.7"/>
-
-  <!-- Pin-1 indicator dot (top-left corner) -->
-  <circle cx="172" cy="172" r="10" fill="#a7f3d0"/>
-
-  <!-- Left pins (5) -->
-  <rect x="110" y="175" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="110" y="213" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="110" y="251" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="110" y="289" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="110" y="327" width="38" height="14" rx="5" fill="#10b981"/>
-
-  <!-- Right pins (5) -->
-  <rect x="364" y="175" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="364" y="213" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="364" y="251" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="364" y="289" width="38" height="14" rx="5" fill="#10b981"/>
-  <rect x="364" y="327" width="38" height="14" rx="5" fill="#10b981"/>
-
-  <!-- Top pins (5) -->
-  <rect x="175" y="110" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="213" y="110" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="251" y="110" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="289" y="110" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="327" y="110" width="14" height="38" rx="5" fill="#10b981"/>
-
-  <!-- Bottom pins (5) -->
-  <rect x="175" y="364" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="213" y="364" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="251" y="364" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="289" y="364" width="14" height="38" rx="5" fill="#10b981"/>
-  <rect x="327" y="364" width="14" height="38" rx="5" fill="#10b981"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Left bracket -->
+  <path d="M 140 100 L 100 100 L 100 412 L 140 412" stroke="oklch(0.6171 0.1375 39.0427)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Right bracket -->
+  <path d="M 372 100 L 412 100 L 412 412 L 372 412" stroke="oklch(0.6171 0.1375 39.0427)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Horizontal lines -->
+  <line x1="160" y1="180" x2="352" y2="180" stroke="oklch(0.6171 0.1375 39.0427)" stroke-width="24" stroke-linecap="round"/>
+  <line x1="160" y1="256" x2="352" y2="256" stroke="oklch(0.6171 0.1375 39.0427)" stroke-width="24" stroke-linecap="round"/>
+  <line x1="160" y1="332" x2="352" y2="332" stroke="oklch(0.6171 0.1375 39.0427)" stroke-width="24" stroke-linecap="round"/>
 </svg>
